@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.modules.job_segment.dq_segment &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycwb.modules.job_segment.dq_segment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycwb.modules.job_segment.dq_segment</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">pycwb.types.job</span> <span class="kn">import</span> <span class="n">WaveSegment</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="read_seg_list"><a class="viewcode-back" href="../../../../pycwb.modules.job_segment.html#pycwb.modules.job_segment.dq_segment.read_seg_list">[docs]</a><span class="k">def</span> <span class="nf">read_seg_list</span><span class="p">(</span><span class="n">dq_file_list</span><span class="p">,</span> <span class="n">dq_cat</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Load the files contains segment list from the data quality files below the data quality category (dq_file.load_file)).</span>
+<span class="sd">    Then merge the segment list (merge_seg_list) and return the merged segment list.</span>
+
+<span class="sd">    :param dq_file_list: The data quality files.</span>
+<span class="sd">    :type dq_file_list: list[DQFile]</span>
+<span class="sd">    :param dq_cat: The data quality category.</span>
+<span class="sd">    :type dq_cat: str</span>
+<span class="sd">    :return: A list of segments.</span>
+<span class="sd">    :rtype: list[WaveSegment]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">seg_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">dq_file</span> <span class="ow">in</span> <span class="n">dq_file_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dq_file</span><span class="o">.</span><span class="n">dq_cat</span> <span class="o">&lt;=</span> <span class="n">dq_cat</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loading data quality file </span><span class="si">{</span><span class="n">dq_file</span><span class="o">.</span><span class="n">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">seg_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dq_file</span><span class="o">.</span><span class="n">get_periods</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;No CWB_CAT=</span><span class="si">%s</span><span class="s2"> files in the list&quot;</span><span class="p">,</span> <span class="n">dq_cat</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;No CWB_CAT=</span><span class="si">%s</span><span class="s2"> files in the list&quot;</span><span class="p">,</span> <span class="n">dq_cat</span><span class="p">)</span>
+
+    <span class="n">merged_seg_list</span> <span class="o">=</span> <span class="n">seg_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">seg_list</span> <span class="ow">in</span> <span class="n">seg_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="n">merged_seg_list</span> <span class="o">=</span> <span class="n">merge_seg_list</span><span class="p">(</span><span class="n">merged_seg_list</span><span class="p">,</span> <span class="n">seg_list</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">merged_seg_list</span></div>
+
+
+<div class="viewcode-block" id="merge_seg_list"><a class="viewcode-back" href="../../../../pycwb.modules.job_segment.html#pycwb.modules.job_segment.dq_segment.merge_seg_list">[docs]</a><span class="k">def</span> <span class="nf">merge_seg_list</span><span class="p">(</span><span class="n">seg_list_1</span><span class="p">,</span> <span class="n">seg_list_2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Merge the segment list.</span>
+
+<span class="sd">    :param seg_list_1: The first segment list.</span>
+<span class="sd">    :type seg_list_1: tuple[np.ndarray | list, np.ndarray | list]</span>
+<span class="sd">    :param seg_list_2: The second segment list.</span>
+<span class="sd">    :type seg_list_2: tuple[np.ndarray | list, np.ndarray | list]</span>
+<span class="sd">    :return: A list of merged segments (start, end)</span>
+<span class="sd">    :rtype: tuple[list, list]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">merged_start</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">merged_stop</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">n1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">seg_list_1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">n2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">seg_list_2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n1</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n2</span><span class="p">:</span>
+        <span class="c1"># if stop2 &lt;= start1, precede list2</span>
+        <span class="k">if</span> <span class="n">seg_list_2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">seg_list_1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># if stop1 &lt;= start2, precede list1</span>
+        <span class="k">elif</span> <span class="n">seg_list_1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">seg_list_2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">seg_list_2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">seg_list_1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">seg_list_1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">seg_list_2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">seg_list_2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">seg_list_1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">stop</span> <span class="o">=</span> <span class="n">seg_list_1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">stop</span> <span class="o">=</span> <span class="n">seg_list_2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">seg_list_2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">seg_list_1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="n">merged_start</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+            <span class="n">merged_stop</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stop</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">merged_start</span><span class="p">,</span> <span class="n">merged_stop</span></div>
+
+
+<div class="viewcode-block" id="get_seg_list"><a class="viewcode-back" href="../../../../pycwb.modules.job_segment.html#pycwb.modules.job_segment.dq_segment.get_seg_list">[docs]</a><span class="k">def</span> <span class="nf">get_seg_list</span><span class="p">(</span><span class="n">dq_list</span><span class="p">,</span> <span class="n">seg_len</span><span class="p">,</span> <span class="n">seg_mls</span><span class="p">,</span> <span class="n">seg_edge</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Not implemented yet.</span>
+
+<span class="sd">    :param dq_list:</span>
+<span class="sd">    :param seg_len:</span>
+<span class="sd">    :param seg_mls:</span>
+<span class="sd">    :param seg_edge:</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">job_list</span> <span class="o">=</span> <span class="n">get_job_list</span><span class="p">(</span><span class="n">dq_list</span><span class="p">,</span> <span class="n">seg_len</span><span class="p">,</span> <span class="n">seg_mls</span><span class="p">,</span> <span class="n">seg_edge</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[]</span></div>
+
+
+<div class="viewcode-block" id="get_job_list"><a class="viewcode-back" href="../../../../pycwb.modules.job_segment.html#pycwb.modules.job_segment.dq_segment.get_job_list">[docs]</a><span class="k">def</span> <span class="nf">get_job_list</span><span class="p">(</span><span class="n">dq_list</span><span class="p">,</span> <span class="n">seg_len</span><span class="p">,</span> <span class="n">seg_mls</span><span class="p">,</span> <span class="n">seg_edge</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build the job segment list.</span>
+
+<span class="sd">    The job segments are builded starting from the input ilist, each segment must have a minimum length</span>
+<span class="sd">    of segMLS+2segEdge and a maximum length of segLen+2*segEdge in order to maximize the input live time</span>
+<span class="sd">    each segment with lenght&lt;2*(segLen+segEdge) is divided in 2 segments with length&lt;segLen+2*segEdge</span>
+
+<span class="sd">    segEdge     : xxx \n</span>
+<span class="sd">    segMLS      : ------- \n</span>
+<span class="sd">    segLen      : --------------- \n</span>
+<span class="sd">    input seg   : ---------------------------- \n</span>
+<span class="sd">    output segA : xxx---------xxx \n</span>
+<span class="sd">    output segB :             xxx----------xxx \n</span>
+
+<span class="sd">    :param dq_list:  number of detectors</span>
+<span class="sd">    :type dq_list:  list[DQFile]</span>
+<span class="sd">    :param seg_len:  Segment length [sec]</span>
+<span class="sd">    :type seg_len:  int</span>
+<span class="sd">    :param seg_mls:  Minimum Segment Length after DQ_CAT1 [sec]</span>
+<span class="sd">    :type seg_mls:  int</span>
+<span class="sd">    :param seg_edge:  wavelet boundary offset [sec]</span>
+<span class="sd">    :type seg_edge:  int</span>
+<span class="sd">    :return:  Return the job segment list</span>
+<span class="sd">    :rtype:  list[WaveSegment]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">seg_mls</span> <span class="o">&gt;</span> <span class="n">seg_len</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;seg_mls must be &lt;= seg_len&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;seg_mls must be &lt;= seg_len&#39;</span><span class="p">)</span>
+
+    <span class="n">lostlivetime</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">job_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">seg_index</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dq_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">dq_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">seg_edge</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">dq_list</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">])</span> <span class="o">-</span> <span class="n">seg_edge</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>
+        <span class="k">if</span> <span class="n">length</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">length</span> <span class="o">/</span> <span class="n">seg_len</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">length</span> <span class="o">&lt;</span> <span class="n">seg_mls</span><span class="p">:</span>
+                <span class="n">lostlivetime</span> <span class="o">+=</span> <span class="n">length</span>
+                <span class="k">continue</span>
+            <span class="n">seg_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">job_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WaveSegment</span><span class="p">(</span><span class="n">seg_index</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">))</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="n">seg_len</span><span class="p">:</span>
+                <span class="n">remainder</span> <span class="o">=</span> <span class="n">length</span>
+                <span class="n">half</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">remainder</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">half</span> <span class="o">&gt;=</span> <span class="n">seg_mls</span><span class="p">:</span>
+                    <span class="n">seg_index</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">job_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WaveSegment</span><span class="p">(</span><span class="n">seg_index</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">half</span><span class="p">))</span>
+
+                    <span class="n">seg_index</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">job_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WaveSegment</span><span class="p">(</span><span class="n">seg_index</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">half</span><span class="p">,</span> <span class="n">stop</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">seg_index</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">job_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WaveSegment</span><span class="p">(</span><span class="n">seg_index</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">seg_len</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">seg_index</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">job_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WaveSegment</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">))</span>
+            <span class="k">continue</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">seg_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">job_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WaveSegment</span><span class="p">(</span><span class="n">seg_index</span><span class="p">,</span> <span class="n">seg_len</span> <span class="o">*</span> <span class="n">j</span> <span class="o">+</span> <span class="n">start</span><span class="p">,</span> <span class="n">seg_len</span> <span class="o">*</span> <span class="n">j</span> <span class="o">+</span> <span class="n">start</span> <span class="o">+</span> <span class="n">seg_len</span><span class="p">))</span>
+
+        <span class="n">remainder</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">job_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">end_time</span>
+        <span class="n">half</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">remainder</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">half</span> <span class="o">&gt;=</span> <span class="n">seg_mls</span><span class="p">:</span>
+            <span class="n">seg_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">job_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WaveSegment</span><span class="p">(</span><span class="n">seg_index</span><span class="p">,</span> <span class="n">job_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">end_time</span><span class="p">,</span> <span class="n">job_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">end_time</span> <span class="o">+</span> <span class="n">half</span><span class="p">))</span>
+            <span class="n">seg_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">job_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WaveSegment</span><span class="p">(</span><span class="n">seg_index</span><span class="p">,</span> <span class="n">job_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">end_time</span><span class="p">,</span> <span class="n">stop</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">seg_index</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">job_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WaveSegment</span><span class="p">(</span><span class="n">seg_index</span><span class="p">,</span> <span class="n">job_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">end_time</span><span class="p">,</span> <span class="n">job_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">end_time</span> <span class="o">+</span> <span class="n">seg_len</span><span class="p">))</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;lost livetime after building of the standard job list = </span><span class="si">%d</span><span class="s1"> sec&#39;</span> <span class="o">%</span> <span class="n">lostlivetime</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">job_list</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

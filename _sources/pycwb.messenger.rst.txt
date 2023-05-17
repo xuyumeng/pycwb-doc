@@ -1,0 +1,21 @@
+pycwb.messenger package
+=======================
+
+Submodules
+----------
+
+pycwb.messenger.messenger module
+--------------------------------
+
+.. automodule:: pycwb.messenger.messenger
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.messenger
+   :members:
+   :undoc-members:
+   :show-inheritance:

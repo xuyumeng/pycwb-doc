@@ -1,0 +1,37 @@
+pycwb.modules.data\_conditioning package
+========================================
+
+Submodules
+----------
+
+pycwb.modules.data\_conditioning.data\_conditioning module
+----------------------------------------------------------
+
+.. automodule:: pycwb.modules.data_conditioning.data_conditioning
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.data\_conditioning.regression module
+--------------------------------------------------
+
+.. automodule:: pycwb.modules.data_conditioning.regression
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.data\_conditioning.whitening module
+-------------------------------------------------
+
+.. automodule:: pycwb.modules.data_conditioning.whitening
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.data_conditioning
+   :members:
+   :undoc-members:
+   :show-inheritance:

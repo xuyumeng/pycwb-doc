@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.types.sparse_series &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycwb.types.sparse_series</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycwb.types.sparse_series</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">coo_array</span>
+
+
+<div class="viewcode-block" id="SparseTimeFrequencySeries"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries">[docs]</a><span class="k">class</span> <span class="nc">SparseTimeFrequencySeries</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;SparseSeries class</span>
+
+<span class="sd">    :param core: bool, whether to use core functions</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">core</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wavelet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># sparse_lookup=None, sparse_type=None,</span>
+                 <span class="n">sparse_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sparse_map_00</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sparse_map_90</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">rate</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">w_rate</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                 <span class="n">time_halo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">layer_halo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">net_delay</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span> <span class="o">=</span> <span class="n">wavelet</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">core</span> <span class="o">=</span> <span class="n">core</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_00</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_90</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">sparse_index</span> <span class="ow">and</span> <span class="n">sparse_map_00</span> <span class="ow">and</span> <span class="n">sparse_map_90</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_sparse_table</span><span class="p">(</span><span class="n">sparse_index</span><span class="p">,</span> <span class="n">sparse_map_00</span><span class="p">,</span> <span class="n">sparse_map_90</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="n">rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w_rate</span> <span class="o">=</span> <span class="n">w_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge</span> <span class="o">=</span> <span class="n">edge</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">time_halo</span> <span class="o">=</span> <span class="n">time_halo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer_halo</span> <span class="o">=</span> <span class="n">layer_halo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">net_delay</span> <span class="o">=</span> <span class="n">net_delay</span>
+
+<div class="viewcode-block" id="SparseTimeFrequencySeries.from_fragment_cluster"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.from_fragment_cluster">[docs]</a>    <span class="k">def</span> <span class="nf">from_fragment_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wdm</span><span class="p">,</span> <span class="n">tf_map</span><span class="p">,</span> <span class="n">fragment_cluster</span><span class="p">,</span> <span class="n">td_size</span><span class="p">,</span> <span class="n">m_tau</span><span class="p">,</span> <span class="n">ifo_id</span><span class="p">):</span>
+        <span class="n">wdm</span><span class="o">.</span><span class="n">set_td_filter</span><span class="p">(</span><span class="n">td_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">ws</span> <span class="o">=</span> <span class="n">tf_map</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">ws</span><span class="o">.</span><span class="n">wavelet</span> <span class="o">=</span> <span class="n">wdm</span>
+        <span class="n">ws</span><span class="o">.</span><span class="n">forward</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_map</span><span class="p">(</span><span class="n">ws</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_halo</span><span class="p">(</span><span class="n">m_tau</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">fragment_cluster</span><span class="o">.</span><span class="n">clusters</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_core</span><span class="p">(</span><span class="n">ifo_id</span><span class="p">,</span> <span class="n">cluster</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_sparse_table</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+<div class="viewcode-block" id="SparseTimeFrequencySeries.resize"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.resize">[docs]</a>    <span class="k">def</span> <span class="nf">resize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Resize the sparse map</span>
+
+<span class="sd">        :param size: new size</span>
+<span class="sd">        :type size: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">core</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_00</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_90</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="SparseTimeFrequencySeries.set_map"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.set_map">[docs]</a>    <span class="k">def</span> <span class="nf">set_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tf_map</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the map</span>
+
+<span class="sd">        :param tf_map: time-frequency map</span>
+<span class="sd">        :type tf_map: TimeFrequencySeries</span>
+<span class="sd">        :param reset: reset the sparse map</span>
+<span class="sd">        :type reset: bool (default: True)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">reset</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">tf_map</span> <span class="ow">and</span> <span class="n">reset</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span> <span class="o">=</span> <span class="n">tf_map</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">lightweight_dump</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">tf_map</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">nWWS</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">tf_map</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">pWWS</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">time_halo</span> <span class="o">=</span> <span class="n">tf_map</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">time_delay_filter_size</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="n">tf_map</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">sample_rate</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">w_rate</span> <span class="o">=</span> <span class="n">tf_map</span><span class="o">.</span><span class="n">w_rate</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">tf_map</span><span class="o">.</span><span class="n">start</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">tf_map</span><span class="o">.</span><span class="n">stop</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edge</span> <span class="o">=</span> <span class="n">tf_map</span><span class="o">.</span><span class="n">edge</span>
+        <span class="k">elif</span> <span class="n">tf_map</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Not implemented yet&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SparseTimeFrequencySeries.set_halo"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.set_halo">[docs]</a>    <span class="k">def</span> <span class="nf">set_halo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_tau</span><span class="o">=</span><span class="mf">0.042</span><span class="p">,</span> <span class="n">layer_halo</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">time_halo</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the halo</span>
+
+<span class="sd">        For each core pixels (if layerHalo = 1) the following pixels are saved</span>
+
+<span class="sd">            core      = &#39;.&#39;</span>
+<span class="sd">            extraHalo = &#39;++++++++&#39;</span>
+<span class="sd">            timeHalo  = &#39;xxxx&#39;</span>
+
+<span class="sd">            ++++++++xxxx xxxx++++++++</span>
+<span class="sd">            ++++++++xxxx.xxxx++++++++</span>
+<span class="sd">            ++++++++xxxx xxxx++++++++</span>
+
+<span class="sd">        :param max_tau: delay time (sec) is stored in net_Delay used to compute extraHalo = net_Delay*sparseRate</span>
+<span class="sd">        :type max_tau: float</span>
+<span class="sd">        :param layer_halo: number of layers above and below each core pixel is stored in layerHalo the total number of layers in the halo is 2*layerHalo+1</span>
+<span class="sd">        :type layer_halo: int</span>
+<span class="sd">        :param time_halo: number of slice on the right and on the left each core pixel is stored in timeHalo the total number of pixels on the time axis is 2*(timeHalo+extraHalo)+1 The default value is -1 : the value is automatically selected from the associated TF map with WDM::getTDFsize() method.</span>
+<span class="sd">        :type time_halo: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resize</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer_halo</span> <span class="o">=</span> <span class="n">layer_halo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">net_delay</span> <span class="o">=</span> <span class="n">max_tau</span>
+        <span class="k">if</span> <span class="n">time_halo</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">time_halo</span> <span class="o">=</span> <span class="n">time_halo</span></div>
+
+<div class="viewcode-block" id="SparseTimeFrequencySeries.add_core"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.add_core">[docs]</a>    <span class="k">def</span> <span class="nf">add_core</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ifo_id</span><span class="p">,</span> <span class="n">cluster</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Add core pixels of the detector ID=ifoID contained in the pwc netcluster with index ID</span>
+
+<span class="sd">        :param ifo_id: detector ID</span>
+<span class="sd">        :type ifo_id: int</span>
+<span class="sd">        :param cluster: netcluster</span>
+<span class="sd">        :type cluster: Cluster</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">r</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_rate</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">)</span>
+
+        <span class="c1"># skip rejected clusters</span>
+        <span class="k">if</span> <span class="n">cluster</span><span class="o">.</span><span class="n">cluster_status</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="c1"># loop over pixels</span>
+        <span class="k">for</span> <span class="n">pixel</span> <span class="ow">in</span> <span class="n">cluster</span><span class="o">.</span><span class="n">pixels</span><span class="p">:</span>
+            <span class="c1"># skip pixel with bad rate, TODO: why the rate can be bad?</span>
+            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">pixel</span><span class="o">.</span><span class="n">rate</span> <span class="o">+</span> <span class="mf">0.01</span><span class="p">)</span> <span class="o">!=</span> <span class="n">r</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># store pixel index</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pixel</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">ifo_id</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SparseTimeFrequencySeries.update_sparse_table"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.update_sparse_table">[docs]</a>    <span class="k">def</span> <span class="nf">update_sparse_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Use the core pixels and halo parameters to update the sparse maps with core+halo pixels</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_halo</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_halo</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">extra_halo</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">net_delay</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_rate</span><span class="p">)</span> <span class="o">+</span> <span class="mi">8</span>  <span class="c1"># init extra halo : WARNING value 8 ad hoc - to be fixed</span>
+        <span class="n">h_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_halo</span> <span class="o">+</span> <span class="n">extra_halo</span>  <span class="c1"># halo slices</span>
+        <span class="n">layer_halo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_halo</span>  <span class="c1"># halo layers</span>
+
+        <span class="n">cluster</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">n_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">max_level</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># number of WDM layers</span>
+        <span class="n">n_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">size_at_zero_layer</span>  <span class="c1"># number of samples in wavelet layer</span>
+
+        <span class="c1"># start_time = time.perf_counter()</span>
+        <span class="k">for</span> <span class="n">core_pixel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="p">:</span>
+            <span class="c1"># i,j index of the core pixel</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">core_pixel</span> <span class="o">//</span> <span class="n">n_layer</span>  <span class="c1"># slice</span>
+            <span class="n">l</span> <span class="o">=</span> <span class="n">core_pixel</span> <span class="o">%</span> <span class="n">n_layer</span>  <span class="c1"># layer</span>
+
+            <span class="c1"># Calculate the starting and ending indices for the time and layer axes</span>
+            <span class="n">start_t</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">t</span> <span class="o">-</span> <span class="n">h_slice</span><span class="p">)</span>
+            <span class="n">start_l</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">l</span> <span class="o">-</span> <span class="n">layer_halo</span><span class="p">)</span>
+            <span class="n">end_t</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_slice</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">t</span> <span class="o">+</span> <span class="n">h_slice</span><span class="p">)</span>
+            <span class="n">end_l</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">n_layer</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">l</span> <span class="o">+</span> <span class="n">layer_halo</span><span class="p">)</span>
+
+            <span class="c1"># Calculate the block indices in 1D array</span>
+            <span class="n">cluster</span> <span class="o">+=</span> <span class="p">[(</span><span class="n">ll</span><span class="p">,</span> <span class="n">tt</span><span class="p">)</span> <span class="k">for</span> <span class="n">ll</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_l</span><span class="p">,</span> <span class="n">end_l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">tt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start_t</span><span class="p">,</span> <span class="n">end_t</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+        <span class="c1"># remove duplicates</span>
+        <span class="n">cluster</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">cluster</span><span class="p">))</span>
+
+        <span class="c1"># get the sparse maps</span>
+        <span class="n">sparse_map_00</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">get_map_00</span><span class="p">(</span><span class="n">ll</span> <span class="o">*</span> <span class="n">n_layer</span> <span class="o">+</span> <span class="n">tt</span><span class="p">)</span> <span class="k">for</span> <span class="n">tt</span><span class="p">,</span> <span class="n">ll</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">]</span>
+        <span class="n">sparse_map_90</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">get_map_90</span><span class="p">(</span><span class="n">ll</span> <span class="o">*</span> <span class="n">n_layer</span> <span class="o">+</span> <span class="n">tt</span><span class="p">)</span> <span class="k">for</span> <span class="n">tt</span><span class="p">,</span> <span class="n">ll</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_sparse_table</span><span class="p">(</span><span class="n">cluster</span><span class="p">,</span> <span class="n">sparse_map_00</span><span class="p">,</span> <span class="n">sparse_map_90</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SparseTimeFrequencySeries.set_sparse_table"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.set_sparse_table">[docs]</a>    <span class="k">def</span> <span class="nf">set_sparse_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sparse_index</span><span class="p">,</span> <span class="n">sparse_map_00</span><span class="p">,</span> <span class="n">sparse_map_90</span><span class="p">):</span>
+        <span class="n">n_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">max_level</span> <span class="o">+</span> <span class="mi">1</span>  <span class="c1"># number of WDM layers</span>
+        <span class="n">n_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">size_at_zero_layer</span>  <span class="c1"># number of samples in wavelet layer</span>
+
+        <span class="c1"># cluster = np.array(sparse_index)</span>
+        <span class="c1"># time = cluster // n_layer</span>
+        <span class="c1"># layer = cluster % n_layer</span>
+        <span class="c1"># list comprehension is faster than zip</span>
+        <span class="n">layer</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sparse_index</span><span class="p">]</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sparse_index</span><span class="p">]</span>
+
+        <span class="c1"># create sparse table</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_00</span> <span class="o">=</span> <span class="n">coo_array</span><span class="p">((</span><span class="n">sparse_map_00</span><span class="p">,</span> <span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">time</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_layer</span><span class="p">,</span> <span class="n">n_slice</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_90</span> <span class="o">=</span> <span class="n">coo_array</span><span class="p">((</span><span class="n">sparse_map_90</span><span class="p">,</span> <span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">time</span><span class="p">)),</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_layer</span><span class="p">,</span> <span class="n">n_slice</span><span class="p">))</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sparse_lookup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the sparse lookup</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sparse_lookup</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">n_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_00</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_layer</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">sparse_lookup</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+            <span class="n">n</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_00</span><span class="o">.</span><span class="n">row</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sparse_lookup</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sparse_map_00</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the sparse map_00</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_00</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sparse_map_90</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the sparse map_90</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_90</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sparse_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get the sparse index</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_00</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_00</span><span class="o">.</span><span class="n">col</span> <span class="o">*</span> <span class="n">n_layer</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">sparse_table_00</span><span class="o">.</span><span class="n">row</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

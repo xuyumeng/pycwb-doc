@@ -1,0 +1,21 @@
+pycwb.modules.multi\_resolution\_wdm package
+============================================
+
+Submodules
+----------
+
+pycwb.modules.multi\_resolution\_wdm.wdm module
+-----------------------------------------------
+
+.. automodule:: pycwb.modules.multi_resolution_wdm.wdm
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.multi_resolution_wdm
+   :members:
+   :undoc-members:
+   :show-inheritance:

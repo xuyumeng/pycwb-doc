@@ -1,0 +1,21 @@
+pycwb.modules.super\_cluster package
+====================================
+
+Submodules
+----------
+
+pycwb.modules.super\_cluster.supercluster module
+------------------------------------------------
+
+.. automodule:: pycwb.modules.super_cluster.supercluster
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.super_cluster
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,514 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.modules.job_segment package &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pycwb.modules.likelihood package" href="pycwb.modules.likelihood.html" />
+    <link rel="prev" title="pycwb.modules.data_conditioning package" href="pycwb.modules.data_conditioning.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pycwb.html">pycwb package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pycwb.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pycwb.config.html">pycwb.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.constants.html">pycwb.constants package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.messenger.html">pycwb.messenger package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pycwb.modules.html">pycwb.modules package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html">pycwb.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.utils.html">pycwb.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb.search">pycwb.search module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">pycwb</a> &raquo;</li>
+        
+          <li><a href="pycwb.html">pycwb package</a> &raquo;</li>
+        
+          <li><a href="pycwb.modules.html">pycwb.modules package</a> &raquo;</li>
+        
+      <li>pycwb.modules.job_segment package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pycwb.modules.job_segment.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pycwb-modules-job-segment-package">
+<h1>pycwb.modules.job_segment package<a class="headerlink" href="#pycwb-modules-job-segment-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-pycwb.modules.job_segment.dq_segment">
+<span id="pycwb-modules-job-segment-dq-segment-module"></span><h2>pycwb.modules.job_segment.dq_segment module<a class="headerlink" href="#module-pycwb.modules.job_segment.dq_segment" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.dq_segment.get_job_list">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.dq_segment.</span></span><span class="sig-name descname"><span class="pre">get_job_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dq_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_mls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_edge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/dq_segment.html#get_job_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.dq_segment.get_job_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build the job segment list.</p>
+<p>The job segments are builded starting from the input ilist, each segment must have a minimum length
+of segMLS+2segEdge and a maximum length of segLen+2*segEdge in order to maximize the input live time
+each segment with lenght&lt;2*(segLen+segEdge) is divided in 2 segments with length&lt;segLen+2*segEdge</p>
+<p>segEdge     : xxx</p>
+<p>segMLS      : ——-</p>
+<p>segLen      : —————</p>
+<p>input seg   : —————————-</p>
+<p>output segA : xxx———xxx</p>
+<p>output segB :             xxx———-xxx</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dq_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="pycwb.types.html#pycwb.types.data_quality_file.DQFile" title="pycwb.types.data_quality_file.DQFile"><em>DQFile</em></a><em>]</em>) – number of detectors</p></li>
+<li><p><strong>seg_len</strong> (<em>int</em>) – Segment length [sec]</p></li>
+<li><p><strong>seg_mls</strong> (<em>int</em>) – Minimum Segment Length after DQ_CAT1 [sec]</p></li>
+<li><p><strong>seg_edge</strong> (<em>int</em>) – wavelet boundary offset [sec]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Return the job segment list</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment" title="pycwb.types.job.WaveSegment">WaveSegment</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.dq_segment.get_seg_list">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.dq_segment.</span></span><span class="sig-name descname"><span class="pre">get_seg_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dq_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_mls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_edge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/dq_segment.html#get_seg_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.dq_segment.get_seg_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Not implemented yet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dq_list</strong> – </p></li>
+<li><p><strong>seg_len</strong> – </p></li>
+<li><p><strong>seg_mls</strong> – </p></li>
+<li><p><strong>seg_edge</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.dq_segment.merge_seg_list">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.dq_segment.</span></span><span class="sig-name descname"><span class="pre">merge_seg_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seg_list_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_list_2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/dq_segment.html#merge_seg_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.dq_segment.merge_seg_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Merge the segment list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seg_list_1</strong> (<em>tuple</em><em>[</em><em>np.ndarray</em><em> | </em><em>list</em><em>, </em><em>np.ndarray</em><em> | </em><em>list</em><em>]</em>) – The first segment list.</p></li>
+<li><p><strong>seg_list_2</strong> (<em>tuple</em><em>[</em><em>np.ndarray</em><em> | </em><em>list</em><em>, </em><em>np.ndarray</em><em> | </em><em>list</em><em>]</em>) – The second segment list.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of merged segments (start, end)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[list, list]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.dq_segment.read_seg_list">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.dq_segment.</span></span><span class="sig-name descname"><span class="pre">read_seg_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dq_file_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dq_cat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/dq_segment.html#read_seg_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.dq_segment.read_seg_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the files contains segment list from the data quality files below the data quality category (dq_file.load_file)).
+Then merge the segment list (merge_seg_list) and return the merged segment list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dq_file_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="pycwb.types.html#pycwb.types.data_quality_file.DQFile" title="pycwb.types.data_quality_file.DQFile"><em>DQFile</em></a><em>]</em>) – The data quality files.</p></li>
+<li><p><strong>dq_cat</strong> (<em>str</em>) – The data quality category.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of segments.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment" title="pycwb.types.job.WaveSegment">WaveSegment</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.modules.job_segment.frame">
+<span id="pycwb-modules-job-segment-frame-module"></span><h2>pycwb.modules.job_segment.frame module<a class="headerlink" href="#module-pycwb.modules.job_segment.frame" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.frame.get_frame_meta">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.frame.</span></span><span class="sig-name descname"><span class="pre">get_frame_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_list_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ifo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.gwf'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/frame.html#get_frame_meta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.frame.get_frame_meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the frame metadata (start time, duration) from a frame list file.
+The metadata will be extracted from the filename and stored in a FrameFile object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame_list_file</strong> (<em>str</em>) – file containing the frame list</p></li>
+<li><p><strong>ifo</strong> (<em>str</em>) – name of the interferometer</p></li>
+<li><p><strong>label</strong> (<em>str</em>) – label of the frame file for filtering, default is “.gwf” which will select all frame files</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of frame metadata</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="pycwb.types.html#pycwb.types.job.FrameFile" title="pycwb.types.job.FrameFile">FrameFile</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.frame.select_frame_list">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.frame.</span></span><span class="sig-name descname"><span class="pre">select_frame_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_edge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/frame.html#select_frame_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.frame.select_frame_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select the frame files that are within the segment (start, stop) with a buffer of seg_edge seconds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frame_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="pycwb.types.html#pycwb.types.job.FrameFile" title="pycwb.types.job.FrameFile"><em>FrameFile</em></a><em>]</em>) – list of frame metadata</p></li>
+<li><p><strong>start</strong> (<em>int</em>) – start time of the segment</p></li>
+<li><p><strong>stop</strong> (<em>int</em>) – stop time of the segment</p></li>
+<li><p><strong>seg_edge</strong> (<em>int</em><em> or </em><em>float</em>) – buffer of the segment</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of frame</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="pycwb.types.html#pycwb.types.job.FrameFile" title="pycwb.types.job.FrameFile">FrameFile</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.modules.job_segment.job_segment">
+<span id="pycwb-modules-job-segment-job-segment-module"></span><h2>pycwb.modules.job_segment.job_segment module<a class="headerlink" href="#module-pycwb.modules.job_segment.job_segment" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.job_segment.create_job_segment_from_config">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.job_segment.</span></span><span class="sig-name descname"><span class="pre">create_job_segment_from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/job_segment.html#create_job_segment_from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.job_segment.create_job_segment_from_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.job_segment.create_job_segment_from_injection">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.job_segment.</span></span><span class="sig-name descname"><span class="pre">create_job_segment_from_injection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulation_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">injection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/job_segment.html#create_job_segment_from_injection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.job_segment.create_job_segment_from_injection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.job_segment.select_job_segment">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.job_segment.</span></span><span class="sig-name descname"><span class="pre">select_job_segment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dq_file_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ifos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fr_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_mls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_edge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_overlap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rateANA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slag_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slag_off</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slag_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slag_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slag_site</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slag_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/job_segment.html#select_job_segment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.job_segment.select_job_segment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select a job segment from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dq_file_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="pycwb.types.html#pycwb.types.data_quality_file.DQFile" title="pycwb.types.data_quality_file.DQFile"><em>DQFile</em></a><em>]</em>) – The list of DQ files.</p></li>
+<li><p><strong>ifos</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – The list of interferometers.</p></li>
+<li><p><strong>fr_files</strong> (<em>list</em><em>[</em><a class="reference internal" href="pycwb.types.html#pycwb.types.job.FrameFile" title="pycwb.types.job.FrameFile"><em>FrameFile</em></a><em>]</em>) – The list of frame files.</p></li>
+<li><p><strong>seg_len</strong> (<em>int</em>) – The segment length.</p></li>
+<li><p><strong>seg_mls</strong> (<em>int</em>) – The minimum segment length after DQ_CAT1.</p></li>
+<li><p><strong>seg_edge</strong> (<em>int</em>) – The wavelet boundary offset.</p></li>
+<li><p><strong>seg_overlap</strong> (<em>int</em>) – The segment overlap.</p></li>
+<li><p><strong>rateANA</strong> (<em>int</em>) – The rate of the analysis.</p></li>
+<li><p><strong>l_high</strong> (<em>int</em>) – The high frequency cutoff.</p></li>
+<li><p><strong>slag_size</strong> (<em>int</em><em>, </em><em>optional</em>) – The super lag size.</p></li>
+<li><p><strong>slag_off</strong> (<em>int</em><em>, </em><em>optional</em>) – The super lag offset.</p></li>
+<li><p><strong>slag_min</strong> (<em>int</em><em>, </em><em>optional</em>) – The super lag minimum.</p></li>
+<li><p><strong>slag_max</strong> (<em>int</em><em>, </em><em>optional</em>) – The super lag maximum.</p></li>
+<li><p><strong>slag_site</strong> (<em>int</em><em>, </em><em>optional</em>) – The super lag site.</p></li>
+<li><p><strong>slag_file</strong> (<em>int</em><em>, </em><em>optional</em>) – The super lag file.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The job segment.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment" title="pycwb.types.job.WaveSegment">WaveSegment</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.modules.job_segment.plots">
+<span id="pycwb-modules-job-segment-plots-module"></span><h2>pycwb.modules.job_segment.plots module<a class="headerlink" href="#module-pycwb.modules.job_segment.plots" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.plots.plot_seg_list">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.plots.</span></span><span class="sig-name descname"><span class="pre">plot_seg_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seg_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">merged_seg_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(24,</span> <span class="pre">6)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/plots.html#plot_seg_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.plots.plot_seg_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the segment list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seg_list</strong> (<em>tuple</em><em>[</em><em>np.ndarray</em><em> | </em><em>list</em><em>, </em><em>np.ndarray</em><em> | </em><em>list</em><em>]</em>) – list of segments</p></li>
+<li><p><strong>merged_seg_list</strong> (<em>tuple</em><em>[</em><em>np.ndarray</em><em> | </em><em>list</em><em>, </em><em>np.ndarray</em><em> | </em><em>list</em><em>]</em><em>, </em><em>optional</em>) – list of merged segments which will be analyzed</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>, </em><em>optional</em>) – figure size, defaults to (24, 6)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.modules.job_segment.super_lag">
+<span id="pycwb-modules-job-segment-super-lag-module"></span><h2>pycwb.modules.job_segment.super_lag module<a class="headerlink" href="#module-pycwb.modules.job_segment.super_lag" title="Permalink to this heading">¶</a></h2>
+<p>Module for Super Lag, not yet implemented</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.super_lag.add_slag_shifts">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.super_lag.</span></span><span class="sig-name descname"><span class="pre">add_slag_shifts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ifos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dq_files</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/super_lag.html#add_slag_shifts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.super_lag.add_slag_shifts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the shift to the dq files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slag</strong> – </p></li>
+<li><p><strong>ifos</strong> – </p></li>
+<li><p><strong>seg_len</strong> – </p></li>
+<li><p><strong>dq_files</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.super_lag.get_slag_job_list">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.super_lag.</span></span><span class="sig-name descname"><span class="pre">get_slag_job_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">numpy.ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_len</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/super_lag.html#get_slag_job_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.super_lag.get_slag_job_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the job list for SLag</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seg</strong> – </p></li>
+<li><p><strong>seg_len</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.job_segment.super_lag.get_slag_list">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.super_lag.</span></span><span class="sig-name descname"><span class="pre">get_slag_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slag_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ifos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_min</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_edge</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nDQF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iDQF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dqcat</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/super_lag.html#get_slag_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.super_lag.get_slag_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of slags</p>
+<p>if dqcat=CWB_CAT1 -&gt; return the list of slags with dq len &gt; segMin+2*segEdge</p>
+<p>if dqcat=CWB_CAT2 -&gt; return the list of slags with dq len &gt; segMin</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slag_list</strong> – vector list of slag structures</p></li>
+<li><p><strong>ifos</strong> – vector list of ifo names</p></li>
+<li><p><strong>seg_len</strong> – Segment length [sec]</p></li>
+<li><p><strong>seg_min</strong> – Minimum Segment Length after dqcat [sec]</p></li>
+<li><p><strong>seg_edge</strong> – wavelet boundary offset [sec]</p></li>
+<li><p><strong>nDQF</strong> – size of iDQF array</p></li>
+<li><p><strong>iDQF</strong> – DQ structure array</p></li>
+<li><p><strong>dqcat</strong> – dq cat</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.modules.job_segment">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycwb.modules.job_segment" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pycwb.modules.likelihood.html" class="btn btn-neutral float-right" title="pycwb.modules.likelihood package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pycwb.modules.data_conditioning.html" class="btn btn-neutral float-left" title="pycwb.modules.data_conditioning package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.modules.plot package &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pycwb.modules.read_data package" href="pycwb.modules.read_data.html" />
+    <link rel="prev" title="pycwb.modules.multi_resolution_wdm package" href="pycwb.modules.multi_resolution_wdm.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pycwb.html">pycwb package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pycwb.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pycwb.config.html">pycwb.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.constants.html">pycwb.constants package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.messenger.html">pycwb.messenger package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pycwb.modules.html">pycwb.modules package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html">pycwb.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.utils.html">pycwb.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb.search">pycwb.search module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">pycwb</a> &raquo;</li>
+        
+          <li><a href="pycwb.html">pycwb package</a> &raquo;</li>
+        
+          <li><a href="pycwb.modules.html">pycwb.modules package</a> &raquo;</li>
+        
+      <li>pycwb.modules.plot package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pycwb.modules.plot.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pycwb-modules-plot-package">
+<h1>pycwb.modules.plot package<a class="headerlink" href="#pycwb-modules-plot-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-pycwb.modules.plot.cluster_statistics">
+<span id="pycwb-modules-plot-cluster-statistics-module"></span><h2>pycwb.modules.plot.cluster_statistics module<a class="headerlink" href="#module-pycwb.modules.plot.cluster_statistics" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.plot.cluster_statistics.plot_statistics">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.plot.cluster_statistics.</span></span><span class="sig-name descname"><span class="pre">plot_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'likelihood'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/plot/cluster_statistics.html#plot_statistics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.plot.cluster_statistics.plot_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the statistics of the event</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cluster</strong> (<a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster" title="pycwb.types.network_cluster.Cluster"><em>Cluster</em></a>) – cluster</p></li>
+<li><p><strong>key</strong> (<em>str</em><em>, </em><em>optional</em>) – key of the statistics, defaults to ‘likelihood’</p></li>
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – path to save the plot, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.modules.plot.event">
+<span id="pycwb-modules-plot-event-module"></span><h2>pycwb.modules.plot.event module<a class="headerlink" href="#module-pycwb.modules.plot.event" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.plot.event.plot_event_on_spectrogram">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.plot.event.</span></span><span class="sig-name descname"><span class="pre">plot_event_on_spectrogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">strain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">events</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/plot/event.html#plot_event_on_spectrogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.plot.event.plot_event_on_spectrogram" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-pycwb.modules.plot.spectrogram">
+<span id="pycwb-modules-plot-spectrogram-module"></span><h2>pycwb.modules.plot.spectrogram module<a class="headerlink" href="#module-pycwb.modules.plot.spectrogram" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.plot.spectrogram.plot_spectrogram">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.plot.spectrogram.</span></span><span class="sig-name descname"><span class="pre">plot_spectrogram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wavearray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(24,</span> <span class="pre">6)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gwpy_plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/plot/spectrogram.html#plot_spectrogram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.plot.spectrogram.plot_spectrogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plots a spectrogram of the given waveform array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wavearray</strong> (<em>ROOT.WSeries</em><em> or </em><em>gwpy.timeseries.TimeSeries</em>) – given waveform array</p></li>
+<li><p><strong>xmin</strong> (<em>float</em><em>, </em><em>optional</em>) – x-axis minimum for matplotlib plot</p></li>
+<li><p><strong>xmax</strong> (<em>float</em><em>, </em><em>optional</em>) – x-axis maximum for matplotlib plot</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em>, </em><em>optional</em>) – figure size for matplotlib plot, default (24, 6)</p></li>
+<li><p><strong>gwpy_plot</strong> (<em>bool</em><em>, </em><em>optional</em>) – whether to use gwpy or ROOT to transform the waveform array to a spectrogram, default True</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the matplotlib plot object for user to further modify or save</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>matplotlib.pyplot</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.modules.plot">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycwb.modules.plot" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pycwb.modules.read_data.html" class="btn btn-neutral float-right" title="pycwb.modules.read_data package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pycwb.modules.multi_resolution_wdm.html" class="btn btn-neutral float-left" title="pycwb.modules.multi_resolution_wdm package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

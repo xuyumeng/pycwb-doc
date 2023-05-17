@@ -1,0 +1,21 @@
+pycwb.modules.sparse\_series package
+====================================
+
+Submodules
+----------
+
+pycwb.modules.sparse\_series.sparse\_table module
+-------------------------------------------------
+
+.. automodule:: pycwb.modules.sparse_series.sparse_table
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.sparse_series
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,765 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb package &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pycwb.config package" href="pycwb.config.html" />
+    <link rel="prev" title="pycwb" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pycwb package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.config.html">pycwb.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.constants.html">pycwb.constants package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.messenger.html">pycwb.messenger package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.html">pycwb.modules package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html">pycwb.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.utils.html">pycwb.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pycwb.search">pycwb.search module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pycwb.search.analyze_job_segment"><code class="docutils literal notranslate"><span class="pre">analyze_job_segment()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pycwb.search.search"><code class="docutils literal notranslate"><span class="pre">search()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-pycwb">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">pycwb</a> &raquo;</li>
+        
+      <li>pycwb package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pycwb.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pycwb-package">
+<h1>pycwb package<a class="headerlink" href="#pycwb-package" title="Permalink to this heading">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pycwb.config.html">pycwb.config package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.config.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.config.html#module-pycwb.config.config">pycwb.config.config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config"><code class="docutils literal notranslate"><span class="pre">Config</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config.add_derived_key"><code class="docutils literal notranslate"><span class="pre">Config.add_derived_key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config.check_MRA_catalog"><code class="docutils literal notranslate"><span class="pre">Config.check_MRA_catalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config.check_file"><code class="docutils literal notranslate"><span class="pre">Config.check_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config.check_lagStep"><code class="docutils literal notranslate"><span class="pre">Config.check_lagStep()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config.get_lag_buffer"><code class="docutils literal notranslate"><span class="pre">Config.get_lag_buffer()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.config.html#module-pycwb.config">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pycwb.constants.html">pycwb.constants package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.constants.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.constants.html#module-pycwb.constants.project_constants">pycwb.constants.project_constants module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.constants.html#module-pycwb.constants.user_parameters_schema">pycwb.constants.user_parameters_schema module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.constants.html#module-pycwb.constants">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pycwb.messenger.html">pycwb.messenger package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.messenger.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.messenger.html#module-pycwb.messenger.messenger">pycwb.messenger.messenger module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.messenger.html#pycwb.messenger.messenger.import_helper"><code class="docutils literal notranslate"><span class="pre">import_helper()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.messenger.html#module-pycwb.messenger">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pycwb.modules.html">pycwb.modules package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.modules.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.autoencoder.html">pycwb.modules.autoencoder package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.autoencoder.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.autoencoder.html#module-pycwb.modules.autoencoder.autoencoder">pycwb.modules.autoencoder.autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.autoencoder.html#module-pycwb.modules.autoencoder.cwb_autoencoder">pycwb.modules.autoencoder.cwb_autoencoder module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.autoencoder.html#module-pycwb.modules.autoencoder">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.catalog.html">pycwb.modules.catalog package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.catalog.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.catalog.html#module-pycwb.modules.catalog.catalog">pycwb.modules.catalog.catalog module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.catalog.html#module-pycwb.modules.catalog">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.coherence.html">pycwb.modules.coherence package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.coherence.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.coherence.html#module-pycwb.modules.coherence.coherence">pycwb.modules.coherence.coherence module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.coherence.html#module-pycwb.modules.coherence.coherence_lite">pycwb.modules.coherence.coherence_lite module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.coherence.html#module-pycwb.modules.coherence">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.cwb_conversions.html">pycwb.modules.cwb_conversions package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.cwb_conversions.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.cwb_conversions.html#module-pycwb.modules.cwb_conversions.cluster">pycwb.modules.cwb_conversions.cluster module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.cwb_conversions.html#module-pycwb.modules.cwb_conversions.pixel">pycwb.modules.cwb_conversions.pixel module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.cwb_conversions.html#module-pycwb.modules.cwb_conversions.series">pycwb.modules.cwb_conversions.series module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.cwb_conversions.html#module-pycwb.modules.cwb_conversions.sparse_series">pycwb.modules.cwb_conversions.sparse_series module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.cwb_conversions.html#module-pycwb.modules.cwb_conversions">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.data_conditioning.html">pycwb.modules.data_conditioning package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.data_conditioning.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.data_conditioning.html#module-pycwb.modules.data_conditioning.data_conditioning">pycwb.modules.data_conditioning.data_conditioning module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.data_conditioning.html#module-pycwb.modules.data_conditioning.regression">pycwb.modules.data_conditioning.regression module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.data_conditioning.html#module-pycwb.modules.data_conditioning.whitening">pycwb.modules.data_conditioning.whitening module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.data_conditioning.html#module-pycwb.modules.data_conditioning">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.job_segment.html">pycwb.modules.job_segment package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.job_segment.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.job_segment.html#module-pycwb.modules.job_segment.dq_segment">pycwb.modules.job_segment.dq_segment module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.job_segment.html#module-pycwb.modules.job_segment.frame">pycwb.modules.job_segment.frame module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.job_segment.html#module-pycwb.modules.job_segment.job_segment">pycwb.modules.job_segment.job_segment module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.job_segment.html#module-pycwb.modules.job_segment.plots">pycwb.modules.job_segment.plots module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.job_segment.html#module-pycwb.modules.job_segment.super_lag">pycwb.modules.job_segment.super_lag module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.job_segment.html#module-pycwb.modules.job_segment">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.likelihood.html">pycwb.modules.likelihood package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.likelihood.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.likelihood.html#module-pycwb.modules.likelihood.likelihood">pycwb.modules.likelihood.likelihood module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.likelihood.html#module-pycwb.modules.likelihood">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.logger.html">pycwb.modules.logger package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.logger.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.logger.html#module-pycwb.modules.logger.logger">pycwb.modules.logger.logger module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.logger.html#module-pycwb.modules.logger">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.multi_resolution_wdm.html">pycwb.modules.multi_resolution_wdm package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.multi_resolution_wdm.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.multi_resolution_wdm.html#module-pycwb.modules.multi_resolution_wdm.wdm">pycwb.modules.multi_resolution_wdm.wdm module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.multi_resolution_wdm.html#module-pycwb.modules.multi_resolution_wdm">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.plot.html">pycwb.modules.plot package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.plot.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.plot.html#module-pycwb.modules.plot.cluster_statistics">pycwb.modules.plot.cluster_statistics module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.plot.html#module-pycwb.modules.plot.event">pycwb.modules.plot.event module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.plot.html#module-pycwb.modules.plot.spectrogram">pycwb.modules.plot.spectrogram module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.plot.html#module-pycwb.modules.plot">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.read_data.html">pycwb.modules.read_data package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.read_data.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.read_data.html#module-pycwb.modules.read_data.data_check">pycwb.modules.read_data.data_check module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.read_data.html#module-pycwb.modules.read_data.mdc">pycwb.modules.read_data.mdc module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.read_data.html#module-pycwb.modules.read_data.read_data">pycwb.modules.read_data.read_data module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.read_data.html#module-pycwb.modules.read_data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.reconstruction.html">pycwb.modules.reconstruction package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.reconstruction.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.reconstruction.html#module-pycwb.modules.reconstruction.getMRAwaveform">pycwb.modules.reconstruction.getMRAwaveform module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.reconstruction.html#module-pycwb.modules.reconstruction">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.sparse_series.html">pycwb.modules.sparse_series package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.sparse_series.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.sparse_series.html#module-pycwb.modules.sparse_series.sparse_table">pycwb.modules.sparse_series.sparse_table module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.sparse_series.html#module-pycwb.modules.sparse_series">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.super_cluster.html">pycwb.modules.super_cluster package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.super_cluster.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.super_cluster.html#module-pycwb.modules.super_cluster.supercluster">pycwb.modules.super_cluster.supercluster module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.super_cluster.html#module-pycwb.modules.super_cluster">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.modules.web_viewer.html">pycwb.modules.web_viewer package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.web_viewer.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.web_viewer.html#module-pycwb.modules.web_viewer.create">pycwb.modules.web_viewer.create module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.web_viewer.html#module-pycwb.modules.web_viewer">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.modules.html#module-pycwb.modules">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pycwb.types.html">pycwb.types package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#module-pycwb.types.data_quality_file">pycwb.types.data_quality_file module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.data_quality_file.DQFile"><code class="docutils literal notranslate"><span class="pre">DQFile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.data_quality_file.DQFile.c4"><code class="docutils literal notranslate"><span class="pre">DQFile.c4</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.data_quality_file.DQFile.dq_cat"><code class="docutils literal notranslate"><span class="pre">DQFile.dq_cat</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.data_quality_file.DQFile.file"><code class="docutils literal notranslate"><span class="pre">DQFile.file</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.data_quality_file.DQFile.get_periods"><code class="docutils literal notranslate"><span class="pre">DQFile.get_periods()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.data_quality_file.DQFile.ifo"><code class="docutils literal notranslate"><span class="pre">DQFile.ifo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.data_quality_file.DQFile.invert"><code class="docutils literal notranslate"><span class="pre">DQFile.invert</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.data_quality_file.DQFile.shift"><code class="docutils literal notranslate"><span class="pre">DQFile.shift</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#module-pycwb.types.detector">pycwb.types.detector module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.detector.Detector"><code class="docutils literal notranslate"><span class="pre">Detector</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#module-pycwb.types.job">pycwb.types.job module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.FrameFile"><code class="docutils literal notranslate"><span class="pre">FrameFile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.FrameFile.duration"><code class="docutils literal notranslate"><span class="pre">FrameFile.duration</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.FrameFile.end_time"><code class="docutils literal notranslate"><span class="pre">FrameFile.end_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.FrameFile.ifo"><code class="docutils literal notranslate"><span class="pre">FrameFile.ifo</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.FrameFile.path"><code class="docutils literal notranslate"><span class="pre">FrameFile.path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.FrameFile.start_time"><code class="docutils literal notranslate"><span class="pre">FrameFile.start_time</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.SLag"><code class="docutils literal notranslate"><span class="pre">SLag</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.SLag.job_id"><code class="docutils literal notranslate"><span class="pre">SLag.job_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.SLag.seg_id"><code class="docutils literal notranslate"><span class="pre">SLag.seg_id</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.SLag.slag_id"><code class="docutils literal notranslate"><span class="pre">SLag.slag_id</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment"><code class="docutils literal notranslate"><span class="pre">WaveSegment</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment.end_time"><code class="docutils literal notranslate"><span class="pre">WaveSegment.end_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment.frames"><code class="docutils literal notranslate"><span class="pre">WaveSegment.frames</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment.index"><code class="docutils literal notranslate"><span class="pre">WaveSegment.index</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment.injections"><code class="docutils literal notranslate"><span class="pre">WaveSegment.injections</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment.start_time"><code class="docutils literal notranslate"><span class="pre">WaveSegment.start_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment.to_dict"><code class="docutils literal notranslate"><span class="pre">WaveSegment.to_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#module-pycwb.types.network">pycwb.types.network module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network"><code class="docutils literal notranslate"><span class="pre">Network</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.add_detector"><code class="docutils literal notranslate"><span class="pre">Network.add_detector()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.add_wavelet"><code class="docutils literal notranslate"><span class="pre">Network.add_wavelet()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.cluster"><code class="docutils literal notranslate"><span class="pre">Network.cluster()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.get_cluster"><code class="docutils literal notranslate"><span class="pre">Network.get_cluster()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.get_ifo"><code class="docutils literal notranslate"><span class="pre">Network.get_ifo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.get_max_delay"><code class="docutils literal notranslate"><span class="pre">Network.get_max_delay()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.get_network_pixels"><code class="docutils literal notranslate"><span class="pre">Network.get_network_pixels()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.ifo_size"><code class="docutils literal notranslate"><span class="pre">Network.ifo_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.likelihood2G"><code class="docutils literal notranslate"><span class="pre">Network.likelihood2G()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.likelihoodWP"><code class="docutils literal notranslate"><span class="pre">Network.likelihoodWP()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.load_strains"><code class="docutils literal notranslate"><span class="pre">Network.load_strains()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.nLag"><code class="docutils literal notranslate"><span class="pre">Network.nLag</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.n_events"><code class="docutils literal notranslate"><span class="pre">Network.n_events</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.pattern"><code class="docutils literal notranslate"><span class="pre">Network.pattern</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.restore_skymap"><code class="docutils literal notranslate"><span class="pre">Network.restore_skymap()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.set_delay_index"><code class="docutils literal notranslate"><span class="pre">Network.set_delay_index()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.set_sky_mask"><code class="docutils literal notranslate"><span class="pre">Network.set_sky_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.set_time_shift"><code class="docutils literal notranslate"><span class="pre">Network.set_time_shift()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.set_veto"><code class="docutils literal notranslate"><span class="pre">Network.set_veto()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.sub_net_cut"><code class="docutils literal notranslate"><span class="pre">Network.sub_net_cut()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.threshold"><code class="docutils literal notranslate"><span class="pre">Network.threshold()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.update_sky_map"><code class="docutils literal notranslate"><span class="pre">Network.update_sky_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network.update_sky_mask"><code class="docutils literal notranslate"><span class="pre">Network.update_sky_mask()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.network.make_sky_mask"><code class="docutils literal notranslate"><span class="pre">make_sky_mask()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#module-pycwb.types.network_cluster">pycwb.types.network_cluster module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster"><code class="docutils literal notranslate"><span class="pre">Cluster</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.cluster_freq"><code class="docutils literal notranslate"><span class="pre">Cluster.cluster_freq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.cluster_meta"><code class="docutils literal notranslate"><span class="pre">Cluster.cluster_meta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.cluster_rate"><code class="docutils literal notranslate"><span class="pre">Cluster.cluster_rate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.cluster_status"><code class="docutils literal notranslate"><span class="pre">Cluster.cluster_status</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.cluster_time"><code class="docutils literal notranslate"><span class="pre">Cluster.cluster_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.from_netcluster"><code class="docutils literal notranslate"><span class="pre">Cluster.from_netcluster()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.get_pixel_rates"><code class="docutils literal notranslate"><span class="pre">Cluster.get_pixel_rates()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.get_pixels_with_rate"><code class="docutils literal notranslate"><span class="pre">Cluster.get_pixels_with_rate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.get_sparse_map"><code class="docutils literal notranslate"><span class="pre">Cluster.get_sparse_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.get_sparse_map_by_rate"><code class="docutils literal notranslate"><span class="pre">Cluster.get_sparse_map_by_rate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.pixels"><code class="docutils literal notranslate"><span class="pre">Cluster.pixels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.sky_area"><code class="docutils literal notranslate"><span class="pre">Cluster.sky_area</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.sky_pixel_index"><code class="docutils literal notranslate"><span class="pre">Cluster.sky_pixel_index</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.sky_pixel_map"><code class="docutils literal notranslate"><span class="pre">Cluster.sky_pixel_map</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.sky_time_delay"><code class="docutils literal notranslate"><span class="pre">Cluster.sky_time_delay</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster.to_dict"><code class="docutils literal notranslate"><span class="pre">Cluster.to_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta"><code class="docutils literal notranslate"><span class="pre">ClusterMeta</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.a_net"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.a_net</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.c_freq"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.c_freq</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.c_time"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.c_time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.chi2chirp"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.chi2chirp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.chirp"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.chirp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.chirp_efrac"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.chirp_efrac</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.chirp_ellip"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.chirp_ellip</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.chirp_pfrac"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.chirp_pfrac</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.ellipticity"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.ellipticity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.energy"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.energy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.energy_sky"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.energy_sky</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.from_cData"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.from_cData()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.g_net"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.g_net</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.g_noise"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.g_noise</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.i_net"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.i_net</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.iota"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.iota</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.like_net"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.like_net</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.like_sky"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.like_sky</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.mchirp"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.mchirp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.mchirperr"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.mchirperr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.mchpdf"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.mchpdf</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.ndof"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.ndof</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.net_cc"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.net_cc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.net_ecor"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.net_ecor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.net_ed"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.net_ed</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.net_null"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.net_null</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.net_rho"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.net_rho</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.net_rho2"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.net_rho2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.norm"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.norm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.norm_cor"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.norm_cor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.phi"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.phi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.psi"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.psi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.sky_cc"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.sky_cc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.sky_chi2"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.sky_chi2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.sky_index"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.sky_index</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.sky_size"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.sky_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.sky_stat"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.sky_stat</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.sub_net"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.sub_net</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.sub_net2"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.sub_net2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.theta"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.theta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.tmrgr"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.tmrgr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.ClusterMeta.tmrgrerr"><code class="docutils literal notranslate"><span class="pre">ClusterMeta.tmrgrerr</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster"><code class="docutils literal notranslate"><span class="pre">FragmentCluster</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.bpp"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.bpp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.clusters"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.clusters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.dump_cluster"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.dump_cluster()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.event_count"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.event_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.f_high"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.f_high</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.f_low"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.f_low</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.from_netcluster"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.from_netcluster()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.n_pix"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.n_pix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.pair"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.pair</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.pixel_count"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.pixel_count()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.rate"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.rate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.remove_rejected"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.remove_rejected()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.run"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.run</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.shift"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.shift</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.start"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.start</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.stop"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.stop</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster.subnet_threshold"><code class="docutils literal notranslate"><span class="pre">FragmentCluster.subnet_threshold</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#module-pycwb.types.network_event">pycwb.types.network_event module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_event.Event"><code class="docutils literal notranslate"><span class="pre">Event</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_event.Event.dump"><code class="docutils literal notranslate"><span class="pre">Event.dump()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_event.Event.json"><code class="docutils literal notranslate"><span class="pre">Event.json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_event.Event.output"><code class="docutils literal notranslate"><span class="pre">Event.output()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_event.Event.summary"><code class="docutils literal notranslate"><span class="pre">Event.summary()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#module-pycwb.types.network_pixel">pycwb.types.network_pixel module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel"><code class="docutils literal notranslate"><span class="pre">Pixel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.core"><code class="docutils literal notranslate"><span class="pre">Pixel.core</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.data"><code class="docutils literal notranslate"><span class="pre">Pixel.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.ellipticity"><code class="docutils literal notranslate"><span class="pre">Pixel.ellipticity</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.frequency"><code class="docutils literal notranslate"><span class="pre">Pixel.frequency</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.frequency_in_hz"><code class="docutils literal notranslate"><span class="pre">Pixel.frequency_in_hz</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.from_netpixel"><code class="docutils literal notranslate"><span class="pre">Pixel.from_netpixel()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.layers"><code class="docutils literal notranslate"><span class="pre">Pixel.layers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.likelihood"><code class="docutils literal notranslate"><span class="pre">Pixel.likelihood</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.neighbors"><code class="docutils literal notranslate"><span class="pre">Pixel.neighbors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.null"><code class="docutils literal notranslate"><span class="pre">Pixel.null</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.phi"><code class="docutils literal notranslate"><span class="pre">Pixel.phi</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.polarisation"><code class="docutils literal notranslate"><span class="pre">Pixel.polarisation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.rate"><code class="docutils literal notranslate"><span class="pre">Pixel.rate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.td_amp"><code class="docutils literal notranslate"><span class="pre">Pixel.td_amp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.theta"><code class="docutils literal notranslate"><span class="pre">Pixel.theta</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.time"><code class="docutils literal notranslate"><span class="pre">Pixel.time</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.time_in_seconds"><code class="docutils literal notranslate"><span class="pre">Pixel.time_in_seconds</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.Pixel.to_dict"><code class="docutils literal notranslate"><span class="pre">Pixel.to_dict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.PixelData"><code class="docutils literal notranslate"><span class="pre">PixelData</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.PixelData.a_90"><code class="docutils literal notranslate"><span class="pre">PixelData.a_90</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.PixelData.asnr"><code class="docutils literal notranslate"><span class="pre">PixelData.asnr</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.PixelData.index"><code class="docutils literal notranslate"><span class="pre">PixelData.index</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.PixelData.noise_rms"><code class="docutils literal notranslate"><span class="pre">PixelData.noise_rms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.PixelData.rank"><code class="docutils literal notranslate"><span class="pre">PixelData.rank</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.PixelData.to_dict"><code class="docutils literal notranslate"><span class="pre">PixelData.to_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.PixelData.w_90"><code class="docutils literal notranslate"><span class="pre">PixelData.w_90</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.network_pixel.PixelData.wave"><code class="docutils literal notranslate"><span class="pre">PixelData.wave</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#module-pycwb.types.sparse_series">pycwb.types.sparse_series module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries"><code class="docutils literal notranslate"><span class="pre">SparseTimeFrequencySeries</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.add_core"><code class="docutils literal notranslate"><span class="pre">SparseTimeFrequencySeries.add_core()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.from_fragment_cluster"><code class="docutils literal notranslate"><span class="pre">SparseTimeFrequencySeries.from_fragment_cluster()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.resize"><code class="docutils literal notranslate"><span class="pre">SparseTimeFrequencySeries.resize()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.set_halo"><code class="docutils literal notranslate"><span class="pre">SparseTimeFrequencySeries.set_halo()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.set_map"><code class="docutils literal notranslate"><span class="pre">SparseTimeFrequencySeries.set_map()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.set_sparse_table"><code class="docutils literal notranslate"><span class="pre">SparseTimeFrequencySeries.set_sparse_table()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.sparse_index"><code class="docutils literal notranslate"><span class="pre">SparseTimeFrequencySeries.sparse_index</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.sparse_lookup"><code class="docutils literal notranslate"><span class="pre">SparseTimeFrequencySeries.sparse_lookup</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.sparse_map_00"><code class="docutils literal notranslate"><span class="pre">SparseTimeFrequencySeries.sparse_map_00</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.sparse_map_90"><code class="docutils literal notranslate"><span class="pre">SparseTimeFrequencySeries.sparse_map_90</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries.update_sparse_table"><code class="docutils literal notranslate"><span class="pre">SparseTimeFrequencySeries.update_sparse_table()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#module-pycwb.types.time_frequency_series">pycwb.types.time_frequency_series module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.bpp"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.bpp</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.copy"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.data"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.data</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.edge"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.edge</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.f_high"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.f_high</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.f_low"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.f_low</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.forward"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.forward()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.sample_rate"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.sample_rate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.start"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.start</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.stop"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.stop</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.w_rate"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.w_rate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.wavelet"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.wavelet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.whiten_mode"><code class="docutils literal notranslate"><span class="pre">TimeFrequencySeries.whiten_mode</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#module-pycwb.types.wdm">pycwb.types.wdm module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM"><code class="docutils literal notranslate"><span class="pre">WDM</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.allocate"><code class="docutils literal notranslate"><span class="pre">WDM.allocate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.beta_order"><code class="docutils literal notranslate"><span class="pre">WDM.beta_order</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.clone"><code class="docutils literal notranslate"><span class="pre">WDM.clone()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.get_base_wave"><code class="docutils literal notranslate"><span class="pre">WDM.get_base_wave()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.get_map_00"><code class="docutils literal notranslate"><span class="pre">WDM.get_map_00()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.get_map_90"><code class="docutils literal notranslate"><span class="pre">WDM.get_map_90()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.get_slice_size"><code class="docutils literal notranslate"><span class="pre">WDM.get_slice_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.lightweight_dump"><code class="docutils literal notranslate"><span class="pre">WDM.lightweight_dump()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.m"><code class="docutils literal notranslate"><span class="pre">WDM.m</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.m_H"><code class="docutils literal notranslate"><span class="pre">WDM.m_H</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.m_L"><code class="docutils literal notranslate"><span class="pre">WDM.m_L</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.max_index"><code class="docutils literal notranslate"><span class="pre">WDM.max_index</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.max_layer"><code class="docutils literal notranslate"><span class="pre">WDM.max_layer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.max_level"><code class="docutils literal notranslate"><span class="pre">WDM.max_level</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.nSTS"><code class="docutils literal notranslate"><span class="pre">WDM.nSTS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.nWWS"><code class="docutils literal notranslate"><span class="pre">WDM.nWWS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.pWWS"><code class="docutils literal notranslate"><span class="pre">WDM.pWWS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.precision"><code class="docutils literal notranslate"><span class="pre">WDM.precision</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.release"><code class="docutils literal notranslate"><span class="pre">WDM.release()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.set_map_00"><code class="docutils literal notranslate"><span class="pre">WDM.set_map_00()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.set_map_90"><code class="docutils literal notranslate"><span class="pre">WDM.set_map_90()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.set_td_filter"><code class="docutils literal notranslate"><span class="pre">WDM.set_td_filter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.size_at_zero_layer"><code class="docutils literal notranslate"><span class="pre">WDM.size_at_zero_layer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.t2w"><code class="docutils literal notranslate"><span class="pre">WDM.t2w()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.time_delay_filter_size"><code class="docutils literal notranslate"><span class="pre">WDM.time_delay_filter_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.to_type_WDM"><code class="docutils literal notranslate"><span class="pre">WDM.to_type_WDM()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM.wavelet"><code class="docutils literal notranslate"><span class="pre">WDM.wavelet</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.declare_function"><code class="docutils literal notranslate"><span class="pre">declare_function()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#module-pycwb.types.wdm_xtalk">pycwb.types.wdm_xtalk module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm_xtalk.WDMXTalkCatalog"><code class="docutils literal notranslate"><span class="pre">WDMXTalkCatalog</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm_xtalk.WDMXTalkCatalog.beta_order"><code class="docutils literal notranslate"><span class="pre">WDMXTalkCatalog.beta_order</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm_xtalk.WDMXTalkCatalog.check_layers_with_MRAcatalog"><code class="docutils literal notranslate"><span class="pre">WDMXTalkCatalog.check_layers_with_MRAcatalog()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm_xtalk.WDMXTalkCatalog.get_wdmMRA"><code class="docutils literal notranslate"><span class="pre">WDMXTalkCatalog.get_wdmMRA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm_xtalk.WDMXTalkCatalog.layers"><code class="docutils literal notranslate"><span class="pre">WDMXTalkCatalog.layers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm_xtalk.WDMXTalkCatalog.load_MRA"><code class="docutils literal notranslate"><span class="pre">WDMXTalkCatalog.load_MRA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm_xtalk.WDMXTalkCatalog.n_res"><code class="docutils literal notranslate"><span class="pre">WDMXTalkCatalog.n_res</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm_xtalk.WDMXTalkCatalog.precision"><code class="docutils literal notranslate"><span class="pre">WDMXTalkCatalog.precision</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm_xtalk.WDMXTalkCatalog.tag"><code class="docutils literal notranslate"><span class="pre">WDMXTalkCatalog.tag</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.types.html#module-pycwb.types">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pycwb.utils.html">pycwb.utils package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.utils.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.utils.html#module-pycwb.utils.check_ROOT">pycwb.utils.check_ROOT module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.utils.html#pycwb.utils.check_ROOT.check_and_load_wavelet"><code class="docutils literal notranslate"><span class="pre">check_and_load_wavelet()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.utils.html#module-pycwb.utils.image">pycwb.utils.image module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.utils.html#pycwb.utils.image.align_images"><code class="docutils literal notranslate"><span class="pre">align_images()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.utils.html#pycwb.utils.image.merge_images"><code class="docutils literal notranslate"><span class="pre">merge_images()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.utils.html#pycwb.utils.image.resize_image"><code class="docutils literal notranslate"><span class="pre">resize_image()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.utils.html#pycwb.utils.image.resize_resolution"><code class="docutils literal notranslate"><span class="pre">resize_resolution()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.utils.html#module-pycwb.utils.module">pycwb.utils.module module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.utils.html#pycwb.utils.module.import_helper"><code class="docutils literal notranslate"><span class="pre">import_helper()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.utils.html#module-pycwb.utils.network">pycwb.utils.network module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.utils.html#pycwb.utils.network.cartesian_to_spherical"><code class="docutils literal notranslate"><span class="pre">cartesian_to_spherical()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.utils.html#pycwb.utils.network.max_delay"><code class="docutils literal notranslate"><span class="pre">max_delay()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.utils.html#pycwb.utils.network.spherical_to_cartesian"><code class="docutils literal notranslate"><span class="pre">spherical_to_cartesian()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.utils.html#module-pycwb.utils.yaml_helper">pycwb.utils.yaml_helper module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.utils.html#pycwb.utils.yaml_helper.load_yaml"><code class="docutils literal notranslate"><span class="pre">load_yaml()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.utils.html#pycwb.utils.yaml_helper.set_default"><code class="docutils literal notranslate"><span class="pre">set_default()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pycwb.utils.html#module-pycwb.utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-pycwb.search">
+<span id="pycwb-search-module"></span><h2>pycwb.search module<a class="headerlink" href="#module-pycwb.search" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.search.analyze_job_segment">
+<span class="sig-prename descclassname"><span class="pre">pycwb.search.</span></span><span class="sig-name descname"><span class="pre">analyze_job_segment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_seg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/search.html#analyze_job_segment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.search.analyze_job_segment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Analyze one job segment with the given configuration</p>
+<p>This function includes the following stages:</p>
+<ol class="arabic simple">
+<li><p>Read data from job segment (pycwb.modules.read_data.read_from_job_segment)</p></li>
+<li><p>Data conditioning (pycwb.modules.data_conditioning.data_conditioning)</p></li>
+<li><p>Create network (pycwb.modules.coherence.create_network)</p></li>
+<li><p>Coherence (pycwb.modules.coherence.coherence)</p></li>
+<li><p>Supercluster (pycwb.modules.super_cluster.supercluster)</p></li>
+<li><p>Likelihood (pycwb.modules.likelihood.likelihood)</p></li>
+</ol>
+<p>The results will be saved to the output directory in json format on likelihood stage</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config" title="pycwb.config.config.Config"><em>Config</em></a>) – configuration</p></li>
+<li><p><strong>job_seg</strong> (<a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment" title="pycwb.types.job.WaveSegment"><em>WaveSegment</em></a>) – job segment</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.search.search">
+<span class="sig-prename descclassname"><span class="pre">pycwb.search.</span></span><span class="sig-name descname"><span class="pre">search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./user_parameters.yaml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'INFO'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_subprocess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/search.html#search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.search.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main function to run the search</p>
+<p>This function will read the user parameters, select the job segments, create the catalog,
+copy the html and css files and run the search in subprocesses by default to avoid memory leak.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_parameters</strong> (<em>str</em>) – path to user parameters file</p></li>
+<li><p><strong>log_file</strong> (<em>str</em><em>, </em><em>optional</em>) – path to log file, defaults to None</p></li>
+<li><p><strong>log_level</strong> (<em>str</em><em>, </em><em>optional</em>) – log level, defaults to ‘INFO’</p></li>
+<li><p><strong>no_subprocess</strong> (<em>bool</em><em>, </em><em>optional</em>) – run the search in the main process, defaults to False (Set to True for macOS development)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycwb" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pycwb.config.html" class="btn btn-neutral float-right" title="pycwb.config package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral float-left" title="pycwb" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

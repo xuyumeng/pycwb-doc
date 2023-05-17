@@ -1,0 +1,53 @@
+pycwb.modules.job\_segment package
+==================================
+
+Submodules
+----------
+
+pycwb.modules.job\_segment.dq\_segment module
+---------------------------------------------
+
+.. automodule:: pycwb.modules.job_segment.dq_segment
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.job\_segment.frame module
+---------------------------------------
+
+.. automodule:: pycwb.modules.job_segment.frame
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.job\_segment.job\_segment module
+----------------------------------------------
+
+.. automodule:: pycwb.modules.job_segment.job_segment
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.job\_segment.plots module
+---------------------------------------
+
+.. automodule:: pycwb.modules.job_segment.plots
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.job\_segment.super\_lag module
+--------------------------------------------
+
+.. automodule:: pycwb.modules.job_segment.super_lag
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.job_segment
+   :members:
+   :undoc-members:
+   :show-inheritance:

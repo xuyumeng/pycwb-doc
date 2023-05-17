@@ -1,0 +1,512 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.modules.read_data package &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pycwb.modules.reconstruction package" href="pycwb.modules.reconstruction.html" />
+    <link rel="prev" title="pycwb.modules.plot package" href="pycwb.modules.plot.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pycwb.html">pycwb package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pycwb.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pycwb.config.html">pycwb.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.constants.html">pycwb.constants package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.messenger.html">pycwb.messenger package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pycwb.modules.html">pycwb.modules package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html">pycwb.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.utils.html">pycwb.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb.search">pycwb.search module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">pycwb</a> &raquo;</li>
+        
+          <li><a href="pycwb.html">pycwb package</a> &raquo;</li>
+        
+          <li><a href="pycwb.modules.html">pycwb.modules package</a> &raquo;</li>
+        
+      <li>pycwb.modules.read_data package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pycwb.modules.read_data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pycwb-modules-read-data-package">
+<h1>pycwb.modules.read_data package<a class="headerlink" href="#pycwb-modules-read-data-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-pycwb.modules.read_data.data_check">
+<span id="pycwb-modules-read-data-data-check-module"></span><h2>pycwb.modules.read_data.data_check module<a class="headerlink" href="#module-pycwb.modules.read_data.data_check" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.read_data.data_check.check_and_resample">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.read_data.data_check.</span></span><span class="sig-name descname"><span class="pre">check_and_resample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ifo_index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/read_data/data_check.html#check_and_resample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.read_data.data_check.check_and_resample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check data and resample it
+:param data:
+:type data: gwpy.timeseries.TimeSeries or pycbc.types.timeseries.TimeSeries
+:param config:
+:param ifo_index:
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.read_data.data_check.data_check">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.read_data.data_check.</span></span><span class="sig-name descname"><span class="pre">data_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TimeSeries</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/read_data/data_check.html#data_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.read_data.data_check.data_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if data contains NaNs and if the sample rate is consistent with configuation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>gwpy.timeseries.TimeSeries</em>) – time series data to be checked</p></li>
+<li><p><strong>sample_rate</strong> (<em>int</em>) – sample rate from configuration</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if data is valid</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if data contains NaNs or sample rate is not consistent with configuation</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.modules.read_data.mdc">
+<span id="pycwb-modules-read-data-mdc-module"></span><h2>pycwb.modules.read_data.mdc module<a class="headerlink" href="#module-pycwb.modules.read_data.mdc" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.read_data.mdc.generate_from_pycbc">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.read_data.mdc.</span></span><span class="sig-name descname"><span class="pre">generate_from_pycbc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inclination</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polarization</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geocent_end_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spin2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_ref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_lower</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approximant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'IMRPhenomXPHM'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/read_data/mdc.html#generate_from_pycbc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.read_data.mdc.generate_from_pycbc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate hp and hx from pycbc and project the strains to detectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m1</strong> (<em>float</em>) – mass of the first component</p></li>
+<li><p><strong>m2</strong> (<em>float</em>) – mass of the second component</p></li>
+<li><p><strong>inclination</strong> (<em>float</em>) – inclination of the binary</p></li>
+<li><p><strong>distance</strong> (<em>float</em>) – distance of the binary</p></li>
+<li><p><strong>sample_rate</strong> (<em>float</em>) – sample rate</p></li>
+<li><p><strong>ra</strong> (<em>float</em>) – right ascension</p></li>
+<li><p><strong>dec</strong> (<em>float</em>) – declination</p></li>
+<li><p><strong>polarization</strong> (<em>float</em>) – polarization</p></li>
+<li><p><strong>detectors</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – list of names of detectors to project to</p></li>
+<li><p><strong>geocent_end_time</strong> (<em>float</em>) – geocentric end time</p></li>
+<li><p><strong>spin1</strong> (<em>list</em><em>[</em><em>float</em><em>]</em><em>, </em><em>optional</em>) – spin of the first component</p></li>
+<li><p><strong>spin2</strong> (<em>list</em><em>[</em><em>float</em><em>]</em><em>, </em><em>optional</em>) – spin of the second component</p></li>
+<li><p><strong>f_ref</strong> (<em>float</em><em>, </em><em>optional</em>) – reference frequency, defaults to 20.0</p></li>
+<li><p><strong>f_lower</strong> (<em>float</em><em>, </em><em>optional</em>) – lower frequency cutoff, defaults to 20.0</p></li>
+<li><p><strong>approximant</strong> (<em>str</em><em>, </em><em>optional</em>) – approximant, defaults to ‘IMRPhenomXPHM’</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of strains projected to detectors, the order is the same as the order of detectors given</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[pycbc.types.timeseries.TimeSeries]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.read_data.mdc.generate_injection">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.read_data.mdc.</span></span><span class="sig-name descname"><span class="pre">generate_injection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_seg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/read_data/mdc.html#generate_injection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.read_data.mdc.generate_injection" title="Permalink to this definition">¶</a></dt>
+<dd><p>A sample function to generate injection from pycbc and save it to gwf files
+with the detectors specified in the config</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config" title="pycwb.config.config.Config"><em>Config</em></a>) – user configuration</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of strains for each detector</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[pycbc.types.timeseries.TimeSeries]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.read_data.mdc.generate_injection_from_config">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.read_data.mdc.</span></span><span class="sig-name descname"><span class="pre">generate_injection_from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/read_data/mdc.html#generate_injection_from_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.read_data.mdc.generate_injection_from_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>A sample function to generate injection from pycbc and save it to gwf files
+with the detectors specified in the config</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config" title="pycwb.config.config.Config"><em>Config</em></a>) – user configuration</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of strains for each detector</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[pycbc.types.timeseries.TimeSeries]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.read_data.mdc.generate_noise">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.read_data.mdc.</span></span><span class="sig-name descname"><span class="pre">generate_noise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psd</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_low</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0625</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">4096</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1234</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/read_data/mdc.html#generate_noise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.read_data.mdc.generate_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate noise from a given psd file or aLIGOZeroDetHighPower psd</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>psd</strong> (<em>str</em>) – path to psd file</p></li>
+<li><p><strong>f_low</strong> (<em>float</em>) – low frequency cutoff</p></li>
+<li><p><strong>delta_f</strong> (<em>float</em>) – frequency resolution</p></li>
+<li><p><strong>duration</strong> (<em>int</em>) – duration of the noise</p></li>
+<li><p><strong>sample_rate</strong> (<em>float</em>) – sample rate of the noise</p></li>
+<li><p><strong>seed</strong> (<em>int</em>) – seed for the random number generator</p></li>
+<li><p><strong>start_time</strong> (<em>int</em>) – start time of the noise</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>time series of noise</p>
+</dd>
+</dl>
+<p>:rtype pycbc.types.timeseries.TimeSeries</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.read_data.mdc.project_to_detector">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.read_data.mdc.</span></span><span class="sig-name descname"><span class="pre">project_to_detector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polarization</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geocent_end_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ref_ifo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'H1'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/read_data/mdc.html#project_to_detector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.read_data.mdc.project_to_detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a h(t) strain time-series from an injection object as read from
+a sim_inspiral table, for example.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inj</strong> (<em>injection object</em>) – The injection object to turn into a strain h(t).</p></li>
+<li><p><strong>delta_t</strong> (<em>float</em>) – Sample rate to make injection at.</p></li>
+<li><p><strong>detector_name</strong> (<em>string</em>) – Name of the detector used for projecting injections.</p></li>
+<li><p><strong>f_lower</strong> (<em>{None</em><em>, </em><em>float}</em><em>, </em><em>optional</em>) – Low-frequency cutoff for injected signals. If None, use value
+provided by each injection.</p></li>
+<li><p><strong>distance_scale</strong> (<em>{1</em><em>, </em><em>float}</em><em>, </em><em>optional</em>) – Factor to scale the distance of an injection with. The default is
+no scaling.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>signal</strong> – h(t) corresponding to the injection.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.read_data.mdc.save_to_gwf">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.read_data.mdc.</span></span><span class="sig-name descname"><span class="pre">save_to_gwf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/read_data/mdc.html#save_to_gwf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.read_data.mdc.save_to_gwf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the signals to gwf files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signals</strong> (<em>list</em><em>[</em><em>pycbc.types.timeseries.TimeSeries</em><em>]</em>) – signals to save</p></li>
+<li><p><strong>detectors</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – list of detectors</p></li>
+<li><p><strong>channel_name</strong> (<em>str</em>) – channel name for the gwf file</p></li>
+<li><p><strong>out_dir</strong> (<em>str</em>) – output directory</p></li>
+<li><p><strong>start_time</strong> (<em>float</em>) – start time to be used in the name of the file</p></li>
+<li><p><strong>duration</strong> (<em>float</em>) – duration to be used in the name of the file</p></li>
+<li><p><strong>label</strong> (<em>str</em>) – label to be used in the name of the file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.modules.read_data.read_data">
+<span id="pycwb-modules-read-data-read-data-module"></span><h2>pycwb.modules.read_data.read_data module<a class="headerlink" href="#module-pycwb.modules.read_data.read_data" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.read_data.read_data.read_from_catalog">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.read_data.read_data.</span></span><span class="sig-name descname"><span class="pre">read_from_catalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_slice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/read_data/read_data.html#read_from_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.read_data.read_data.read_from_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read data from catalog</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>catalog</strong> (<em>str</em>) – the name of the catalog to read from</p></li>
+<li><p><strong>event</strong> (<em>str</em>) – the name of the event</p></li>
+<li><p><strong>detectors</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – list of detectors</p></li>
+<li><p><strong>time_slice</strong> (<em>tuple</em><em>, </em><em>optional</em>) – time slice for cropping the data, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(time series data, merger object)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[list[pycbc.types.timeseries.TimeSeries], pycbc.catalog.Merger]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.read_data.read_data.read_from_gwf">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.read_data.read_data.</span></span><span class="sig-name descname"><span class="pre">read_from_gwf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/read_data/read_data.html#read_from_gwf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.read_data.read_data.read_from_gwf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read data from GWF file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ifo_index</strong> (<em>int</em>) – the index of the ifo in the config.ifo list for processing with user defined parameters</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config" title="pycwb.config.config.Config"><em>Config</em></a>) – user configuration</p></li>
+<li><p><strong>filename</strong> (<em>str</em>) – path to the gwf file</p></li>
+<li><p><strong>channel</strong> (<em>str</em>) – channel name to read from the gwf file</p></li>
+<li><p><strong>start</strong> (<em>float</em><em>, </em><em>optional</em>) – start time to read from the gwf file, defaults to reading from the beginning of the file</p></li>
+<li><p><strong>end</strong> (<em>float</em><em>, </em><em>optional</em>) – end time to read from the gwf file, defaults to reading to the end of the file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>strain data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pycbc.types.timeseries.TimeSeries</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.read_data.read_data.read_from_job_segment">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.read_data.read_data.</span></span><span class="sig-name descname"><span class="pre">read_from_job_segment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_seg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment" title="pycwb.types.job.WaveSegment"><span class="pre">WaveSegment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/read_data/read_data.html#read_from_job_segment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.read_data.read_data.read_from_job_segment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read data from the frame files in job segment in parallel
+and merge them if there are more than one frame files for each ifo</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config" title="pycwb.config.config.Config"><em>Config</em></a>) – user configuration</p></li>
+<li><p><strong>job_seg</strong> (<a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment" title="pycwb.types.job.WaveSegment"><em>WaveSegment</em></a>) – job segment</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of strain data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[pycbc.types.timeseries.TimeSeries]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.read_data.read_data.read_from_online">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.read_data.read_data.</span></span><span class="sig-name descname"><span class="pre">read_from_online</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/read_data/read_data.html#read_from_online"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.read_data.read_data.read_from_online" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read data from data server with gwpy</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>channels</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – list of channels to read</p></li>
+<li><p><strong>start</strong> (<em>float</em>) – start time to read from the data server</p></li>
+<li><p><strong>end</strong> (<em>float</em>) – end time to read from the data server</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of strain data</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[gwpy.timeseries.TimeSeries]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.modules.read_data">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycwb.modules.read_data" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pycwb.modules.reconstruction.html" class="btn btn-neutral float-right" title="pycwb.modules.reconstruction package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pycwb.modules.plot.html" class="btn btn-neutral float-left" title="pycwb.modules.plot package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

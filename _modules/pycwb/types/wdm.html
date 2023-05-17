@@ -1,0 +1,474 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.types.wdm &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycwb.types.wdm</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycwb.types.wdm</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">ROOT</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cppyy</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.cwb_conversions</span> <span class="kn">import</span> <span class="n">convert_wavearray_to_pycbc_timeseries</span>
+
+
+<div class="viewcode-block" id="declare_function"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.declare_function">[docs]</a><span class="k">def</span> <span class="nf">declare_function</span><span class="p">():</span>
+    <span class="n">cppyy</span><span class="o">.</span><span class="n">cppdef</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        double* _to_double_malloc(double* data, int n) {</span>
+<span class="s2">            double* new_data = (double *)malloc(n*sizeof(double));</span>
+<span class="s2">            for (int i=0; i&lt;n; i++) {</span>
+<span class="s2">                new_data[i] = data[i];</span>
+<span class="s2">            }</span>
+<span class="s2">            return new_data;</span>
+<span class="s2">        };</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WDM"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM">[docs]</a><span class="k">class</span> <span class="nc">WDM</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Wrapper for ROOT.WDM object</span>
+
+<span class="sd">    after forward transformation the structure of the WDM sliced array is the following:</span>
+
+<span class="sd">        f    phase 0       phase 90   \n</span>
+<span class="sd">        M  *  * ...  *   *   * ...  * \n</span>
+<span class="sd">        ... ... ... ... ...  ... ...\n</span>
+<span class="sd">        1  *  * .... *   *   * ...  * \n</span>
+<span class="sd">        0  *  * ...  *   *   * ...  * \n</span>
+<span class="sd">        t  1  2  ... n  n+1 n+2... 2n \n</span>
+
+<span class="sd">    where t/f is the time/frequency index, the global TF index in the linear array is i = t*(M+1)+f</span>
+
+<span class="sd">    :param m: number of bands</span>
+<span class="sd">    :type m: int</span>
+<span class="sd">    :param k: k=n*m, where n is integer. K defines the width of the &#39;edge&#39; of the basis function</span>
+<span class="sd">     in Fourier domain (see the paper). larger n, longer the WDM filter, lower the spectral leakage between the bands.</span>
+<span class="sd">    :type k: int</span>
+<span class="sd">    :param beta_order: defines the sharpness of the &#39;edge&#39; of the basis function in Fourier domain (see paper)</span>
+<span class="sd">    :type beta_order: int</span>
+<span class="sd">    :param precision: defines filter length by truncation error quantified by P = -log10(1 - norm_of_filter) (see the paper)</span>
+<span class="sd">    :type precision: int</span>
+<span class="sd">    :param wavelet: ROOT.WDM object, if provided, other parameters are ignored and extracted from the object</span>
+<span class="sd">    :type wavelet: ROOT.WDM, optional</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">beta_order</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wavelet</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">wavelet</span><span class="p">:</span>
+            <span class="c1">#: ROOT.WDM object</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">WDM</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">)(</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">beta_order</span><span class="p">,</span> <span class="n">precision</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span> <span class="o">=</span> <span class="n">wavelet</span>
+
+        <span class="c1">#: number of bands</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">m</span>
+        <span class="c1">#: k=n*m, where n is integer. K defines the width of the &#39;edge&#39; of the basis function</span>
+        <span class="c1"># in Fourier domain (see the paper). larger n, longer the WDM filter,</span>
+        <span class="c1"># lower the spectral leakage between the bands.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
+        <span class="c1">#: defines the sharpness of the &#39;edge&#39; of the basis function in Fourier domain (see paper)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta_order</span> <span class="o">=</span> <span class="n">beta_order</span>
+        <span class="c1">#: defines filter length by truncation error quantified by P = -log10(1 - norm_of_filter) (see the paper)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">precision</span> <span class="o">=</span> <span class="n">precision</span>
+
+<div class="viewcode-block" id="WDM.set_td_filter"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.set_td_filter">[docs]</a>    <span class="k">def</span> <span class="nf">set_td_filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coeff_factor</span><span class="p">,</span> <span class="n">upsample_factor</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        initialization of the time delay filters</span>
+
+<span class="sd">        :param coeff_factor: define the number of the filter coefficients</span>
+<span class="sd">        :type coeff_factor: int</span>
+<span class="sd">        :param upsample_factor: upsample factor, defines the fundamental time delay step dt = tau/L , where tau is the sampling interval of the original time series</span>
+<span class="sd">        :type upsample_factor: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">setTDFilter</span><span class="p">(</span><span class="n">coeff_factor</span><span class="p">,</span> <span class="n">upsample_factor</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WDM.allocate"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.allocate">[docs]</a>    <span class="k">def</span> <span class="nf">allocate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        allocate memory for the WDM sliced array</span>
+
+<span class="sd">        :param data: data to be stored in the WDM sliced array</span>
+<span class="sd">        :type data: pycbc.types.timeseries.TimeSeries</span>
+<span class="sd">        :param n: size of samples</span>
+<span class="sd">        :type n: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">cppyy</span><span class="o">.</span><span class="n">gbl</span><span class="p">,</span> <span class="s1">&#39;_to_double_malloc&#39;</span><span class="p">):</span>
+            <span class="n">declare_function</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">allocate</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">cppyy</span><span class="o">.</span><span class="n">gbl</span><span class="o">.</span><span class="n">_to_double_malloc</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">)))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WDM.release"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.release">[docs]</a>    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        release memory of the WDM sliced array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">release</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="WDM.clone"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.clone">[docs]</a>    <span class="k">def</span> <span class="nf">clone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        clone the WDM object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_wavelet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">Clone</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">WDM</span><span class="p">(</span><span class="n">wavelet</span><span class="o">=</span><span class="n">new_wavelet</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> <span class="n">beta_order</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">beta_order</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">precision</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WDM.lightweight_dump"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.lightweight_dump">[docs]</a>    <span class="k">def</span> <span class="nf">lightweight_dump</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        lightweight duplication of the WDM object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">new_wavelet</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">Init</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">WDM</span><span class="p">(</span><span class="n">wavelet</span><span class="o">=</span><span class="n">new_wavelet</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">,</span> <span class="n">beta_order</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">beta_order</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">precision</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WDM.to_type_WDM"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.to_type_WDM">[docs]</a>    <span class="k">def</span> <span class="nf">to_type_WDM</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        convert the WDM object to ROOT.WDM</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">WDM</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WDM.get_slice_size"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.get_slice_size">[docs]</a>    <span class="k">def</span> <span class="nf">get_slice_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get slice of the WDM sliced array</span>
+
+<span class="sd">        :param level: level of the wavelet transform</span>
+<span class="sd">        :type level: int</span>
+<span class="sd">        :return: slice of the WDM sliced array</span>
+<span class="sd">        :rtype: numpy.ndarray</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">getSlice</span><span class="p">(</span><span class="n">level</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">time_delay_filter_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        half size of time delay filter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">getTDFsize</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">max_level</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        maximum level of the wavelet transform</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">getMaxLevel</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">max_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        maximum layer of the wavelet transform</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">m_Layer</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">size_at_zero_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        number of samples at zero level</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">getSlice</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">max_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        maximum index of the WDM sliced array</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size_at_zero_layer</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_level</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">m_H</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        number of highpass wavelet filter coefficients</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">m_H</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">m_L</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        number of lowpass wavelet filter coefficients</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">m_L</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nWWS</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        size of the wavelet work space</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">nWWS</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">nSTS</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        size of the original time series</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">nSTS</span>
+
+    <span class="nd">@nSTS</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">nSTS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">nSTS</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">pWWS</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        pointer to wavelet work space</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">pWWS</span>
+
+<div class="viewcode-block" id="WDM.get_map_00"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.get_map_00">[docs]</a>    <span class="k">def</span> <span class="nf">get_map_00</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get map00/90 value from index</span>
+
+<span class="sd">        :param index:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># if index is a list, return a list</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">pWWS</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">pWWS</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">index</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="WDM.get_map_90"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.get_map_90">[docs]</a>    <span class="k">def</span> <span class="nf">get_map_90</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get map00/90 value from index</span>
+
+<span class="sd">        :param index:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># if index is a list, return a list</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">pWWS</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">pWWS</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">index</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="WDM.set_map_00"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.set_map_00">[docs]</a>    <span class="k">def</span> <span class="nf">set_map_00</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        set value of the WDM sliced array at index</span>
+
+<span class="sd">        :param index:</span>
+<span class="sd">        :param value:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">pWWS</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="WDM.set_map_90"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.set_map_90">[docs]</a>    <span class="k">def</span> <span class="nf">set_map_90</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        set value of the WDM sliced array at index</span>
+
+<span class="sd">        :param index:</span>
+<span class="sd">        :param value:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">pWWS</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+<div class="viewcode-block" id="WDM.get_base_wave"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.get_base_wave">[docs]</a>    <span class="k">def</span> <span class="nf">get_base_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tf_index</span><span class="p">,</span> <span class="n">quad</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get base wavelet from index</span>
+
+<span class="sd">        :param tf_index: time-frequency index</span>
+<span class="sd">        :type tf_index: int</span>
+<span class="sd">        :param quad: true to return Quadrature basis function</span>
+<span class="sd">        :type quad: bool</span>
+<span class="sd">        :return: indicates the time translation from origin needed by w (j in [0,M] correspond to t=0) and the wavearray</span>
+<span class="sd">        :rtype: (int, numpy.ndarray)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">wavearray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">)()</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">getBaseWave</span><span class="p">(</span><span class="n">tf_index</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">quad</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">j</span><span class="p">,</span> <span class="n">convert_wavearray_to_pycbc_timeseries</span><span class="p">(</span><span class="n">w</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="WDM.t2w"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.wdm.WDM.t2w">[docs]</a>    <span class="k">def</span> <span class="nf">t2w</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        direct transform.</span>
+
+<span class="sd">        :param k: param: -1 - orthonormal, 0 - power map, &gt;0 - upsampled map. k = 0 requests power map of combined quadratures (not amplitudes for both)</span>
+<span class="sd">        :type k: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">t2w</span><span class="p">(</span><span class="n">k</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

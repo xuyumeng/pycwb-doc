@@ -1,0 +1,29 @@
+pycwb.constants package
+=======================
+
+Submodules
+----------
+
+pycwb.constants.project\_constants module
+-----------------------------------------
+
+.. automodule:: pycwb.constants.project_constants
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.constants.user\_parameters\_schema module
+-----------------------------------------------
+
+.. automodule:: pycwb.constants.user_parameters_schema
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.constants
+   :members:
+   :undoc-members:
+   :show-inheritance:

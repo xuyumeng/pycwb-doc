@@ -1,0 +1,21 @@
+pycwb.modules.logger package
+============================
+
+Submodules
+----------
+
+pycwb.modules.logger.logger module
+----------------------------------
+
+.. automodule:: pycwb.modules.logger.logger
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.logger
+   :members:
+   :undoc-members:
+   :show-inheritance:

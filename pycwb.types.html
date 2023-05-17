@@ -1,0 +1,2058 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.types package &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pycwb.utils package" href="pycwb.utils.html" />
+    <link rel="prev" title="pycwb.modules.web_viewer package" href="pycwb.modules.web_viewer.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pycwb.html">pycwb package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pycwb.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pycwb.config.html">pycwb.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.constants.html">pycwb.constants package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.messenger.html">pycwb.messenger package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.html">pycwb.modules package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pycwb.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.utils.html">pycwb.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb.search">pycwb.search module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">pycwb</a> &raquo;</li>
+        
+          <li><a href="pycwb.html">pycwb package</a> &raquo;</li>
+        
+      <li>pycwb.types package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pycwb.types.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pycwb-types-package">
+<h1>pycwb.types package<a class="headerlink" href="#pycwb-types-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-pycwb.types.data_quality_file">
+<span id="pycwb-types-data-quality-file-module"></span><h2>pycwb.types.data_quality_file module<a class="headerlink" href="#module-pycwb.types.data_quality_file" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.data_quality_file.DQFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.data_quality_file.</span></span><span class="sig-name descname"><span class="pre">DQFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ifo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dq_cat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">invert</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/data_quality_file.html#DQFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.data_quality_file.DQFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.data_quality_file.DQFile.c4">
+<span class="sig-name descname"><span class="pre">c4</span></span><a class="headerlink" href="#pycwb.types.data_quality_file.DQFile.c4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.data_quality_file.DQFile.dq_cat">
+<span class="sig-name descname"><span class="pre">dq_cat</span></span><a class="headerlink" href="#pycwb.types.data_quality_file.DQFile.dq_cat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.data_quality_file.DQFile.file">
+<span class="sig-name descname"><span class="pre">file</span></span><a class="headerlink" href="#pycwb.types.data_quality_file.DQFile.file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.data_quality_file.DQFile.get_periods">
+<span class="sig-name descname"><span class="pre">get_periods</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/data_quality_file.html#DQFile.get_periods"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.data_quality_file.DQFile.get_periods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load and process the data quality file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self</strong> (<a class="reference internal" href="#pycwb.types.data_quality_file.DQFile" title="pycwb.types.data_quality_file.DQFile"><em>DQFile</em></a>) – The data quality file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of start and end times (start, end)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[np.ndarray, np.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.data_quality_file.DQFile.ifo">
+<span class="sig-name descname"><span class="pre">ifo</span></span><a class="headerlink" href="#pycwb.types.data_quality_file.DQFile.ifo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.data_quality_file.DQFile.invert">
+<span class="sig-name descname"><span class="pre">invert</span></span><a class="headerlink" href="#pycwb.types.data_quality_file.DQFile.invert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.data_quality_file.DQFile.shift">
+<span class="sig-name descname"><span class="pre">shift</span></span><a class="headerlink" href="#pycwb.types.data_quality_file.DQFile.shift" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pycwb.types.detector">
+<span id="pycwb-types-detector-module"></span><h2>pycwb.types.detector module<a class="headerlink" href="#module-pycwb.types.detector" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.detector.Detector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.detector.</span></span><span class="sig-name descname"><span class="pre">Detector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/detector.html#Detector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.detector.Detector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Detector</span></code></p>
+<p>Class for storing detector information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – detector name</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.types.job">
+<span id="pycwb-types-job-module"></span><h2>pycwb.types.job module<a class="headerlink" href="#module-pycwb.types.job" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.job.FrameFile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.job.</span></span><span class="sig-name descname"><span class="pre">FrameFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ifo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/job.html#FrameFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.job.FrameFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to store the metadata of a frame file, which contains the ifo, the path, the start time, and the duration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ifo</strong> (<em>str</em>) – name of the interferometer</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – path of the frame file</p></li>
+<li><p><strong>start_time</strong> (<em>float</em>) – start time of the frame file</p></li>
+<li><p><strong>duration</strong> (<em>float</em>) – duration of the frame file</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.job.FrameFile.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><a class="headerlink" href="#pycwb.types.job.FrameFile.duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>duration of the frame file</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.job.FrameFile.end_time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end_time</span></span><a class="headerlink" href="#pycwb.types.job.FrameFile.end_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the end time of the frame file.
+:return: end time of the frame file
+:rtype: float</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.job.FrameFile.ifo">
+<span class="sig-name descname"><span class="pre">ifo</span></span><a class="headerlink" href="#pycwb.types.job.FrameFile.ifo" title="Permalink to this definition">¶</a></dt>
+<dd><p>name of the interferometer</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.job.FrameFile.path">
+<span class="sig-name descname"><span class="pre">path</span></span><a class="headerlink" href="#pycwb.types.job.FrameFile.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>path of the frame file</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.job.FrameFile.start_time">
+<span class="sig-name descname"><span class="pre">start_time</span></span><a class="headerlink" href="#pycwb.types.job.FrameFile.start_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>start time of the frame file</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.job.SLag">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.job.</span></span><span class="sig-name descname"><span class="pre">SLag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slag_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/job.html#SLag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.job.SLag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to store the metadata of a SLag, which contains the job id, the slag id, and the segment id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_id</strong> (<em>int</em>) – job id</p></li>
+<li><p><strong>slag_id</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – slag id vector, [0]=jobId - [1]=1/0 1=header slag - [2,..,nIFO+1] ifo slag</p></li>
+<li><p><strong>seg_id</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – segment id vector, [0,..,nIFO-1] ifo segment number</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.job.SLag.job_id">
+<span class="sig-name descname"><span class="pre">job_id</span></span><a class="headerlink" href="#pycwb.types.job.SLag.job_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>job id</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.job.SLag.seg_id">
+<span class="sig-name descname"><span class="pre">seg_id</span></span><a class="headerlink" href="#pycwb.types.job.SLag.seg_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>[0,..,nIFO-1] ifo segment number</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>seg id vector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.job.SLag.slag_id">
+<span class="sig-name descname"><span class="pre">slag_id</span></span><a class="headerlink" href="#pycwb.types.job.SLag.slag_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>[0]=jobId - [1]=1/0 1=header slag - [2,..,nIFO+1] ifo slag</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>slag id vector</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.job.WaveSegment">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.job.</span></span><span class="sig-name descname"><span class="pre">WaveSegment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frames</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">injections</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/job.html#WaveSegment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.job.WaveSegment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to store the metadata of a wave segment for analysis, which contains the index of the segment,
+the start and end time of the segment, and the list of frame files that are within the segment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<em>int</em>) – index of the segment</p></li>
+<li><p><strong>start_time</strong> (<em>float</em>) – start time of the segment</p></li>
+<li><p><strong>end_time</strong> (<em>float</em>) – end time of the segment</p></li>
+<li><p><strong>frames</strong> (<em>list</em><em>[</em><a class="reference internal" href="#pycwb.types.job.FrameFile" title="pycwb.types.job.FrameFile"><em>FrameFile</em></a><em>]</em><em>, </em><em>optional</em>) – list of frame files that are within the segment, defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.job.WaveSegment.end_time">
+<span class="sig-name descname"><span class="pre">end_time</span></span><a class="headerlink" href="#pycwb.types.job.WaveSegment.end_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>end time of the segment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.job.WaveSegment.frames">
+<span class="sig-name descname"><span class="pre">frames</span></span><a class="headerlink" href="#pycwb.types.job.WaveSegment.frames" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of frame files that are within the segment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.job.WaveSegment.index">
+<span class="sig-name descname"><span class="pre">index</span></span><a class="headerlink" href="#pycwb.types.job.WaveSegment.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>index of the segment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.job.WaveSegment.injections">
+<span class="sig-name descname"><span class="pre">injections</span></span><a class="headerlink" href="#pycwb.types.job.WaveSegment.injections" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of injections that are within the segment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.job.WaveSegment.start_time">
+<span class="sig-name descname"><span class="pre">start_time</span></span><a class="headerlink" href="#pycwb.types.job.WaveSegment.start_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>start time of the segment</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.job.WaveSegment.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/job.html#WaveSegment.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.job.WaveSegment.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the WaveSegment object to a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dictionary of the WaveSegment object</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pycwb.types.network">
+<span id="pycwb-types-network-module"></span><h2>pycwb.types.network module<a class="headerlink" href="#module-pycwb.types.network" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.network.Network">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.network.</span></span><span class="sig-name descname"><span class="pre">Network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nRMS_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">silent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to hold information about a network of detectors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>detectors</strong> (<em>list</em><em>[</em><a class="reference internal" href="#pycwb.types.detector.Detector" title="pycwb.types.detector.Detector"><em>Detector</em></a><em>]</em>) – list of detectors</p></li>
+<li><p><strong>ref_ifo</strong> (<em>str</em>) – reference detector</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.add_detector">
+<span class="sig-name descname"><span class="pre">add_detector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">detector</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.add_detector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.add_detector" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.add_wavelet">
+<span class="sig-name descname"><span class="pre">add_wavelet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wavelet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.add_wavelet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.add_wavelet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.cluster">
+<span class="sig-name descname"><span class="pre">cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kf</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>produce time-frequency clusters at a single TF resolution
+any two pixels are associated if they are closer than both kt/kf
+samples in time/frequency</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lag</strong> – lag index</p></li>
+<li><p><strong>kt</strong> – time threshold</p></li>
+<li><p><strong>kf</strong> – frequency threshold</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.get_cluster">
+<span class="sig-name descname"><span class="pre">get_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lag</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.get_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.get_cluster" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.get_ifo">
+<span class="sig-name descname"><span class="pre">get_ifo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ifo</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.get_ifo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.get_ifo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.get_max_delay">
+<span class="sig-name descname"><span class="pre">get_max_delay</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.get_max_delay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.get_max_delay" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the maximum delay between the two detectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>maximum delay</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.get_network_pixels">
+<span class="sig-name descname"><span class="pre">get_network_pixels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.get_network_pixels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.get_network_pixels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.ifo_size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ifo_size</span></span><a class="headerlink" href="#pycwb.types.network.Network.ifo_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.likelihood2G">
+<span class="sig-name descname"><span class="pre">likelihood2G</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.likelihood2G"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.likelihood2G" title="Permalink to this definition">¶</a></dt>
+<dd><p>2G likelihood analysis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> (<em>str</em>) – analysis mode</p></li>
+<li><p><strong>lag</strong> – lag index</p></li>
+<li><p><strong>search</strong> – if Search = “”/cbc/bbh/imbhb then mchirp is reconstructed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.likelihoodWP">
+<span class="sig-name descname"><span class="pre">likelihoodWP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">search</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.likelihoodWP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.likelihoodWP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Likelihood analysis with packets</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> (<em>str</em>) – analysis mode</p></li>
+<li><p><strong>lag</strong> – lag index</p></li>
+<li><p><strong>search</strong> – if Search = “”/cbc/bbh/imbhb then mchirp is reconstructed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.load_strains">
+<span class="sig-name descname"><span class="pre">load_strains</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nRMS_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.load_strains"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.load_strains" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.nLag">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nLag</span></span><a class="headerlink" href="#pycwb.types.network.Network.nLag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.n_events">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_events</span></span><a class="headerlink" href="#pycwb.types.network.Network.n_events" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.pattern">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pattern</span></span><a class="headerlink" href="#pycwb.types.network.Network.pattern" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.restore_skymap">
+<span class="sig-name descname"><span class="pre">restore_skymap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skyres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.restore_skymap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.restore_skymap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restore skymap from configuration, if sky resolution is not specified, use the one in configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config" title="pycwb.config.config.Config"><em>Config</em></a>) – user configuration</p></li>
+<li><p><strong>skyres</strong> (<em>int</em><em>, </em><em>optional</em>) – sky resolution</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.set_delay_index">
+<span class="sig-name descname"><span class="pre">set_delay_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.set_delay_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.set_delay_index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.set_sky_mask">
+<span class="sig-name descname"><span class="pre">set_sky_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skycoord</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skyres</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.set_sky_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.set_sky_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>set earth/celestial sky mask is used to define what are the sky locations
+that are analyzed by default all sky is used</p>
+<p>option A :</p>
+<p>skycoord=’e’</p>
+<blockquote>
+<div><p>–theta THETA –phi PHI –radius RADIUS</p>
+<p>define a circle centered in (THETA,PHI) and radius=RADIUS (THETA : [-90,90], PHI : [0,360], RADIUS : degrees)</p>
+</div></blockquote>
+<p>skycoord=’c’</p>
+<blockquote>
+<div><p>–theta DEC –phi RA –radius RADIUS</p>
+<p>define a circle centered in (DEC,RA) and radius=RADIUS (DEC : [-90,90], RA : [0,360], RADIUS : degrees)</p>
+</div></blockquote>
+<p>option B:</p>
+<p>file name</p>
+<blockquote>
+<div><p>format : two columns ascii file -&gt; [sky_index value]</p>
+<p>sky_index : is the sky grid index</p>
+<p>value     : if !=0 the index sky location is used for the analysis</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> – Config object</p></li>
+<li><p><strong>net</strong> – network object</p></li>
+<li><p><strong>options</strong> – used to define the earth/celestial SkyMap</p></li>
+<li><p><strong>skycoord</strong> – sky coordinates : ‘e’=earth, ‘c’=celestial</p></li>
+<li><p><strong>skyres</strong> – sky resolution : def=-1 -&gt; use the value defined in parameters (angle,healpix)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.set_time_shift">
+<span class="sig-name descname"><span class="pre">set_time_shift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lag_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag_off</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag_max</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lag_site</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.set_time_shift"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.set_time_shift" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.set_veto">
+<span class="sig-name descname"><span class="pre">set_veto</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">veto</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.set_veto"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.set_veto" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.sub_net_cut">
+<span class="sig-name descname"><span class="pre">sub_net_cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_norm</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.sub_net_cut"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.sub_net_cut" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.threshold">
+<span class="sig-name descname"><span class="pre">threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bpp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.threshold"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.update_sky_map">
+<span class="sig-name descname"><span class="pre">update_sky_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skyres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.update_sky_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.update_sky_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update skymap from configuration, if sky resolution is not specified, use the one in configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config" title="pycwb.config.config.Config"><em>Config</em></a>) – user configuration</p></li>
+<li><p><strong>skyres</strong> (<em>int</em><em>, </em><em>optional</em>) – sky resolution</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network.Network.update_sky_mask">
+<span class="sig-name descname"><span class="pre">update_sky_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skyres</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#Network.update_sky_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.Network.update_sky_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update sky mask from configuration, if sky resolution is not specified, use the one in configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config" title="pycwb.config.config.Config"><em>Config</em></a>) – user configuration</p></li>
+<li><p><strong>skyres</strong> (<em>int</em><em>, </em><em>optional</em>) – sky resolution</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.types.network.make_sky_mask">
+<span class="sig-prename descclassname"><span class="pre">pycwb.types.network.</span></span><span class="sig-name descname"><span class="pre">make_sky_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sky_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">skymap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network.html#make_sky_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network.make_sky_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>sky mask is used to define what are the sky locations that are analyzed</p>
+<p>theta,phi,radius are used to define the Celestial SkyMap, define a circle centered in (theta,phi) and radius=radius</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sky_mask</strong> (<em>ROOT.skymap</em>) – output sky celestial mask inside the circle is filled with 1 otherwise with 0</p></li>
+<li><p><strong>theta</strong> (<em>float</em>) – theta, [-90,90]</p></li>
+<li><p><strong>phi</strong> (<em>float</em>) – phi, [0,360]</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – radius, degrees</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.types.network_cluster">
+<span id="pycwb-types-network-cluster-module"></span><h2>pycwb.types.network_cluster module<a class="headerlink" href="#module-pycwb.types.network_cluster" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.network_cluster.</span></span><span class="sig-name descname"><span class="pre">Cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_meta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sky_area</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sky_pixel_map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sky_pixel_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sky_time_delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#Cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.Cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for one cluster of pixels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pixels</strong> (<em>list</em><em>[</em><a class="reference internal" href="#pycwb.types.network_pixel.Pixel" title="pycwb.types.network_pixel.Pixel"><em>Pixel</em></a><em>]</em>) – list of pixels</p></li>
+<li><p><strong>cluster_meta</strong> (<a class="reference internal" href="#pycwb.types.network_cluster.ClusterMeta" title="pycwb.types.network_cluster.ClusterMeta"><em>ClusterMeta</em></a>) – cluster metadata</p></li>
+<li><p><strong>cluster_status</strong> (<em>int</em>) – cluster selection flags (cuts)  1 - rejected, 0 - not processed / accepted,
+-1 - not complete, -2 - ready for processing</p></li>
+<li><p><strong>cluster_rate</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – cluster type defined by rate</p></li>
+<li><p><strong>cluster_time</strong> (<em>float</em>) – supercluster central time</p></li>
+<li><p><strong>cluster_freq</strong> (<em>float</em>) – supercluster central frequency</p></li>
+<li><p><strong>sky_area</strong> (<em>list</em><em>[</em><em>float</em><em>]</em>) – sky error area</p></li>
+<li><p><strong>sky_pixel_map</strong> (<em>list</em><em>[</em><em>float</em><em>]</em>) – sky pixel map</p></li>
+<li><p><strong>sky_pixel_index</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – sky pixel index</p></li>
+<li><p><strong>sky_time_delay</strong> (<em>list</em><em>[</em><em>int</em><em>]</em>) – sky time delay</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.cluster_freq">
+<span class="sig-name descname"><span class="pre">cluster_freq</span></span><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.cluster_freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>supercluster central frequency</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.cluster_meta">
+<span class="sig-name descname"><span class="pre">cluster_meta</span></span><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.cluster_meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>cluster metadata</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.cluster_rate">
+<span class="sig-name descname"><span class="pre">cluster_rate</span></span><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.cluster_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>cluster type defined by rate</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.cluster_status">
+<span class="sig-name descname"><span class="pre">cluster_status</span></span><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.cluster_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>cluster selection flags (cuts)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.cluster_time">
+<span class="sig-name descname"><span class="pre">cluster_time</span></span><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.cluster_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>supercluster central time</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.from_netcluster">
+<span class="sig-name descname"><span class="pre">from_netcluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">netcluster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#Cluster.from_netcluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.from_netcluster" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.get_pixel_rates">
+<span class="sig-name descname"><span class="pre">get_pixel_rates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#Cluster.get_pixel_rates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.get_pixel_rates" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.get_pixels_with_rate">
+<span class="sig-name descname"><span class="pre">get_pixels_with_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#Cluster.get_pixels_with_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.get_pixels_with_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.get_sparse_map">
+<span class="sig-name descname"><span class="pre">get_sparse_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'likelihood'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#Cluster.get_sparse_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.get_sparse_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.get_sparse_map_by_rate">
+<span class="sig-name descname"><span class="pre">get_sparse_map_by_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'likelihood'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#Cluster.get_sparse_map_by_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.get_sparse_map_by_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.pixels">
+<span class="sig-name descname"><span class="pre">pixels</span></span><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.pixels" title="Permalink to this definition">¶</a></dt>
+<dd><p>pixel list</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.sky_area">
+<span class="sig-name descname"><span class="pre">sky_area</span></span><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.sky_area" title="Permalink to this definition">¶</a></dt>
+<dd><p>sky error regions</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.sky_pixel_index">
+<span class="sig-name descname"><span class="pre">sky_pixel_index</span></span><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.sky_pixel_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>sky pixel index</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.sky_pixel_map">
+<span class="sig-name descname"><span class="pre">sky_pixel_map</span></span><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.sky_pixel_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>sky pixel map</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.sky_time_delay">
+<span class="sig-name descname"><span class="pre">sky_time_delay</span></span><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.sky_time_delay" title="Permalink to this definition">¶</a></dt>
+<dd><p>sky time delay configuration for waveform backward correction</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.Cluster.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#Cluster.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.Cluster.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.network_cluster.</span></span><span class="sig-name descname"><span class="pre">ClusterMeta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_sky</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">like_net</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_ecor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm_cor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_null</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_ed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_noise</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">like_sky</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sky_cc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_cc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sky_chi2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_net</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sub_net2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sky_stat</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_rho2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iota</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ellipticity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g_net</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_net</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i_net</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmrgr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmrgrerr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mchirp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mchirperr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi2chirp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chirp_efrac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chirp_pfrac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chirp_ellip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sky_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sky_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#ClusterMeta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.a_net">
+<span class="sig-name descname"><span class="pre">a_net</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.a_net" title="Permalink to this definition">¶</a></dt>
+<dd><p>network alignment</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.c_freq">
+<span class="sig-name descname"><span class="pre">c_freq</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.c_freq" title="Permalink to this definition">¶</a></dt>
+<dd><p>supercluster central frequency</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.c_time">
+<span class="sig-name descname"><span class="pre">c_time</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.c_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>supercluster central time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.chi2chirp">
+<span class="sig-name descname"><span class="pre">chi2chirp</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.chi2chirp" title="Permalink to this definition">¶</a></dt>
+<dd><p>chi2 over NDF</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.chirp">
+<span class="sig-name descname"><span class="pre">chirp</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.chirp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.chirp_efrac">
+<span class="sig-name descname"><span class="pre">chirp_efrac</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.chirp_efrac" title="Permalink to this definition">¶</a></dt>
+<dd><p>chirp energy fraction</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.chirp_ellip">
+<span class="sig-name descname"><span class="pre">chirp_ellip</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.chirp_ellip" title="Permalink to this definition">¶</a></dt>
+<dd><p>chirp ellipticity</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.chirp_pfrac">
+<span class="sig-name descname"><span class="pre">chirp_pfrac</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.chirp_pfrac" title="Permalink to this definition">¶</a></dt>
+<dd><p>chirp pixel fraction</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.ellipticity">
+<span class="sig-name descname"><span class="pre">ellipticity</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.ellipticity" title="Permalink to this definition">¶</a></dt>
+<dd><p>sky position ellipticity</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.energy">
+<span class="sig-name descname"><span class="pre">energy</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>total cluster energy</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.energy_sky">
+<span class="sig-name descname"><span class="pre">energy_sky</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.energy_sky" title="Permalink to this definition">¶</a></dt>
+<dd><p>cluster energy in all resolutions</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.from_cData">
+<span class="sig-name descname"><span class="pre">from_cData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#ClusterMeta.from_cData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.from_cData" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.g_net">
+<span class="sig-name descname"><span class="pre">g_net</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.g_net" title="Permalink to this definition">¶</a></dt>
+<dd><p>network acceptance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.g_noise">
+<span class="sig-name descname"><span class="pre">g_noise</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.g_noise" title="Permalink to this definition">¶</a></dt>
+<dd><p>estimated contribution of Gaussian noise</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.i_net">
+<span class="sig-name descname"><span class="pre">i_net</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.i_net" title="Permalink to this definition">¶</a></dt>
+<dd><p>network index</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.iota">
+<span class="sig-name descname"><span class="pre">iota</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.iota" title="Permalink to this definition">¶</a></dt>
+<dd><p>sky position iota</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.like_net">
+<span class="sig-name descname"><span class="pre">like_net</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.like_net" title="Permalink to this definition">¶</a></dt>
+<dd><p>signal energy</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.like_sky">
+<span class="sig-name descname"><span class="pre">like_sky</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.like_sky" title="Permalink to this definition">¶</a></dt>
+<dd><p>likelihood at all resolutions</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.mchirp">
+<span class="sig-name descname"><span class="pre">mchirp</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.mchirp" title="Permalink to this definition">¶</a></dt>
+<dd><p>chirp mass</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.mchirperr">
+<span class="sig-name descname"><span class="pre">mchirperr</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.mchirperr" title="Permalink to this definition">¶</a></dt>
+<dd><p>chirp mass error</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.mchpdf">
+<span class="sig-name descname"><span class="pre">mchpdf</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.mchpdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.ndof">
+<span class="sig-name descname"><span class="pre">ndof</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.ndof" title="Permalink to this definition">¶</a></dt>
+<dd><p>cluster degrees of freedom</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.net_cc">
+<span class="sig-name descname"><span class="pre">net_cc</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.net_cc" title="Permalink to this definition">¶</a></dt>
+<dd><p>network cc for MRA or SRA analysis</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.net_ecor">
+<span class="sig-name descname"><span class="pre">net_ecor</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.net_ecor" title="Permalink to this definition">¶</a></dt>
+<dd><p>network coherent energy</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.net_ed">
+<span class="sig-name descname"><span class="pre">net_ed</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.net_ed" title="Permalink to this definition">¶</a></dt>
+<dd><p>energy disbalance</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.net_null">
+<span class="sig-name descname"><span class="pre">net_null</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.net_null" title="Permalink to this definition">¶</a></dt>
+<dd><p>null energy in the sky loop with Gauss correction</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.net_rho">
+<span class="sig-name descname"><span class="pre">net_rho</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.net_rho" title="Permalink to this definition">¶</a></dt>
+<dd><p>coherent SNR per detector</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.net_rho2">
+<span class="sig-name descname"><span class="pre">net_rho2</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.net_rho2" title="Permalink to this definition">¶</a></dt>
+<dd><p>reduced coherent SNR per detector</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.norm">
+<span class="sig-name descname"><span class="pre">norm</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.norm" title="Permalink to this definition">¶</a></dt>
+<dd><p>packet norm</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.norm_cor">
+<span class="sig-name descname"><span class="pre">norm_cor</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.norm_cor" title="Permalink to this definition">¶</a></dt>
+<dd><p>normalized coherent energy</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.phi">
+<span class="sig-name descname"><span class="pre">phi</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.phi" title="Permalink to this definition">¶</a></dt>
+<dd><p>sky position phi</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.psi">
+<span class="sig-name descname"><span class="pre">psi</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.psi" title="Permalink to this definition">¶</a></dt>
+<dd><p>sky position psi</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.sky_cc">
+<span class="sig-name descname"><span class="pre">sky_cc</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.sky_cc" title="Permalink to this definition">¶</a></dt>
+<dd><p>network cc from the sky loop (all resolutions)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.sky_chi2">
+<span class="sig-name descname"><span class="pre">sky_chi2</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.sky_chi2" title="Permalink to this definition">¶</a></dt>
+<dd><p>chi2 stat from the sky loop (all resolutions)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.sky_index">
+<span class="sig-name descname"><span class="pre">sky_index</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.sky_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>index in the skymap</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.sky_size">
+<span class="sig-name descname"><span class="pre">sky_size</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.sky_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of sky pixels</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.sky_stat">
+<span class="sig-name descname"><span class="pre">sky_stat</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.sky_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>localization statistic</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.sub_net">
+<span class="sig-name descname"><span class="pre">sub_net</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.sub_net" title="Permalink to this definition">¶</a></dt>
+<dd><p>first subNetCut statistic</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.sub_net2">
+<span class="sig-name descname"><span class="pre">sub_net2</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.sub_net2" title="Permalink to this definition">¶</a></dt>
+<dd><p>second subNetCut statistic</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.theta">
+<span class="sig-name descname"><span class="pre">theta</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.theta" title="Permalink to this definition">¶</a></dt>
+<dd><p>sky position theta</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.tmrgr">
+<span class="sig-name descname"><span class="pre">tmrgr</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.tmrgr" title="Permalink to this definition">¶</a></dt>
+<dd><p>merger time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.ClusterMeta.tmrgrerr">
+<span class="sig-name descname"><span class="pre">tmrgrerr</span></span><a class="headerlink" href="#pycwb.types.network_cluster.ClusterMeta.tmrgrerr" title="Permalink to this definition">¶</a></dt>
+<dd><p>merger time error</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.network_cluster.</span></span><span class="sig-name descname"><span class="pre">FragmentCluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bpp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_pix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pair</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_sub</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clusters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#FragmentCluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for clusters found in data fragment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rate</strong> (<em>float</em>) – original Time series rate</p></li>
+<li><p><strong>start</strong> (<em>float</em>) – interval start GPS time</p></li>
+<li><p><strong>stop</strong> (<em>float</em>) – interval stop  GPS time</p></li>
+<li><p><strong>bpp</strong> (<em>float</em>) – black pixel probability</p></li>
+<li><p><strong>shift</strong> (<em>float</em>) – time shift</p></li>
+<li><p><strong>f_low</strong> (<em>float</em>) – low frequency boundary</p></li>
+<li><p><strong>f_high</strong> (<em>float</em>) – high frequency boundary</p></li>
+<li><p><strong>n_pix</strong> (<em>int</em>) – minimum number of pixels at all resolutions</p></li>
+<li><p><strong>run</strong> (<em>int</em>) – run ID</p></li>
+<li><p><strong>pair</strong> (<em>bool</em>) – true - 2 resolutions, false - 1 resolution</p></li>
+<li><p><strong>n_sub</strong> (<em>int</em>) – subnetwork threshold for a single network pixel</p></li>
+<li><p><strong>clusters</strong> (<em>list</em><em>[</em><a class="reference internal" href="#pycwb.types.network_cluster.Cluster" title="pycwb.types.network_cluster.Cluster"><em>Cluster</em></a><em>]</em>) – cluster list</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.bpp">
+<span class="sig-name descname"><span class="pre">bpp</span></span><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.bpp" title="Permalink to this definition">¶</a></dt>
+<dd><p>black pixel probability</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.clusters">
+<span class="sig-name descname"><span class="pre">clusters</span></span><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.clusters" title="Permalink to this definition">¶</a></dt>
+<dd><p>cluster list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.dump_cluster">
+<span class="sig-name descname"><span class="pre">dump_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#FragmentCluster.dump_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.dump_cluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Select cluster by id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cluster_id</strong> (<em>int</em>) – cluster id</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>fragment cluster with one cluster</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pycwb.types.network_cluster.FragmentCluster" title="pycwb.types.network_cluster.FragmentCluster">FragmentCluster</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.event_count">
+<span class="sig-name descname"><span class="pre">event_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#FragmentCluster.event_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.event_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count number of events in clusters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event_status</strong> (<em>int</em>) – event status, 1 - rejected, 0 - not processed / accepted, -1 - not complete, -2 - ready for processing, None - all</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.f_high">
+<span class="sig-name descname"><span class="pre">f_high</span></span><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.f_high" title="Permalink to this definition">¶</a></dt>
+<dd><p>high frequency boundary</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.f_low">
+<span class="sig-name descname"><span class="pre">f_low</span></span><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.f_low" title="Permalink to this definition">¶</a></dt>
+<dd><p>low frequency boundary</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.from_netcluster">
+<span class="sig-name descname"><span class="pre">from_netcluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">c_cluster</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#FragmentCluster.from_netcluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.from_netcluster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create FragmentCluster from netcluster</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>c_cluster</strong> (<em>ROOT.netcluster</em>) – netcluster</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.n_pix">
+<span class="sig-name descname"><span class="pre">n_pix</span></span><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.n_pix" title="Permalink to this definition">¶</a></dt>
+<dd><p>minimum number of pixels at all resolutions</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.pair">
+<span class="sig-name descname"><span class="pre">pair</span></span><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.pair" title="Permalink to this definition">¶</a></dt>
+<dd><p>true - 2 resolutions, false - 1 resolution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.pixel_count">
+<span class="sig-name descname"><span class="pre">pixel_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#FragmentCluster.pixel_count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.pixel_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count number of pixels in clusters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>event_status</strong> (<em>int</em>) – event status, 1 - rejected, 0 - not processed / accepted, -1 - not complete, -2 - ready for processing, None - all</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.rate">
+<span class="sig-name descname"><span class="pre">rate</span></span><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>original Time series rate</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.remove_rejected">
+<span class="sig-name descname"><span class="pre">remove_rejected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_cluster.html#FragmentCluster.remove_rejected"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.remove_rejected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove rejected clusters</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.run">
+<span class="sig-name descname"><span class="pre">run</span></span><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>run ID</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.shift">
+<span class="sig-name descname"><span class="pre">shift</span></span><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.shift" title="Permalink to this definition">¶</a></dt>
+<dd><p>time shift</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.start">
+<span class="sig-name descname"><span class="pre">start</span></span><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>interval start GPS time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>interval stop  GPS time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_cluster.FragmentCluster.subnet_threshold">
+<span class="sig-name descname"><span class="pre">subnet_threshold</span></span><a class="headerlink" href="#pycwb.types.network_cluster.FragmentCluster.subnet_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>subnetwork threshold for a single network pixel</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pycwb.types.network_event">
+<span id="pycwb-types-network-event-module"></span><h2>pycwb.types.network_event module<a class="headerlink" href="#module-pycwb.types.network_event" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.network_event.Event">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.network_event.</span></span><span class="sig-name descname"><span class="pre">Event</span></span><a class="reference internal" href="_modules/pycwb/types/network_event.html#Event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_event.Event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is used to store the results of an event.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_event.Event.dump">
+<span class="sig-name descname"><span class="pre">dump</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_event.html#Event.dump"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_event.Event.dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string representation of the event</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>String representation of the instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_event.Event.json">
+<span class="sig-name descname"><span class="pre">json</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_event.html#Event.json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_event.Event.json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a JSON representation of the event</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>JSON format of the instance</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_event.Event.output">
+<span class="sig-name descname"><span class="pre">output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ID</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">LAG</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_event.html#Event.output"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_event.Event.output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate event parameters from ROOT.network object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>net</strong> (<em>ROOT.network</em>) – network containing the event</p></li>
+<li><p><strong>ID</strong> (<em>int</em>) – cluster ID</p></li>
+<li><p><strong>LAG</strong> (<em>int</em>) – lag of the analysis</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_event.Event.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_event.html#Event.summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_event.Event.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a summary of the event for building the catalog</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_id</strong> – Job ID</p></li>
+<li><p><strong>id</strong> – Event ID</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Summary of the event</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pycwb.types.network_pixel">
+<span id="pycwb-types-network-pixel-module"></span><h2>pycwb.types.network_pixel module<a class="headerlink" href="#module-pycwb.types.network_pixel" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.network_pixel.</span></span><span class="sig-name descname"><span class="pre">Pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">likelihood</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ellipticity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polarisation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">core</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">td_amp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neighbors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_pixel.html#Pixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_pixel.Pixel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.core">
+<span class="sig-name descname"><span class="pre">core</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.core" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.data">
+<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.ellipticity">
+<span class="sig-name descname"><span class="pre">ellipticity</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.ellipticity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.frequency">
+<span class="sig-name descname"><span class="pre">frequency</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.frequency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.frequency_in_hz">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frequency_in_hz</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.frequency_in_hz" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.from_netpixel">
+<span class="sig-name descname"><span class="pre">from_netpixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">netpixel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_pixel.html#Pixel.from_netpixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.from_netpixel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.layers">
+<span class="sig-name descname"><span class="pre">layers</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.layers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.likelihood">
+<span class="sig-name descname"><span class="pre">likelihood</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.likelihood" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.neighbors">
+<span class="sig-name descname"><span class="pre">neighbors</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.neighbors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.null">
+<span class="sig-name descname"><span class="pre">null</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.null" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.phi">
+<span class="sig-name descname"><span class="pre">phi</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.phi" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.polarisation">
+<span class="sig-name descname"><span class="pre">polarisation</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.polarisation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.rate">
+<span class="sig-name descname"><span class="pre">rate</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.td_amp">
+<span class="sig-name descname"><span class="pre">td_amp</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.td_amp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.theta">
+<span class="sig-name descname"><span class="pre">theta</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.theta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.time">
+<span class="sig-name descname"><span class="pre">time</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.time_in_seconds">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_in_seconds</span></span><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.time_in_seconds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.Pixel.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_pixel.html#Pixel.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_pixel.Pixel.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.PixelData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.network_pixel.</span></span><span class="sig-name descname"><span class="pre">PixelData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">noise_rms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wave</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_90</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asnr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_90</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rank</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_pixel.html#PixelData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_pixel.PixelData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.PixelData.a_90">
+<span class="sig-name descname"><span class="pre">a_90</span></span><a class="headerlink" href="#pycwb.types.network_pixel.PixelData.a_90" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.PixelData.asnr">
+<span class="sig-name descname"><span class="pre">asnr</span></span><a class="headerlink" href="#pycwb.types.network_pixel.PixelData.asnr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.PixelData.index">
+<span class="sig-name descname"><span class="pre">index</span></span><a class="headerlink" href="#pycwb.types.network_pixel.PixelData.index" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.PixelData.noise_rms">
+<span class="sig-name descname"><span class="pre">noise_rms</span></span><a class="headerlink" href="#pycwb.types.network_pixel.PixelData.noise_rms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.PixelData.rank">
+<span class="sig-name descname"><span class="pre">rank</span></span><a class="headerlink" href="#pycwb.types.network_pixel.PixelData.rank" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.PixelData.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/network_pixel.html#PixelData.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.network_pixel.PixelData.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.PixelData.w_90">
+<span class="sig-name descname"><span class="pre">w_90</span></span><a class="headerlink" href="#pycwb.types.network_pixel.PixelData.w_90" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.network_pixel.PixelData.wave">
+<span class="sig-name descname"><span class="pre">wave</span></span><a class="headerlink" href="#pycwb.types.network_pixel.PixelData.wave" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pycwb.types.sparse_series">
+<span id="pycwb-types-sparse-series-module"></span><h2>pycwb.types.sparse_series module<a class="headerlink" href="#module-pycwb.types.sparse_series" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.sparse_series.SparseTimeFrequencySeries">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.sparse_series.</span></span><span class="sig-name descname"><span class="pre">SparseTimeFrequencySeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">core</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse_map_00</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse_map_90</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_halo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_halo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">net_delay</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/sparse_series.html#SparseTimeFrequencySeries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.sparse_series.SparseTimeFrequencySeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>SparseSeries class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>core</strong> – bool, whether to use core functions</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.sparse_series.SparseTimeFrequencySeries.add_core">
+<span class="sig-name descname"><span class="pre">add_core</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ifo_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/sparse_series.html#SparseTimeFrequencySeries.add_core"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.sparse_series.SparseTimeFrequencySeries.add_core" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add core pixels of the detector ID=ifoID contained in the pwc netcluster with index ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ifo_id</strong> (<em>int</em>) – detector ID</p></li>
+<li><p><strong>cluster</strong> (<a class="reference internal" href="#pycwb.types.network_cluster.Cluster" title="pycwb.types.network_cluster.Cluster"><em>Cluster</em></a>) – netcluster</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.sparse_series.SparseTimeFrequencySeries.from_fragment_cluster">
+<span class="sig-name descname"><span class="pre">from_fragment_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wdm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fragment_cluster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">td_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m_tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ifo_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/sparse_series.html#SparseTimeFrequencySeries.from_fragment_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.sparse_series.SparseTimeFrequencySeries.from_fragment_cluster" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.sparse_series.SparseTimeFrequencySeries.resize">
+<span class="sig-name descname"><span class="pre">resize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/sparse_series.html#SparseTimeFrequencySeries.resize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.sparse_series.SparseTimeFrequencySeries.resize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resize the sparse map</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em>) – new size</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.sparse_series.SparseTimeFrequencySeries.set_halo">
+<span class="sig-name descname"><span class="pre">set_halo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_tau</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.042</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_halo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_halo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/sparse_series.html#SparseTimeFrequencySeries.set_halo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.sparse_series.SparseTimeFrequencySeries.set_halo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the halo</p>
+<p>For each core pixels (if layerHalo = 1) the following pixels are saved</p>
+<blockquote>
+<div><p>core      = ‘.’
+extraHalo = ‘++++++++’
+timeHalo  = ‘xxxx’</p>
+<p>++++++++xxxx xxxx++++++++
+++++++++xxxx.xxxx++++++++
+++++++++xxxx xxxx++++++++</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>max_tau</strong> (<em>float</em>) – delay time (sec) is stored in net_Delay used to compute extraHalo = net_Delay*sparseRate</p></li>
+<li><p><strong>layer_halo</strong> (<em>int</em>) – number of layers above and below each core pixel is stored in layerHalo the total number of layers in the halo is 2*layerHalo+1</p></li>
+<li><p><strong>time_halo</strong> (<em>int</em>) – number of slice on the right and on the left each core pixel is stored in timeHalo the total number of pixels on the time axis is 2*(timeHalo+extraHalo)+1 The default value is -1 : the value is automatically selected from the associated TF map with WDM::getTDFsize() method.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.sparse_series.SparseTimeFrequencySeries.set_map">
+<span class="sig-name descname"><span class="pre">set_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/sparse_series.html#SparseTimeFrequencySeries.set_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.sparse_series.SparseTimeFrequencySeries.set_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the map</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tf_map</strong> (<a class="reference internal" href="#pycwb.types.time_frequency_series.TimeFrequencySeries" title="pycwb.types.time_frequency_series.TimeFrequencySeries"><em>TimeFrequencySeries</em></a>) – time-frequency map</p></li>
+<li><p><strong>reset</strong> (<em>bool</em><em> (</em><em>default: True</em><em>)</em>) – reset the sparse map</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.sparse_series.SparseTimeFrequencySeries.set_sparse_table">
+<span class="sig-name descname"><span class="pre">set_sparse_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sparse_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse_map_00</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse_map_90</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/sparse_series.html#SparseTimeFrequencySeries.set_sparse_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.sparse_series.SparseTimeFrequencySeries.set_sparse_table" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.sparse_series.SparseTimeFrequencySeries.sparse_index">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sparse_index</span></span><a class="headerlink" href="#pycwb.types.sparse_series.SparseTimeFrequencySeries.sparse_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the sparse index</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.sparse_series.SparseTimeFrequencySeries.sparse_lookup">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sparse_lookup</span></span><a class="headerlink" href="#pycwb.types.sparse_series.SparseTimeFrequencySeries.sparse_lookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the sparse lookup</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.sparse_series.SparseTimeFrequencySeries.sparse_map_00">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sparse_map_00</span></span><a class="headerlink" href="#pycwb.types.sparse_series.SparseTimeFrequencySeries.sparse_map_00" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the sparse map_00</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.sparse_series.SparseTimeFrequencySeries.sparse_map_90">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sparse_map_90</span></span><a class="headerlink" href="#pycwb.types.sparse_series.SparseTimeFrequencySeries.sparse_map_90" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the sparse map_90</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.sparse_series.SparseTimeFrequencySeries.update_sparse_table">
+<span class="sig-name descname"><span class="pre">update_sparse_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/sparse_series.html#SparseTimeFrequencySeries.update_sparse_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.sparse_series.SparseTimeFrequencySeries.update_sparse_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the core pixels and halo parameters to update the sparse maps with core+halo pixels</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pycwb.types.time_frequency_series">
+<span id="pycwb-types-time-frequency-series-module"></span><h2>pycwb.types.time_frequency_series module<a class="headerlink" href="#module-pycwb.types.time_frequency_series" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.time_frequency_series.</span></span><span class="sig-name descname"><span class="pre">TimeFrequencySeries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">whiten_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bpp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_low</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f_high</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/time_frequency_series.html#TimeFrequencySeries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for storing a time-frequency series.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pycbc.types.timeseries.TimeSeries</em>) – data</p></li>
+<li><p><strong>wavelet</strong> (<a class="reference internal" href="#pycwb.types.wdm.WDM" title="pycwb.types.wdm.WDM"><em>WDM</em></a>) – wavelet method</p></li>
+<li><p><strong>whiten_mode</strong> (<em>int</em>) – whiten mode</p></li>
+<li><p><strong>bpp</strong> (<em>float</em>) – black pixel probability</p></li>
+<li><p><strong>w_rate</strong> (<em>float</em>) – wavelet zero layer rate</p></li>
+<li><p><strong>f_low</strong> (<em>float</em>) – low frequency cutoff</p></li>
+<li><p><strong>f_high</strong> (<em>float</em>) – high frequency cutoff</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.bpp">
+<span class="sig-name descname"><span class="pre">bpp</span></span><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.bpp" title="Permalink to this definition">¶</a></dt>
+<dd><p>black pixel probability</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/time_frequency_series.html#TimeFrequencySeries.copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.data">
+<span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Time series data</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.edge">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">edge</span></span><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>dummy edge</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>TODO</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.f_high">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_high</span></span><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.f_high" title="Permalink to this definition">¶</a></dt>
+<dd><p>high frequency cutoff</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.f_low">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">f_low</span></span><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.f_low" title="Permalink to this definition">¶</a></dt>
+<dd><p>low frequency cutoff</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/time_frequency_series.html#TimeFrequencySeries.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs forward wavelet transform on data (Not working yet)</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.sample_rate">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sample_rate</span></span><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.sample_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>sample rate</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.start">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>start time</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.stop">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stop</span></span><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>stop time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.w_rate">
+<span class="sig-name descname"><span class="pre">w_rate</span></span><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.w_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>wavelet zero layer rate</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.wavelet">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">wavelet</span></span><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.wavelet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wavelet method, a new wavelet will be copied and data will be allocated automatically</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.time_frequency_series.TimeFrequencySeries.whiten_mode">
+<span class="sig-name descname"><span class="pre">whiten_mode</span></span><a class="headerlink" href="#pycwb.types.time_frequency_series.TimeFrequencySeries.whiten_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whiten mode</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pycwb.types.wdm">
+<span id="pycwb-types-wdm-module"></span><h2>pycwb.types.wdm module<a class="headerlink" href="#module-pycwb.types.wdm" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.wdm.</span></span><span class="sig-name descname"><span class="pre">WDM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Wrapper for ROOT.WDM object</p>
+<p>after forward transformation the structure of the WDM sliced array is the following:</p>
+<blockquote>
+<div><p>f    phase 0       phase 90</p>
+<p>M  *  * …  *   *   * …  *</p>
+<p>… … … … …  … …</p>
+<p>1  *  * …. *   *   * …  *</p>
+<p>0  *  * …  *   *   * …  *</p>
+<p>t  1  2  … n  n+1 n+2… 2n</p>
+</div></blockquote>
+<p>where t/f is the time/frequency index, the global TF index in the linear array is i = t*(M+1)+f</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>int</em>) – number of bands</p></li>
+<li><p><strong>k</strong> (<em>int</em>) – k=n*m, where n is integer. K defines the width of the ‘edge’ of the basis function
+in Fourier domain (see the paper). larger n, longer the WDM filter, lower the spectral leakage between the bands.</p></li>
+<li><p><strong>beta_order</strong> (<em>int</em>) – defines the sharpness of the ‘edge’ of the basis function in Fourier domain (see paper)</p></li>
+<li><p><strong>precision</strong> (<em>int</em>) – defines filter length by truncation error quantified by P = -log10(1 - norm_of_filter) (see the paper)</p></li>
+<li><p><strong>wavelet</strong> (<em>ROOT.WDM</em><em>, </em><em>optional</em>) – ROOT.WDM object, if provided, other parameters are ignored and extracted from the object</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.allocate">
+<span class="sig-name descname"><span class="pre">allocate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.allocate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.allocate" title="Permalink to this definition">¶</a></dt>
+<dd><p>allocate memory for the WDM sliced array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>pycbc.types.timeseries.TimeSeries</em>) – data to be stored in the WDM sliced array</p></li>
+<li><p><strong>n</strong> (<em>int</em>) – size of samples</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.beta_order">
+<span class="sig-name descname"><span class="pre">beta_order</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.beta_order" title="Permalink to this definition">¶</a></dt>
+<dd><p>defines the sharpness of the ‘edge’ of the basis function in Fourier domain (see paper)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.clone"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.clone" title="Permalink to this definition">¶</a></dt>
+<dd><p>clone the WDM object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.get_base_wave">
+<span class="sig-name descname"><span class="pre">get_base_wave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tf_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.get_base_wave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.get_base_wave" title="Permalink to this definition">¶</a></dt>
+<dd><p>get base wavelet from index</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tf_index</strong> (<em>int</em>) – time-frequency index</p></li>
+<li><p><strong>quad</strong> (<em>bool</em>) – true to return Quadrature basis function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>indicates the time translation from origin needed by w (j in [0,M] correspond to t=0) and the wavearray</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(int, numpy.ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.get_map_00">
+<span class="sig-name descname"><span class="pre">get_map_00</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.get_map_00"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.get_map_00" title="Permalink to this definition">¶</a></dt>
+<dd><p>get map00/90 value from index</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.get_map_90">
+<span class="sig-name descname"><span class="pre">get_map_90</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.get_map_90"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.get_map_90" title="Permalink to this definition">¶</a></dt>
+<dd><p>get map00/90 value from index</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.get_slice_size">
+<span class="sig-name descname"><span class="pre">get_slice_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.get_slice_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.get_slice_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>get slice of the WDM sliced array</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>level</strong> (<em>int</em>) – level of the wavelet transform</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>slice of the WDM sliced array</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.lightweight_dump">
+<span class="sig-name descname"><span class="pre">lightweight_dump</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.lightweight_dump"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.lightweight_dump" title="Permalink to this definition">¶</a></dt>
+<dd><p>lightweight duplication of the WDM object</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.m">
+<span class="sig-name descname"><span class="pre">m</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.m" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of bands</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.m_H">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">m_H</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.m_H" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of highpass wavelet filter coefficients</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.m_L">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">m_L</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.m_L" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of lowpass wavelet filter coefficients</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.max_index">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_index</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.max_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximum index of the WDM sliced array</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.max_layer">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_layer</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.max_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximum layer of the wavelet transform</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.max_level">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_level</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.max_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximum level of the wavelet transform</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.nSTS">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nSTS</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.nSTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>size of the original time series</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.nWWS">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nWWS</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.nWWS" title="Permalink to this definition">¶</a></dt>
+<dd><p>size of the wavelet work space</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.pWWS">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pWWS</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.pWWS" title="Permalink to this definition">¶</a></dt>
+<dd><p>pointer to wavelet work space</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.precision">
+<span class="sig-name descname"><span class="pre">precision</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.precision" title="Permalink to this definition">¶</a></dt>
+<dd><p>defines filter length by truncation error quantified by P = -log10(1 - norm_of_filter) (see the paper)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.release">
+<span class="sig-name descname"><span class="pre">release</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.release"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.release" title="Permalink to this definition">¶</a></dt>
+<dd><p>release memory of the WDM sliced array</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.set_map_00">
+<span class="sig-name descname"><span class="pre">set_map_00</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.set_map_00"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.set_map_00" title="Permalink to this definition">¶</a></dt>
+<dd><p>set value of the WDM sliced array at index</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – </p></li>
+<li><p><strong>value</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.set_map_90">
+<span class="sig-name descname"><span class="pre">set_map_90</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.set_map_90"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.set_map_90" title="Permalink to this definition">¶</a></dt>
+<dd><p>set value of the WDM sliced array at index</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> – </p></li>
+<li><p><strong>value</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.set_td_filter">
+<span class="sig-name descname"><span class="pre">set_td_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeff_factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upsample_factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.set_td_filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.set_td_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>initialization of the time delay filters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coeff_factor</strong> (<em>int</em>) – define the number of the filter coefficients</p></li>
+<li><p><strong>upsample_factor</strong> (<em>int</em>) – upsample factor, defines the fundamental time delay step dt = tau/L , where tau is the sampling interval of the original time series</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.size_at_zero_layer">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size_at_zero_layer</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.size_at_zero_layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>number of samples at zero level</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.t2w">
+<span class="sig-name descname"><span class="pre">t2w</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.t2w"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.t2w" title="Permalink to this definition">¶</a></dt>
+<dd><p>direct transform.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>k</strong> (<em>int</em>) – param: -1 - orthonormal, 0 - power map, &gt;0 - upsampled map. k = 0 requests power map of combined quadratures (not amplitudes for both)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.time_delay_filter_size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">time_delay_filter_size</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.time_delay_filter_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>half size of time delay filter</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.to_type_WDM">
+<span class="sig-name descname"><span class="pre">to_type_WDM</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#WDM.to_type_WDM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.WDM.to_type_WDM" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert the WDM object to ROOT.WDM</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pycwb.types.wdm.WDM.wavelet">
+<span class="sig-name descname"><span class="pre">wavelet</span></span><a class="headerlink" href="#pycwb.types.wdm.WDM.wavelet" title="Permalink to this definition">¶</a></dt>
+<dd><p>ROOT.WDM object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.types.wdm.declare_function">
+<span class="sig-prename descclassname"><span class="pre">pycwb.types.wdm.</span></span><span class="sig-name descname"><span class="pre">declare_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm.html#declare_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm.declare_function" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-pycwb.types.wdm_xtalk">
+<span id="pycwb-types-wdm-xtalk-module"></span><h2>pycwb.types.wdm_xtalk module<a class="headerlink" href="#module-pycwb.types.wdm_xtalk" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.types.wdm_xtalk.WDMXTalkCatalog">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.types.wdm_xtalk.</span></span><span class="sig-name descname"><span class="pre">WDMXTalkCatalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">catalog</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm_xtalk.html#WDMXTalkCatalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm_xtalk.WDMXTalkCatalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm_xtalk.WDMXTalkCatalog.beta_order">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">beta_order</span></span><a class="headerlink" href="#pycwb.types.wdm_xtalk.WDMXTalkCatalog.beta_order" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm_xtalk.WDMXTalkCatalog.check_layers_with_MRAcatalog">
+<span class="sig-name descname"><span class="pre">check_layers_with_MRAcatalog</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l_low</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_high</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_res</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm_xtalk.html#WDMXTalkCatalog.check_layers_with_MRAcatalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm_xtalk.WDMXTalkCatalog.check_layers_with_MRAcatalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>check if analysis layers are contained in the MRAcatalog.
+The layers are the number of layers along the frequency axis rateANA/(rateANA&gt;&gt;level)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>l_low</strong> (<em>int</em>) – low level of the decomposition</p></li>
+<li><p><strong>l_high</strong> (<em>int</em>) – high level of the decomposition</p></li>
+<li><p><strong>n_res</strong> (<em>int</em>) – number of resolutions</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm_xtalk.WDMXTalkCatalog.get_wdmMRA">
+<span class="sig-name descname"><span class="pre">get_wdmMRA</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm_xtalk.html#WDMXTalkCatalog.get_wdmMRA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm_xtalk.WDMXTalkCatalog.get_wdmMRA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm_xtalk.WDMXTalkCatalog.layers">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">layers</span></span><a class="headerlink" href="#pycwb.types.wdm_xtalk.WDMXTalkCatalog.layers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.types.wdm_xtalk.WDMXTalkCatalog.load_MRA">
+<span class="sig-name descname"><span class="pre">load_MRA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/types/wdm_xtalk.html#WDMXTalkCatalog.load_MRA"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.types.wdm_xtalk.WDMXTalkCatalog.load_MRA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm_xtalk.WDMXTalkCatalog.n_res">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_res</span></span><a class="headerlink" href="#pycwb.types.wdm_xtalk.WDMXTalkCatalog.n_res" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm_xtalk.WDMXTalkCatalog.precision">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">precision</span></span><a class="headerlink" href="#pycwb.types.wdm_xtalk.WDMXTalkCatalog.precision" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pycwb.types.wdm_xtalk.WDMXTalkCatalog.tag">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tag</span></span><a class="headerlink" href="#pycwb.types.wdm_xtalk.WDMXTalkCatalog.tag" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pycwb.types">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycwb.types" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pycwb.utils.html" class="btn btn-neutral float-right" title="pycwb.utils package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pycwb.modules.web_viewer.html" class="btn btn-neutral float-left" title="pycwb.modules.web_viewer package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

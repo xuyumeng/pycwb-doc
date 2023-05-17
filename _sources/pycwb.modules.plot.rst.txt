@@ -1,0 +1,37 @@
+pycwb.modules.plot package
+==========================
+
+Submodules
+----------
+
+pycwb.modules.plot.cluster\_statistics module
+---------------------------------------------
+
+.. automodule:: pycwb.modules.plot.cluster_statistics
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.plot.event module
+-------------------------------
+
+.. automodule:: pycwb.modules.plot.event
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.plot.spectrogram module
+-------------------------------------
+
+.. automodule:: pycwb.modules.plot.spectrogram
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.plot
+   :members:
+   :undoc-members:
+   :show-inheritance:

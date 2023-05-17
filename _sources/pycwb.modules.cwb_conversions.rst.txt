@@ -1,0 +1,45 @@
+pycwb.modules.cwb\_conversions package
+======================================
+
+Submodules
+----------
+
+pycwb.modules.cwb\_conversions.cluster module
+---------------------------------------------
+
+.. automodule:: pycwb.modules.cwb_conversions.cluster
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.cwb\_conversions.pixel module
+-------------------------------------------
+
+.. automodule:: pycwb.modules.cwb_conversions.pixel
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.cwb\_conversions.series module
+--------------------------------------------
+
+.. automodule:: pycwb.modules.cwb_conversions.series
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.cwb\_conversions.sparse\_series module
+----------------------------------------------------
+
+.. automodule:: pycwb.modules.cwb_conversions.sparse_series
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.cwb_conversions
+   :members:
+   :undoc-members:
+   :show-inheritance:

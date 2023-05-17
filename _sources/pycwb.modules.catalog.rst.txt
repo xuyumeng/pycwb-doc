@@ -1,0 +1,21 @@
+pycwb.modules.catalog package
+=============================
+
+Submodules
+----------
+
+pycwb.modules.catalog.catalog module
+------------------------------------
+
+.. automodule:: pycwb.modules.catalog.catalog
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.catalog
+   :members:
+   :undoc-members:
+   :show-inheritance:

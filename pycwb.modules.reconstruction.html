@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.modules.reconstruction package &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pycwb.modules.sparse_series package" href="pycwb.modules.sparse_series.html" />
+    <link rel="prev" title="pycwb.modules.read_data package" href="pycwb.modules.read_data.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pycwb.html">pycwb package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pycwb.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pycwb.config.html">pycwb.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.constants.html">pycwb.constants package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.messenger.html">pycwb.messenger package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pycwb.modules.html">pycwb.modules package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html">pycwb.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.utils.html">pycwb.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb.search">pycwb.search module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">pycwb</a> &raquo;</li>
+        
+          <li><a href="pycwb.html">pycwb package</a> &raquo;</li>
+        
+          <li><a href="pycwb.modules.html">pycwb.modules package</a> &raquo;</li>
+        
+      <li>pycwb.modules.reconstruction package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pycwb.modules.reconstruction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pycwb-modules-reconstruction-package">
+<h1>pycwb.modules.reconstruction package<a class="headerlink" href="#pycwb-modules-reconstruction-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-pycwb.modules.reconstruction.getMRAwaveform">
+<span id="pycwb-modules-reconstruction-getmrawaveform-module"></span><h2>pycwb.modules.reconstruction.getMRAwaveform module<a class="headerlink" href="#module-pycwb.modules.reconstruction.getMRAwaveform" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.reconstruction.getMRAwaveform.get_MRA_wave">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.reconstruction.getMRAwaveform.</span></span><span class="sig-name descname"><span class="pre">get_MRA_wave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wdmList</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ifo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/reconstruction/getMRAwaveform.html#get_MRA_wave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.reconstruction.getMRAwaveform.get_MRA_wave" title="Permalink to this definition">¶</a></dt>
+<dd><p>get MRA waveforms of type atype in time domain given lag nomber and cluster ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cluster</strong> (<a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster" title="pycwb.types.network_cluster.Cluster"><em>pycwb.types.network_cluster.Cluster</em></a>) – cluster object</p></li>
+<li><p><strong>wdmList</strong> (<em>list</em><em> of </em><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM" title="pycwb.types.wdm.WDM"><em>pycwb.types.wdm.WDM</em></a>) – list of WDM objects</p></li>
+<li><p><strong>rate</strong> (<em>float</em>) – sampling rate</p></li>
+<li><p><strong>ifo</strong> (<em>int</em>) – IFO id</p></li>
+<li><p><strong>a_type</strong> (<em>str</em>) – type of waveforms, the value can be ‘signal’ or ‘strain’</p></li>
+<li><p><strong>mode</strong> (<em>int</em>) – -1/0/1 - return 90/mra/0 phase</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>waveform</strong> – reconstructed waveform</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pycbc.types.timeseries.TimeSeries</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pycwb.modules.reconstruction.getMRAwaveform.get_network_MRA_wave">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.reconstruction.getMRAwaveform.</span></span><span class="sig-name descname"><span class="pre">get_network_MRA_wave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nIFO</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rTDF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tof</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/reconstruction/getMRAwaveform.html#get_network_MRA_wave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.reconstruction.getMRAwaveform.get_network_MRA_wave" title="Permalink to this definition">¶</a></dt>
+<dd><p>get MRA waveforms of type atype in time domain given lag nomber and cluster ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>pycwb.config.Config</em>) – configuration object</p></li>
+<li><p><strong>cluster</strong> (<a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster" title="pycwb.types.network_cluster.Cluster"><em>pycwb.types.network_cluster.Cluster</em></a>) – cluster object</p></li>
+<li><p><strong>rate</strong> (<em>float</em>) – sampling rate</p></li>
+<li><p><strong>nIFO</strong> (<em>int</em>) – number of IFOs</p></li>
+<li><p><strong>rTDF</strong> (<em>float</em>) – effective time-delay</p></li>
+<li><p><strong>a_type</strong> (<em>str</em>) – type of waveforms, the value can be ‘signal’ or ‘strain’</p></li>
+<li><p><strong>mode</strong> (<em>int</em>) – -1/0/1 - return 90/mra/0 phase</p></li>
+<li><p><strong>tof</strong> (<em>bool</em>) – if tof = true, apply time-of-flight corrections</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>waveforms</strong> – reconstructed waveform</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of pycbc.types.timeseries.TimeSeries</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pycwb.modules.reconstruction">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycwb.modules.reconstruction" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pycwb.modules.sparse_series.html" class="btn btn-neutral float-right" title="pycwb.modules.sparse_series package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pycwb.modules.read_data.html" class="btn btn-neutral float-left" title="pycwb.modules.read_data package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.modules.likelihood.likelihood &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycwb.modules.likelihood.likelihood</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycwb.modules.likelihood.likelihood</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">pycwb.config</span> <span class="kn">import</span> <span class="n">Config</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.cwb_conversions</span> <span class="kn">import</span> <span class="n">convert_fragment_clusters_to_netcluster</span>
+<span class="kn">from</span> <span class="nn">pycwb.types.network_cluster</span> <span class="kn">import</span> <span class="n">FragmentCluster</span>
+<span class="kn">from</span> <span class="nn">pycwb.types.network_event</span> <span class="kn">import</span> <span class="n">Event</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="likelihood"><a class="viewcode-back" href="../../../../pycwb.modules.likelihood.html#pycwb.modules.likelihood.likelihood.likelihood">[docs]</a><span class="k">def</span> <span class="nf">likelihood</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">fragment_clusters</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    calculate likelihood</span>
+
+<span class="sd">    :param config: user configuration</span>
+<span class="sd">    :type config: Config</span>
+<span class="sd">    :param network: network</span>
+<span class="sd">    :type network: Network</span>
+<span class="sd">    :param fragment_clusters: list of cluster</span>
+<span class="sd">    :type fragment_clusters: list[FragmentCluster]</span>
+<span class="sd">    :return: the list of events and clusters</span>
+<span class="sd">    :rtype: list[Event], list[Cluster]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">timer_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+
+    <span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">fragment_cluster</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fragment_clusters</span><span class="p">):</span>
+        <span class="n">cycle</span> <span class="o">=</span> <span class="n">fragment_cluster</span><span class="o">.</span><span class="n">shift</span>
+
+        <span class="c1"># print header</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;-------------------------------------------------------&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;-&gt; Processing </span><span class="si">%d</span><span class="s2"> clusters in lag=</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fragment_clusters</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">clusters</span><span class="p">),</span> <span class="n">cycle</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;   ----------------------------------------------------&quot;</span><span class="p">)</span>
+
+        <span class="c1"># loop over clusters to calculate likelihood</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">selected_cluster</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fragment_cluster</span><span class="o">.</span><span class="n">clusters</span><span class="p">):</span>
+            <span class="c1"># skip if cluster is already rejected</span>
+            <span class="k">if</span> <span class="n">selected_cluster</span><span class="o">.</span><span class="n">cluster_status</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">cluster_id</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">event</span><span class="p">,</span> <span class="n">cluster</span> <span class="o">=</span> <span class="n">_likelihood</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">cluster_id</span><span class="p">,</span> <span class="n">fragment_cluster</span><span class="o">.</span><span class="n">dump_cluster</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+            <span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+            <span class="n">clusters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
+
+    <span class="n">n_events</span> <span class="o">=</span> <span class="nb">len</span><span class="p">([</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">clusters</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">cluster_status</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># timer</span>
+    <span class="n">timer_end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;-------------------------------------------------------&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Total events: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">n_events</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Total time: </span><span class="si">%.2f</span><span class="s2"> s&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">timer_end</span> <span class="o">-</span> <span class="n">timer_start</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;-------------------------------------------------------&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">events</span><span class="p">,</span> <span class="n">clusters</span></div>
+
+
+<span class="k">def</span> <span class="nf">_likelihood</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">lag</span><span class="p">,</span> <span class="n">cluster_id</span><span class="p">,</span> <span class="n">fragment_cluster</span><span class="p">):</span>
+    <span class="c1"># dumb variables</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1">####################</span>
+    <span class="c1"># cWB2G likelihood #</span>
+    <span class="c1">####################</span>
+    <span class="n">network</span><span class="o">.</span><span class="n">set_delay_index</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">TDRate</span><span class="p">)</span>
+
+    <span class="c1"># load cluster to network</span>
+    <span class="n">pwc</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">get_cluster</span><span class="p">(</span><span class="n">lag</span><span class="p">)</span>
+    <span class="n">pwc</span><span class="o">.</span><span class="n">cpf</span><span class="p">(</span><span class="n">convert_fragment_clusters_to_netcluster</span><span class="p">(</span><span class="n">fragment_cluster</span><span class="p">),</span> <span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">pwc</span><span class="o">.</span><span class="n">setcore</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">pwc</span><span class="o">.</span><span class="n">loadTDampSSE</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">net</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">BATCH</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">BATCH</span><span class="p">)</span>  <span class="c1"># attach TD amp to pixels</span>
+
+    <span class="k">if</span> <span class="n">network</span><span class="o">.</span><span class="n">pattern</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">selected_core_pixels</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">likelihoodWP</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">search</span><span class="p">,</span> <span class="n">lag</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">Search</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">selected_core_pixels</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">likelihood2G</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">search</span><span class="p">,</span> <span class="n">lag</span><span class="p">)</span>
+
+    <span class="n">cluster</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">FragmentCluster</span><span class="p">()</span><span class="o">.</span><span class="n">from_netcluster</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">get_cluster</span><span class="p">(</span><span class="n">lag</span><span class="p">)))</span><span class="o">.</span><span class="n">clusters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="p">()</span>
+    <span class="n">event</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">net</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">pwc</span><span class="o">.</span><span class="n">clean</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">####################</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Selected core pixels: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">selected_core_pixels</span><span class="p">)</span>
+
+    <span class="n">detected</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">cluster_status</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="c1"># print reconstructed event</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;   cluster-id|pixels: </span><span class="si">%5d</span><span class="s2">|</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">cluster_id</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">pixels</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">detected</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> -&gt; SELECTED !!!&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2"> &lt;- rejected    &quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">event</span><span class="p">,</span> <span class="n">cluster</span>
+
+
+<div class="viewcode-block" id="save_likelihood_data"><a class="viewcode-back" href="../../../../pycwb.modules.likelihood.html#pycwb.modules.likelihood.likelihood.save_likelihood_data">[docs]</a><span class="k">def</span> <span class="nf">save_likelihood_data</span><span class="p">(</span><span class="n">job_id</span><span class="p">,</span> <span class="n">cluster_id</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">cluster</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    save event and cluster to file</span>
+
+<span class="sd">    :param job_id: job id</span>
+<span class="sd">    :type job_id: int</span>
+<span class="sd">    :param cluster_id: cluster id</span>
+<span class="sd">    :type cluster_id: int</span>
+<span class="sd">    :param output_dir: output directory</span>
+<span class="sd">    :type output_dir: str</span>
+<span class="sd">    :param event: event</span>
+<span class="sd">    :type event: Event</span>
+<span class="sd">    :param cluster: cluster</span>
+<span class="sd">    :type cluster: Cluster</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: sky statistics, likelihood distribution, null-hypothesis distribution, waveform, etc.</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># save event to file</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">output_dir</span><span class="si">}</span><span class="s1">/event_</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">cluster_id</span><span class="si">}</span><span class="s1">.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+        <span class="c1"># save cluster to pickle</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">output_dir</span><span class="si">}</span><span class="s1">/cluster_</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">cluster_id</span><span class="si">}</span><span class="s1">.pkl&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cluster</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

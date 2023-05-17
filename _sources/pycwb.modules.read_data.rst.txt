@@ -1,0 +1,37 @@
+pycwb.modules.read\_data package
+================================
+
+Submodules
+----------
+
+pycwb.modules.read\_data.data\_check module
+-------------------------------------------
+
+.. automodule:: pycwb.modules.read_data.data_check
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.read\_data.mdc module
+-----------------------------------
+
+.. automodule:: pycwb.modules.read_data.mdc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.read\_data.read\_data module
+------------------------------------------
+
+.. automodule:: pycwb.modules.read_data.read_data
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.read_data
+   :members:
+   :undoc-members:
+   :show-inheritance:

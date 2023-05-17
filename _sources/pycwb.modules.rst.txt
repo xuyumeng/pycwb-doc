@@ -1,0 +1,32 @@
+pycwb.modules package
+=====================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   pycwb.modules.autoencoder
+   pycwb.modules.catalog
+   pycwb.modules.coherence
+   pycwb.modules.cwb_conversions
+   pycwb.modules.data_conditioning
+   pycwb.modules.job_segment
+   pycwb.modules.likelihood
+   pycwb.modules.logger
+   pycwb.modules.multi_resolution_wdm
+   pycwb.modules.plot
+   pycwb.modules.read_data
+   pycwb.modules.reconstruction
+   pycwb.modules.sparse_series
+   pycwb.modules.super_cluster
+   pycwb.modules.web_viewer
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules
+   :members:
+   :undoc-members:
+   :show-inheritance:

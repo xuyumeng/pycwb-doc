@@ -1,0 +1,29 @@
+pycwb.modules.autoencoder package
+=================================
+
+Submodules
+----------
+
+pycwb.modules.autoencoder.autoencoder module
+--------------------------------------------
+
+.. automodule:: pycwb.modules.autoencoder.autoencoder
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.autoencoder.cwb\_autoencoder module
+-------------------------------------------------
+
+.. automodule:: pycwb.modules.autoencoder.cwb_autoencoder
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.autoencoder
+   :members:
+   :undoc-members:
+   :show-inheritance:

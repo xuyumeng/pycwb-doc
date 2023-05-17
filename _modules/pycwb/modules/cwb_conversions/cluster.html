@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.modules.cwb_conversions.cluster &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycwb.modules.cwb_conversions.cluster</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycwb.modules.cwb_conversions.cluster</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">ROOT</span>
+<span class="kn">from</span> <span class="nn">.pixel</span> <span class="kn">import</span> <span class="n">convert_pixel_to_netpixel</span>
+<span class="kn">from</span> <span class="nn">pycwb.types.network_cluster</span> <span class="kn">import</span> <span class="n">Cluster</span>
+
+
+<div class="viewcode-block" id="convert_fragment_clusters_to_netcluster"><a class="viewcode-back" href="../../../../pycwb.modules.cwb_conversions.html#pycwb.modules.cwb_conversions.cluster.convert_fragment_clusters_to_netcluster">[docs]</a><span class="k">def</span> <span class="nf">convert_fragment_clusters_to_netcluster</span><span class="p">(</span><span class="n">fragment_clusters</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convert cluster to netcluster</span>
+
+<span class="sd">    :param cluster: cluster</span>
+<span class="sd">    :type cluster: Cluster</span>
+<span class="sd">    :return: netcluster</span>
+<span class="sd">    :rtype: ROOT.netcluster</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">netcluster</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">netcluster</span><span class="p">()</span>
+
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">rate</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">start</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">stop</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">bpp</span> <span class="o">=</span> <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">bpp</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">shift</span> <span class="o">=</span> <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">shift</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">flow</span> <span class="o">=</span> <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">f_low</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">fhigh</span> <span class="o">=</span> <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">f_high</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">nPIX</span> <span class="o">=</span> <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">n_pix</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">run</span> <span class="o">=</span> <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">run</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">pair</span> <span class="o">=</span> <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">pair</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">nSUB</span> <span class="o">=</span> <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">subnet_threshold</span>
+
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">clusters</span>
+    <span class="c1"># derive cList</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">pixels</span><span class="p">)</span>
+        <span class="n">netcluster</span><span class="o">.</span><span class="n">cList</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">n</span><span class="p">)))</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="n">n</span>
+
+    <span class="c1"># add pixels</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">pList</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">convert_pixel_to_netpixel</span><span class="p">(</span><span class="n">pixel</span><span class="p">,</span> <span class="n">c_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">c_index</span><span class="p">,</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clusters</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">pixel</span> <span class="ow">in</span> <span class="n">cluster</span><span class="o">.</span><span class="n">pixels</span>
+    <span class="p">]</span>
+
+    <span class="c1"># add others</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">cData</span> <span class="o">=</span> <span class="p">[</span><span class="n">convert_cluster_meta_to_cData</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">cluster_meta</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">]</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">sCuts</span> <span class="o">=</span> <span class="p">[</span><span class="n">cluster</span><span class="o">.</span><span class="n">cluster_status</span> <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">]</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">cTime</span> <span class="o">=</span> <span class="p">[</span><span class="n">cluster</span><span class="o">.</span><span class="n">cluster_time</span> <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">]</span>
+    <span class="n">netcluster</span><span class="o">.</span><span class="n">cFreq</span> <span class="o">=</span> <span class="p">[</span><span class="n">cluster</span><span class="o">.</span><span class="n">cluster_freq</span> <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+        <span class="n">netcluster</span><span class="o">.</span><span class="n">cRate</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">cluster_rate</span><span class="p">)</span>
+        <span class="n">netcluster</span><span class="o">.</span><span class="n">sArea</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">sky_area</span><span class="p">)</span>
+        <span class="n">netcluster</span><span class="o">.</span><span class="n">p_Map</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">sky_pixel_map</span><span class="p">)</span>
+        <span class="n">netcluster</span><span class="o">.</span><span class="n">p_Ind</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">sky_pixel_index</span><span class="p">)</span>
+        <span class="n">netcluster</span><span class="o">.</span><span class="n">nTofF</span><span class="o">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">cluster</span><span class="o">.</span><span class="n">sky_time_delay</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">netcluster</span></div>
+
+
+<div class="viewcode-block" id="convert_cluster_meta_to_cData"><a class="viewcode-back" href="../../../../pycwb.modules.cwb_conversions.html#pycwb.modules.cwb_conversions.cluster.convert_cluster_meta_to_cData">[docs]</a><span class="k">def</span> <span class="nf">convert_cluster_meta_to_cData</span><span class="p">(</span><span class="n">cluster_meta</span><span class="p">):</span>
+    <span class="n">c_data</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">clusterdata</span><span class="p">()</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">energy</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">energy</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">enrgsky</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">energy_sky</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">likenet</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">like_net</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">netecor</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">net_ecor</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">normcor</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">norm_cor</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">netnull</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">net_null</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">netED</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">net_ed</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">Gnoise</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">g_noise</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">likesky</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">like_sky</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">skycc</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">sky_cc</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">netcc</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">net_cc</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">skyChi2</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">sky_chi2</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">subnet</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">sub_net</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">SUBNET</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">sub_net2</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">skyStat</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">sky_stat</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">netRHO</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">net_rho</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">netrho</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">net_rho2</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">theta</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">phi</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">phi</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">iota</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">iota</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">psi</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">psi</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">ellipticity</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">ellipticity</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">cTime</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">c_time</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">cFreq</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">c_freq</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">gNET</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">g_net</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">aNET</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">a_net</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">iNET</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">i_net</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">norm</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">norm</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">nDoF</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">ndof</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">tmrgr</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">tmrgr</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">tmrgrerr</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">tmrgrerr</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">mchirp</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">mchirp</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">mchirperr</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">mchirperr</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">chi2chirp</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">chi2chirp</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">chirpEfrac</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">chirp_efrac</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">chirpPfrac</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">chirp_pfrac</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">chirpEllip</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">chirp_ellip</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">skySize</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">sky_size</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">skyIndex</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">sky_index</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">chirp</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">chirp</span>
+    <span class="n">c_data</span><span class="o">.</span><span class="n">mchpdf</span> <span class="o">=</span> <span class="n">cluster_meta</span><span class="o">.</span><span class="n">mchpdf</span>
+    <span class="k">return</span> <span class="n">c_data</span></div>
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

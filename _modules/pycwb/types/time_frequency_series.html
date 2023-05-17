@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.types.time_frequency_series &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycwb.types.time_frequency_series</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycwb.types.time_frequency_series</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="TimeFrequencySeries"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries">[docs]</a><span></span><span class="k">class</span> <span class="nc">TimeFrequencySeries</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class for storing a time-frequency series.</span>
+
+<span class="sd">    :param data: data</span>
+<span class="sd">    :type data: pycbc.types.timeseries.TimeSeries</span>
+<span class="sd">    :param wavelet: wavelet method</span>
+<span class="sd">    :type wavelet: WDM</span>
+<span class="sd">    :param whiten_mode: whiten mode</span>
+<span class="sd">    :type whiten_mode: int</span>
+<span class="sd">    :param bpp: black pixel probability</span>
+<span class="sd">    :type bpp: float</span>
+<span class="sd">    :param w_rate: wavelet zero layer rate</span>
+<span class="sd">    :type w_rate: float</span>
+<span class="sd">    :param f_low: low frequency cutoff</span>
+<span class="sd">    :type f_low: float</span>
+<span class="sd">    :param f_high: high frequency cutoff</span>
+<span class="sd">    :type f_high: float</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_wavelet&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;whiten_mode&#39;</span><span class="p">,</span> <span class="s1">&#39;bpp&#39;</span><span class="p">,</span> <span class="s1">&#39;w_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;_f_low&#39;</span><span class="p">,</span> <span class="s1">&#39;_f_high&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">wavelet</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">whiten_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bpp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">w_rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">f_low</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">f_high</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_wavelet</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1">#: Time series data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="c1">#: Wavelet method, a new wavelet will be copied and data will be allocated automatically</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span> <span class="o">=</span> <span class="n">wavelet</span>
+        <span class="c1">#: Whiten mode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">whiten_mode</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">whiten_mode</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">whiten_mode</span>
+        <span class="c1">#: black pixel probability</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bpp</span> <span class="o">=</span> <span class="mf">1.</span> <span class="k">if</span> <span class="n">bpp</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">bpp</span>
+        <span class="c1">#: wavelet zero layer rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w_rate</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">sample_rate</span> <span class="k">if</span> <span class="n">data</span> <span class="k">else</span> <span class="mf">0.</span><span class="p">)</span> <span class="k">if</span> <span class="n">w_rate</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">w_rate</span>
+        <span class="c1">#: low frequency cutoff</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f_low</span> <span class="o">=</span> <span class="n">f_low</span>
+        <span class="c1">#: high frequency cutoff</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f_high</span> <span class="o">=</span> <span class="n">f_high</span>
+
+    <span class="k">def</span> <span class="nf">__dict__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__slots__</span><span class="p">}</span>
+
+<div class="viewcode-block" id="TimeFrequencySeries.copy"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.copy">[docs]</a>    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">new</span> <span class="o">=</span> <span class="n">TimeFrequencySeries</span><span class="p">(</span>
+            <span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+            <span class="n">wavelet</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="p">,</span>
+            <span class="n">whiten_mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">whiten_mode</span><span class="p">,</span>
+            <span class="n">bpp</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bpp</span><span class="p">,</span>
+            <span class="n">w_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">w_rate</span><span class="p">,</span>
+            <span class="n">f_low</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f_low</span><span class="p">,</span>
+            <span class="n">f_high</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">f_high</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">new</span></div>
+
+    <span class="n">__copy__</span> <span class="o">=</span> <span class="n">copy</span>
+
+<div class="viewcode-block" id="TimeFrequencySeries.forward"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Performs forward wavelet transform on data (Not working yet)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">allocate</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">nSTS</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">nWWS</span>
+            <span class="c1"># was failed every second time to copy and forward a new time series because of</span>
+            <span class="c1"># the pointer pWWS is not malloced, so it can not be reallocated, fixed by converting</span>
+            <span class="c1"># the list to malloced memory</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">t2w</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+            <span class="c1"># if self.wavelet.pWWS != self.data or self.wavelet.nWWS != len(self.data):</span>
+            <span class="c1">#     # TODO: implement and convert (or not)</span>
+            <span class="c1">#     print(&#39; ====== Implementation missing&#39;)</span>
+            <span class="c1">#     #     self.data = self.wavelet.pWWS</span>
+            <span class="c1">#     #     self.Size = self.wavelet.nWWS</span>
+            <span class="c1">#     #     self.Slice = slice(0, self.wavelet.nWWS, 1)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">w_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wavelet</span><span class="o">.</span><span class="n">get_slice_size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Wavelet transform failed&#39;</span><span class="p">)</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">wavelet</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ROOT.WDM object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wavelet</span>
+
+    <span class="nd">@wavelet</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">wavelet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_wavelet</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wavelet</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_wavelet</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wavelet</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_wavelet</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_wavelet</span><span class="o">.</span><span class="n">allocate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        start time</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">start_time</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        stop time</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">end_time</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">edge</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        TODO: dummy edge</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">sample_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        sample rate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">sample_rate</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">f_high</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        high frequency cutoff</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_rate</span> <span class="o">/</span> <span class="mi">2</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f_high</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f_high</span>
+
+    <span class="nd">@f_high</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">f_high</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f_high</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">f_low</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        low frequency cutoff</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mf">0.0</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f_low</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_f_low</span>
+
+    <span class="nd">@f_low</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">f_low</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f_low</span> <span class="o">=</span> <span class="n">value</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

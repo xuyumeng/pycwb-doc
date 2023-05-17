@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.config package &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pycwb.constants package" href="pycwb.constants.html" />
+    <link rel="prev" title="pycwb package" href="pycwb.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pycwb.html">pycwb package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pycwb.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">pycwb.config package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.constants.html">pycwb.constants package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.messenger.html">pycwb.messenger package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.html">pycwb.modules package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html">pycwb.types package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pycwb.utils.html">pycwb.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb.search">pycwb.search module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">pycwb</a> &raquo;</li>
+        
+          <li><a href="pycwb.html">pycwb package</a> &raquo;</li>
+        
+      <li>pycwb.config package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pycwb.config.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pycwb-config-package">
+<h1>pycwb.config package<a class="headerlink" href="#pycwb-config-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-pycwb.config.config">
+<span id="pycwb-config-config-module"></span><h2>pycwb.config.config module<a class="headerlink" href="#module-pycwb.config.config" title="Permalink to this heading">¶</a></h2>
+<p>Class to store user parameters, load parameters from yaml file and check parameters</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pycwb.config.config.Config">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycwb.config.config.</span></span><span class="sig-name descname"><span class="pre">Config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schema</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'additionalProperties':</span> <span class="pre">False,</span> <span class="pre">'properties':</span> <span class="pre">{'Acore':</span> <span class="pre">{'default':</span> <span class="pre">1.4142135623730951,</span> <span class="pre">'description':</span> <span class="pre">'threshold</span> <span class="pre">of</span> <span class="pre">core</span> <span class="pre">pixels</span> <span class="pre">(supercluster,</span> <span class="pre">likelihood)',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'BATCH':</span> <span class="pre">{'default':</span> <span class="pre">10000,</span> <span class="pre">'description':</span> <span class="pre">'max</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">pixel</span> <span class="pre">to</span> <span class="pre">process</span> <span class="pre">in</span> <span class="pre">one</span> <span class="pre">loadTDamp</span> <span class="pre">batch',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'DQF':</span> <span class="pre">{'c_type':</span> <span class="pre">'dqfile',</span> <span class="pre">'default':</span> <span class="pre">[],</span> <span class="pre">'type':</span> <span class="pre">'array'},</span> <span class="pre">'EFEC':</span> <span class="pre">{'default':</span> <span class="pre">True,</span> <span class="pre">'description':</span> <span class="pre">'Earth</span> <span class="pre">Fixed</span> <span class="pre">/</span> <span class="pre">Selestial</span> <span class="pre">coordinates',</span> <span class="pre">'type':</span> <span class="pre">'boolean'},</span> <span class="pre">'Fgap':</span> <span class="pre">{'default':</span> <span class="pre">130.0,</span> <span class="pre">'description':</span> <span class="pre">'defragmentation</span> <span class="pre">frequency</span> <span class="pre">gap</span> <span class="pre">between</span> <span class="pre">clusters</span> <span class="pre">(Hz)',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'LOUD':</span> <span class="pre">{'default':</span> <span class="pre">200,</span> <span class="pre">'description':</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">pixel</span> <span class="pre">per</span> <span class="pre">cluster</span> <span class="pre">to</span> <span class="pre">load</span> <span class="pre">TD</span> <span class="pre">amplitudes</span> <span class="pre">',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'MIN_SKYRES_ANGLE':</span> <span class="pre">{'default':</span> <span class="pre">3,</span> <span class="pre">'description':</span> <span class="pre">'minimun</span> <span class="pre">skymap</span> <span class="pre">resolution</span> <span class="pre">used</span> <span class="pre">for</span> <span class="pre">subNetCut',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'MIN_SKYRES_HEALPIX':</span> <span class="pre">{'default':</span> <span class="pre">4,</span> <span class="pre">'description':</span> <span class="pre">'minimun</span> <span class="pre">skymap</span> <span class="pre">resolution</span> <span class="pre">used</span> <span class="pre">for</span> <span class="pre">subNetCut',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'Phi1':</span> <span class="pre">{'default':</span> <span class="pre">0.0,</span> <span class="pre">'description':</span> <span class="pre">'start</span> <span class="pre">phi',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'Phi2':</span> <span class="pre">{'default':</span> <span class="pre">360.0,</span> <span class="pre">'description':</span> <span class="pre">'stop</span> <span class="pre">phi',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'REGRESSION_APPLY_THR':</span> <span class="pre">{'default':</span> <span class="pre">0.8,</span> <span class="pre">'description':</span> <span class="pre">'regression</span> <span class="pre">parameters',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'REGRESSION_FILTER_LENGTH':</span> <span class="pre">{'default':</span> <span class="pre">8,</span> <span class="pre">'description':</span> <span class="pre">'regression</span> <span class="pre">parameters',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'REGRESSION_MATRIX_FRACTION':</span> <span class="pre">{'default':</span> <span class="pre">0.95,</span> <span class="pre">'description':</span> <span class="pre">'regression</span> <span class="pre">parameters',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'REGRESSION_SOLVE_EIGEN_NUM':</span> <span class="pre">{'default':</span> <span class="pre">10,</span> <span class="pre">'description':</span> <span class="pre">'regression</span> <span class="pre">parameters',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'REGRESSION_SOLVE_EIGEN_THR':</span> <span class="pre">{'default':</span> <span class="pre">0.0,</span> <span class="pre">'description':</span> <span class="pre">'regression</span> <span class="pre">parameters',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'REGRESSION_SOLVE_REGULATOR':</span> <span class="pre">{'default':</span> <span class="pre">'h',</span> <span class="pre">'description':</span> <span class="pre">'regression</span> <span class="pre">parameters',</span> <span class="pre">'type':</span> <span class="pre">'string'},</span> <span class="pre">'Search':</span> <span class="pre">{'default':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">&quot;2G</span> <span class="pre">pipeline:</span> <span class="pre">If</span> <span class="pre">equals</span> <span class="pre">''</span> <span class="pre">then</span> <span class="pre">it</span> <span class="pre">is</span> <span class="pre">ignored</span> <span class="pre">by</span> <span class="pre">the</span> <span class="pre">2G</span> <span class="pre">pipeline</span> <span class="pre">(default,</span> <span class="pre">back</span> <span class="pre">compatibility),</span> <span class="pre">Available</span> <span class="pre">values</span> <span class="pre">are:</span> <span class="pre">''/CBC/BBH/IMBHB.</span> <span class="pre">If</span> <span class="pre">equals</span> <span class="pre">CBC/BBH/IMBHB</span> <span class="pre">then</span> <span class="pre">the</span> <span class="pre">chirp</span> <span class="pre">line</span> <span class="pre">is</span> <span class="pre">added</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">CED</span> <span class="pre">l_tfmap_scalogram,</span> <span class="pre">moreover</span> <span class="pre">when</span> <span class="pre">netRHO&lt;0</span> <span class="pre">(rho0.XGB)</span> <span class="pre">than</span> <span class="pre">the</span> <span class="pre">chirp</span> <span class="pre">mass</span> <span class="pre">is</span> <span class="pre">computed</span> <span class="pre">only</span> <span class="pre">if</span> <span class="pre">Search=CBC/BBH/IMBHB</span> <span class="pre">&quot;,</span> <span class="pre">'enum':</span> <span class="pre">['',</span> <span class="pre">'CBC',</span> <span class="pre">'BBH',</span> <span class="pre">'IMBHB']},</span> <span class="pre">'TDSize':</span> <span class="pre">{'default':</span> <span class="pre">12,</span> <span class="pre">'description':</span> <span class="pre">'time-delay</span> <span class="pre">filter</span> <span class="pre">size</span> <span class="pre">(max</span> <span class="pre">20)</span> <span class="pre">',</span> <span class="pre">'maximum':</span> <span class="pre">20,</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'TFgap':</span> <span class="pre">{'default':</span> <span class="pre">6.0,</span> <span class="pre">'description':</span> <span class="pre">'threshold</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">time-frequency</span> <span class="pre">separation</span> <span class="pre">between</span> <span class="pre">two</span> <span class="pre">pixels',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'Tgap':</span> <span class="pre">{'default':</span> <span class="pre">3.0,</span> <span class="pre">'description':</span> <span class="pre">'defragmentation</span> <span class="pre">time</span> <span class="pre">gap</span> <span class="pre">between</span> <span class="pre">clusters</span> <span class="pre">(sec)',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'Theta1':</span> <span class="pre">{'default':</span> <span class="pre">0.0,</span> <span class="pre">'description':</span> <span class="pre">'start</span> <span class="pre">theta',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'Theta2':</span> <span class="pre">{'default':</span> <span class="pre">180.0,</span> <span class="pre">'description':</span> <span class="pre">'stop</span> <span class="pre">theta',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'WDM_beta_order':</span> <span class="pre">{'default':</span> <span class="pre">6,</span> <span class="pre">'description':</span> <span class="pre">'WDM</span> <span class="pre">default</span> <span class="pre">parameters:</span> <span class="pre">beta</span> <span class="pre">function</span> <span class="pre">order</span> <span class="pre">for</span> <span class="pre">Meyer',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'WDM_precision':</span> <span class="pre">{'default':</span> <span class="pre">10,</span> <span class="pre">'description':</span> <span class="pre">'WDM</span> <span class="pre">default</span> <span class="pre">parameters:</span> <span class="pre">wavelet</span> <span class="pre">precision',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'analysis':</span> <span class="pre">{'default':</span> <span class="pre">'2G',</span> <span class="pre">'description':</span> <span class="pre">'true/false</span> <span class="pre">-&gt;</span> <span class="pre">online/offline',</span> <span class="pre">'enum':</span> <span class="pre">['1G',</span> <span class="pre">'2G']},</span> <span class="pre">'bpp':</span> <span class="pre">{'default':</span> <span class="pre">0.001,</span> <span class="pre">'description':</span> <span class="pre">'probability</span> <span class="pre">for</span> <span class="pre">black</span> <span class="pre">pixel</span> <span class="pre">selection</span> <span class="pre">(netpixel)',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'cedRHO':</span> <span class="pre">{'default':</span> <span class="pre">4.0,</span> <span class="pre">'description':</span> <span class="pre">'cedRHO',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'cfg_gamma':</span> <span class="pre">{'default':</span> <span class="pre">0.5,</span> <span class="pre">'description':</span> <span class="pre">'[-1:1]</span> <span class="pre">regulate</span> <span class="pre">|fx|&lt;&lt;|f+|</span> <span class="pre">and</span> <span class="pre">|f+|&lt;&lt;1</span> <span class="pre">sky</span> <span class="pre">locations.</span> <span class="pre">gamma=0</span> <span class="pre">:</span> <span class="pre">regulator</span> <span class="pre">is</span> <span class="pre">disabled,</span> <span class="pre">gamma&lt;0</span> <span class="pre">:</span> <span class="pre">sky</span> <span class="pre">prior</span> <span class="pre">is</span> <span class="pre">applied',</span> <span class="pre">'maximum':</span> <span class="pre">1,</span> <span class="pre">'minimum':</span> <span class="pre">-1,</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'cfg_search':</span> <span class="pre">{'default':</span> <span class="pre">'r',</span> <span class="pre">'description':</span> <span class="pre">'see</span> <span class="pre">description</span> <span class="pre">below',</span> <span class="pre">'enum':</span> <span class="pre">['r',</span> <span class="pre">'i',</span> <span class="pre">'p',</span> <span class="pre">'l',</span> <span class="pre">'s',</span> <span class="pre">'c',</span> <span class="pre">'g',</span> <span class="pre">'e',</span> <span class="pre">'b',</span> <span class="pre">'R',</span> <span class="pre">'I',</span> <span class="pre">'P',</span> <span class="pre">'L',</span> <span class="pre">'S',</span> <span class="pre">'C',</span> <span class="pre">'G',</span> <span class="pre">'E',</span> <span class="pre">'B']},</span> <span class="pre">'channelNamesMDC':</span> <span class="pre">{'default':</span> <span class="pre">[],</span> <span class="pre">'description':</span> <span class="pre">'channel</span> <span class="pre">names</span> <span class="pre">for</span> <span class="pre">MDC</span> <span class="pre">data',</span> <span class="pre">'type':</span> <span class="pre">'array'},</span> <span class="pre">'channelNamesRaw':</span> <span class="pre">{'default':</span> <span class="pre">[],</span> <span class="pre">'description':</span> <span class="pre">'channel</span> <span class="pre">names</span> <span class="pre">for</span> <span class="pre">raw</span> <span class="pre">data',</span> <span class="pre">'type':</span> <span class="pre">'array'},</span> <span class="pre">'configPlugin':</span> <span class="pre">{'c_type':</span> <span class="pre">'TMacro',</span> <span class="pre">'default':</span> <span class="pre">'',</span> <span class="pre">'type':</span> <span class="pre">'string'},</span> <span class="pre">'dcCal':</span> <span class="pre">{'default':</span> <span class="pre">[1.0,</span> <span class="pre">1.0,</span> <span class="pre">1.0,</span> <span class="pre">1.0,</span> <span class="pre">1.0,</span> <span class="pre">1.0,</span> <span class="pre">1.0,</span> <span class="pre">1.0],</span> <span class="pre">'description':</span> <span class="pre">'DC</span> <span class="pre">corrections',</span> <span class="pre">'type':</span> <span class="pre">'array'},</span> <span class="pre">'delta':</span> <span class="pre">{'default':</span> <span class="pre">0.5,</span> <span class="pre">'description':</span> <span class="pre">'[-1:1]</span> <span class="pre">regulate</span> <span class="pre">2</span> <span class="pre">Detector</span> <span class="pre">sky</span> <span class="pre">locations.</span> <span class="pre">delta=0</span> <span class="pre">:</span> <span class="pre">regulator</span> <span class="pre">is</span> <span class="pre">disabled,</span> <span class="pre">delta&lt;0</span> <span class="pre">:</span> <span class="pre">select</span> <span class="pre">Lo</span> <span class="pre">as</span> <span class="pre">skystat</span> <span class="pre">instead</span> <span class="pre">of</span> <span class="pre">Lr',</span> <span class="pre">'maximum':</span> <span class="pre">1,</span> <span class="pre">'minimum':</span> <span class="pre">-1,</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'fHigh':</span> <span class="pre">{'default':</span> <span class="pre">2048.0,</span> <span class="pre">'description':</span> <span class="pre">'high</span> <span class="pre">frequency</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">search',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'fLow':</span> <span class="pre">{'default':</span> <span class="pre">64.0,</span> <span class="pre">'description':</span> <span class="pre">'low</span> <span class="pre">frequency</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">search',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'fResample':</span> <span class="pre">{'default':</span> <span class="pre">0,</span> <span class="pre">'description':</span> <span class="pre">'if</span> <span class="pre">zero</span> <span class="pre">resampling</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">applied',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'factors':</span> <span class="pre">{'default':</span> <span class="pre">[],</span> <span class="pre">'description':</span> <span class="pre">'array</span> <span class="pre">of</span> <span class="pre">simulation</span> <span class="pre">factors</span> <span class="pre">(when</span> <span class="pre">sim=4</span> <span class="pre">factors[0]</span> <span class="pre">is</span> <span class="pre">used</span> <span class="pre">as</span> <span class="pre">offset</span> <span class="pre">[must</span> <span class="pre">be</span> <span class="pre">int])',</span> <span class="pre">'items':</span> <span class="pre">{'type':</span> <span class="pre">'number'},</span> <span class="pre">'type':</span> <span class="pre">'array'},</span> <span class="pre">'filter_dir':</span> <span class="pre">{'default':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'filter</span> <span class="pre">directory,</span> <span class="pre">defaults</span> <span class="pre">to</span> <span class="pre">environment</span> <span class="pre">HOME_WAT_FILTERS',</span> <span class="pre">'type':</span> <span class="pre">'string'},</span> <span class="pre">'frFiles':</span> <span class="pre">{'default':</span> <span class="pre">[],</span> <span class="pre">'type':</span> <span class="pre">'array'},</span> <span class="pre">'gap':</span> <span class="pre">{'default':</span> <span class="pre">5.0,</span> <span class="pre">'description':</span> <span class="pre">'alias</span> <span class="pre">of</span> <span class="pre">iwindow',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'healpix':</span> <span class="pre">{'default':</span> <span class="pre">7,</span> <span class="pre">'description':</span> <span class="pre">'if</span> <span class="pre">not</span> <span class="pre">0</span> <span class="pre">use</span> <span class="pre">healpix</span> <span class="pre">sky</span> <span class="pre">map</span> <span class="pre">(number</span> <span class="pre">of</span> <span class="pre">sky</span> <span class="pre">pixels</span> <span class="pre">=</span> <span class="pre">12*pow(4,healpix))',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'ifo':</span> <span class="pre">{'default':</span> <span class="pre">['L1',</span> <span class="pre">'H1',</span> <span class="pre">'V1',</span> <span class="pre">'I1',</span> <span class="pre">'J1',</span> <span class="pre">'G1'],</span> <span class="pre">'description':</span> <span class="pre">'ifo[]</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">redefined</span> <span class="pre">by</span> <span class="pre">user',</span> <span class="pre">'items':</span> <span class="pre">{'type':</span> <span class="pre">'string'},</span> <span class="pre">'type':</span> <span class="pre">'array',</span> <span class="pre">'uniqueItems':</span> <span class="pre">True},</span> <span class="pre">'inRate':</span> <span class="pre">{'default':</span> <span class="pre">16384,</span> <span class="pre">'description':</span> <span class="pre">'input</span> <span class="pre">data</span> <span class="pre">rate',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'injection':</span> <span class="pre">{'cwb':</span> <span class="pre">False,</span> <span class="pre">'default':</span> <span class="pre">{},</span> <span class="pre">'description':</span> <span class="pre">'injection</span> <span class="pre">parameters',</span> <span class="pre">'type':</span> <span class="pre">'object'},</span> <span class="pre">'iwindow':</span> <span class="pre">{'default':</span> <span class="pre">5.0,</span> <span class="pre">'description':</span> <span class="pre">'injection</span> <span class="pre">time</span> <span class="pre">window</span> <span class="pre">(Tinj</span> <span class="pre">+/-</span> <span class="pre">iwindow/2)',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'l_high':</span> <span class="pre">{'default':</span> <span class="pre">8,</span> <span class="pre">'description':</span> <span class="pre">'high</span> <span class="pre">frequency</span> <span class="pre">resolution</span> <span class="pre">level</span> <span class="pre">(2^l_high</span> <span class="pre">Hz)',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'l_low':</span> <span class="pre">{'default':</span> <span class="pre">3,</span> <span class="pre">'description':</span> <span class="pre">'low</span> <span class="pre">frequency</span> <span class="pre">resolution</span> <span class="pre">level</span> <span class="pre">(2^l_low</span> <span class="pre">Hz)',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'l_white':</span> <span class="pre">{'default':</span> <span class="pre">0,</span> <span class="pre">'description':</span> <span class="pre">'whitening</span> <span class="pre">frequency</span> <span class="pre">resolution</span> <span class="pre">level</span> <span class="pre">(2^l_white</span> <span class="pre">Hz),</span> <span class="pre">if</span> <span class="pre">0</span> <span class="pre">then</span> <span class="pre">l_white=l_high',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'lagFile':</span> <span class="pre">{'default':</span> <span class="pre">None,</span> <span class="pre">'description':</span> <span class="pre">'slag</span> <span class="pre">file</span> <span class="pre">list',</span> <span class="pre">'type':</span> <span class="pre">'string'},</span> <span class="pre">'lagMax':</span> <span class="pre">{'default':</span> <span class="pre">150,</span> <span class="pre">'description':</span> <span class="pre">'0/&gt;0</span> <span class="pre">-</span>&#160; <span class="pre">standard/extended</span> <span class="pre">lags',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'lagMode':</span> <span class="pre">{'default':</span> <span class="pre">'w',</span> <span class="pre">'description':</span> <span class="pre">'w/r</span>&#160; <span class="pre">-</span>&#160; <span class="pre">write/read</span> <span class="pre">lag</span> <span class="pre">list',</span> <span class="pre">'enum':</span> <span class="pre">['w',</span> <span class="pre">'r']},</span> <span class="pre">'lagOff':</span> <span class="pre">{'default':</span> <span class="pre">6,</span> <span class="pre">'description':</span> <span class="pre">'first</span> <span class="pre">lag</span> <span class="pre">id</span> <span class="pre">(lagOff=0</span> <span class="pre">-</span> <span class="pre">include</span> <span class="pre">zero</span> <span class="pre">lag</span> <span class="pre">)',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'lagSite':</span> <span class="pre">{'default':</span> <span class="pre">None,</span> <span class="pre">'description':</span> <span class="pre">'site</span> <span class="pre">index</span> <span class="pre">starting</span> <span class="pre">with</span> <span class="pre">0',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'lagSize':</span> <span class="pre">{'default':</span> <span class="pre">1,</span> <span class="pre">'description':</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">lags</span> <span class="pre">(simulation:1)',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'lagStep':</span> <span class="pre">{'default':</span> <span class="pre">1.0,</span> <span class="pre">'description':</span> <span class="pre">'[sec]</span> <span class="pre">time</span> <span class="pre">interval</span> <span class="pre">between</span> <span class="pre">lags',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'levelR':</span> <span class="pre">{'default':</span> <span class="pre">2,</span> <span class="pre">'description':</span> <span class="pre">'resampling</span> <span class="pre">level</span> <span class="pre">:</span> <span class="pre">inRate[fResample]/(2^levelR)</span> <span class="pre">Hz',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'logDir':</span> <span class="pre">{'cwb':</span> <span class="pre">False,</span> <span class="pre">'default':</span> <span class="pre">'log',</span> <span class="pre">'description':</span> <span class="pre">'log</span> <span class="pre">directory',</span> <span class="pre">'type':</span> <span class="pre">'string'},</span> <span class="pre">'nDQF':</span> <span class="pre">{'default':</span> <span class="pre">8,</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'nIFO':</span> <span class="pre">{'default':</span> <span class="pre">8,</span> <span class="pre">'description':</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">interferometers',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'nSky':</span> <span class="pre">{'default':</span> <span class="pre">0,</span> <span class="pre">'description':</span> <span class="pre">'if</span> <span class="pre">nSky&gt;0</span> <span class="pre">-&gt;</span> <span class="pre">#</span> <span class="pre">of</span> <span class="pre">skymap</span> <span class="pre">prob</span> <span class="pre">pixels</span> <span class="pre">dumped</span> <span class="pre">to</span> <span class="pre">ascii</span> <span class="pre">\n</span> <span class="pre">if</span> <span class="pre">nSky=0</span> <span class="pre">-&gt;</span> <span class="pre">(#pixels==1000</span> <span class="pre">||</span> <span class="pre">cum</span> <span class="pre">prob</span> <span class="pre">&gt;</span> <span class="pre">0.99)</span> <span class="pre">\n</span> <span class="pre">if</span> <span class="pre">nSky&lt;0</span> <span class="pre">-&gt;</span> <span class="pre">nSky=-XYZ...</span> <span class="pre">save</span> <span class="pre">all</span> <span class="pre">pixels</span> <span class="pre">with</span> <span class="pre">prob</span> <span class="pre">&lt;</span> <span class="pre">0.XYZ...',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'netCC':</span> <span class="pre">{'default':</span> <span class="pre">0.5,</span> <span class="pre">'description':</span> <span class="pre">'network</span> <span class="pre">correlation</span> <span class="pre">(supercluster,</span> <span class="pre">likelihood)',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'netRHO':</span> <span class="pre">{'default':</span> <span class="pre">4.0,</span> <span class="pre">'description':</span> <span class="pre">'[&gt;4.0]</span> <span class="pre">coherent</span> <span class="pre">network</span> <span class="pre">SNR</span> <span class="pre">(supercluster,</span> <span class="pre">likelihood)',</span> <span class="pre">'minimum':</span> <span class="pre">4.0,</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'nfactor':</span> <span class="pre">{'default':</span> <span class="pre">0,</span> <span class="pre">'description':</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">simulation</span> <span class="pre">factors',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'nproc':</span> <span class="pre">{'cwb':</span> <span class="pre">False,</span> <span class="pre">'default':</span> <span class="pre">4,</span> <span class="pre">'description':</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">processes',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'online':</span> <span class="pre">{'default':</span> <span class="pre">False,</span> <span class="pre">'description':</span> <span class="pre">'true/false</span> <span class="pre">-&gt;</span> <span class="pre">online/offline',</span> <span class="pre">'type':</span> <span class="pre">'boolean'},</span> <span class="pre">'optim':</span> <span class="pre">{'default':</span> <span class="pre">False,</span> <span class="pre">'description':</span> <span class="pre">'true</span> <span class="pre">-&gt;</span> <span class="pre">optimal</span> <span class="pre">resolution</span> <span class="pre">likelihood</span> <span class="pre">analysis',</span> <span class="pre">'type':</span> <span class="pre">'boolean'},</span> <span class="pre">'outputDir':</span> <span class="pre">{'cwb':</span> <span class="pre">False,</span> <span class="pre">'default':</span> <span class="pre">'output',</span> <span class="pre">'description':</span> <span class="pre">'output</span> <span class="pre">directory',</span> <span class="pre">'type':</span> <span class="pre">'string'},</span> <span class="pre">'pattern':</span> <span class="pre">{'default':</span> <span class="pre">0,</span> <span class="pre">'description':</span> <span class="pre">'select</span> <span class="pre">pixel</span> <span class="pre">pattern</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">produce</span> <span class="pre">the</span> <span class="pre">energy</span> <span class="pre">max</span> <span class="pre">maps</span> <span class="pre">for</span> <span class="pre">pixel\'s</span> <span class="pre">selection</span> <span class="pre">\npatterns:</span> <span class="pre">&quot;/&quot;</span> <span class="pre">-</span> <span class="pre">ring-up,</span> <span class="pre">&quot;\\&quot;</span> <span class="pre">-</span> <span class="pre">ring-down,</span> <span class="pre">&quot;|&quot;</span> <span class="pre">-</span> <span class="pre">delta,</span> <span class="pre">&quot;-&quot;</span> <span class="pre">line,</span> <span class="pre">&quot;*&quot;</span> <span class="pre">-</span> <span class="pre">single</span> <span class="pre">\npattern</span> <span class="pre">=</span>&#160; <span class="pre">0</span> <span class="pre">-</span> <span class="pre">&quot;*&quot;</span>&#160;&#160; <span class="pre">1-pixel</span>&#160; <span class="pre">standard</span> <span class="pre">search</span> <span class="pre">\npattern</span> <span class="pre">=</span>&#160; <span class="pre">1</span> <span class="pre">-</span> <span class="pre">&quot;3|&quot;</span>&#160; <span class="pre">3-pixels</span> <span class="pre">vertical</span> <span class="pre">packet</span> <span class="pre">(delta)</span> <span class="pre">\npattern</span> <span class="pre">=</span>&#160; <span class="pre">2</span> <span class="pre">-</span> <span class="pre">&quot;3-&quot;</span>&#160; <span class="pre">3-pixels</span> <span class="pre">horizontal</span> <span class="pre">packet</span> <span class="pre">(line)</span> <span class="pre">\npattern</span> <span class="pre">=</span>&#160; <span class="pre">3</span> <span class="pre">-</span> <span class="pre">&quot;3/&quot;</span>&#160; <span class="pre">3-pixels</span> <span class="pre">diagonal</span> <span class="pre">packet</span> <span class="pre">(ring-up)</span> <span class="pre">\npattern</span> <span class="pre">=</span>&#160; <span class="pre">4</span> <span class="pre">-</span> <span class="pre">&quot;3&quot;</span>&#160; <span class="pre">3-pixels</span> <span class="pre">anti-diagonal</span> <span class="pre">packet</span> <span class="pre">(ring-down)</span> <span class="pre">\npattern</span> <span class="pre">=</span>&#160; <span class="pre">5</span> <span class="pre">-</span> <span class="pre">&quot;5/&quot;</span>&#160; <span class="pre">5-pixels</span> <span class="pre">diagonal</span> <span class="pre">packet</span> <span class="pre">(ring-up)</span> <span class="pre">\npattern</span> <span class="pre">=</span>&#160; <span class="pre">6</span> <span class="pre">-</span> <span class="pre">&quot;5&quot;</span>&#160; <span class="pre">5-pixels</span> <span class="pre">anti-diagonal</span> <span class="pre">packet</span> <span class="pre">(ring-down)</span> <span class="pre">\npattern</span> <span class="pre">=</span>&#160; <span class="pre">7</span> <span class="pre">-</span> <span class="pre">&quot;3+&quot;</span>&#160; <span class="pre">5-pixels</span> <span class="pre">plus</span> <span class="pre">packet</span> <span class="pre">(plus)</span> <span class="pre">\npattern</span> <span class="pre">=</span>&#160; <span class="pre">8</span> <span class="pre">-</span> <span class="pre">&quot;3x&quot;</span>&#160; <span class="pre">5-pixels</span> <span class="pre">cross</span> <span class="pre">packet</span> <span class="pre">(cross)</span> <span class="pre">\npattern</span> <span class="pre">=</span>&#160; <span class="pre">9</span> <span class="pre">-</span> <span class="pre">&quot;9p&quot;</span>&#160; <span class="pre">9-pixels</span> <span class="pre">square</span> <span class="pre">packet</span> <span class="pre">(box)</span> <span class="pre">\npattern</span> <span class="pre">=</span> <span class="pre">else</span> <span class="pre">-</span> <span class="pre">&quot;*&quot;</span> <span class="pre">1-pixel</span>&#160; <span class="pre">packet</span> <span class="pre">(single)</span> <span class="pre">\n------------------------------------------------------------------------------------</span> <span class="pre">\npattern==0</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Standard</span> <span class="pre">Search</span> <span class="pre">:</span> <span class="pre">std-pixel</span>&#160;&#160;&#160; <span class="pre">selection</span> <span class="pre">+</span> <span class="pre">likelihood2G</span> <span class="pre">\npattern!=0</span> <span class="pre">&amp;&amp;</span> <span class="pre">pattern&lt;0</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">Mixed</span>&#160;&#160;&#160; <span class="pre">Search</span> <span class="pre">:</span> <span class="pre">packet-pixel</span> <span class="pre">selection</span> <span class="pre">+</span> <span class="pre">likelihood2G</span>&#160; <span class="pre">\npattern!=0</span> <span class="pre">&amp;&amp;</span> <span class="pre">pattern&gt;0</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">Packed</span>&#160;&#160; <span class="pre">Search</span> <span class="pre">:</span> <span class="pre">packet-pixel</span> <span class="pre">selection</span> <span class="pre">+</span> <span class="pre">likelihoodWP</span> <span class="pre">\n',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'plugin':</span> <span class="pre">{'c_type':</span> <span class="pre">'TMacro',</span> <span class="pre">'default':</span> <span class="pre">'',</span> <span class="pre">'type':</span> <span class="pre">'string'},</span> <span class="pre">'precision':</span> <span class="pre">{'default':</span> <span class="pre">0.0,</span> <span class="pre">'description':</span> <span class="pre">'set</span> <span class="pre">parameters</span> <span class="pre">for</span> <span class="pre">big</span> <span class="pre">clusters</span> <span class="pre">events</span> <span class="pre">management',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'refIFO':</span> <span class="pre">{'default':</span> <span class="pre">'L1',</span> <span class="pre">'description':</span> <span class="pre">'reference</span> <span class="pre">IFO',</span> <span class="pre">'type':</span> <span class="pre">'string'},</span> <span class="pre">'segEdge':</span> <span class="pre">{'default':</span> <span class="pre">8.0,</span> <span class="pre">'description':</span> <span class="pre">'wavelet</span> <span class="pre">boundary</span> <span class="pre">offset</span> <span class="pre">[sec]',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'segLen':</span> <span class="pre">{'default':</span> <span class="pre">600.0,</span> <span class="pre">'description':</span> <span class="pre">'Segment</span> <span class="pre">length</span> <span class="pre">[sec]',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'segMLS':</span> <span class="pre">{'default':</span> <span class="pre">300.0,</span> <span class="pre">'description':</span> <span class="pre">'Minimum</span> <span class="pre">Segment</span> <span class="pre">Length</span> <span class="pre">after</span> <span class="pre">DQ_CAT1</span> <span class="pre">[sec]',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'segOverlap':</span> <span class="pre">{'default':</span> <span class="pre">0.0,</span> <span class="pre">'description':</span> <span class="pre">'overlap</span> <span class="pre">between</span> <span class="pre">job</span> <span class="pre">segments</span> <span class="pre">[sec]',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'segTHR':</span> <span class="pre">{'default':</span> <span class="pre">30.0,</span> <span class="pre">'description':</span> <span class="pre">'Minimum</span> <span class="pre">Segment</span> <span class="pre">Length</span> <span class="pre">after</span> <span class="pre">DQ_CAT2</span> <span class="pre">[sec]</span> <span class="pre">(to</span> <span class="pre">disable</span> <span class="pre">put</span> <span class="pre">segTHR=0)',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'select_subnet':</span> <span class="pre">{'default':</span> <span class="pre">0.1,</span> <span class="pre">'description':</span> <span class="pre">'subnet</span> <span class="pre">netcluster</span> <span class="pre">select</span> <span class="pre">function</span> <span class="pre">threshold</span> <span class="pre">(coherence)',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'select_subrho':</span> <span class="pre">{'default':</span> <span class="pre">5.0,</span> <span class="pre">'description':</span> <span class="pre">'subrho</span> <span class="pre">netcluster</span> <span class="pre">select</span> <span class="pre">function</span> <span class="pre">threshold</span> <span class="pre">(coherence)',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'simulation':</span> <span class="pre">{'default':</span> <span class="pre">0,</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'skyMaskCCFile':</span> <span class="pre">{'default':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'sky</span> <span class="pre">mask</span> <span class="pre">file',</span> <span class="pre">'type':</span> <span class="pre">'string'},</span> <span class="pre">'skyMaskFile':</span> <span class="pre">{'default':</span> <span class="pre">'',</span> <span class="pre">'description':</span> <span class="pre">'sky</span> <span class="pre">mask</span> <span class="pre">file',</span> <span class="pre">'type':</span> <span class="pre">'string'},</span> <span class="pre">'slagMax':</span> <span class="pre">{'default':</span> <span class="pre">0,</span> <span class="pre">'description':</span> <span class="pre">'select</span> <span class="pre">the</span> <span class="pre">maximum</span> <span class="pre">available</span> <span class="pre">slag</span> <span class="pre">distance',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'slagMin':</span> <span class="pre">{'default':</span> <span class="pre">0,</span> <span class="pre">'description':</span> <span class="pre">'select</span> <span class="pre">the</span> <span class="pre">minimum</span> <span class="pre">available</span> <span class="pre">slag</span> <span class="pre">distance</span> <span class="pre">:</span> <span class="pre">slagMin</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">&lt;=</span> <span class="pre">slagMax',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'slagOff':</span> <span class="pre">{'default':</span> <span class="pre">0,</span> <span class="pre">'description':</span> <span class="pre">'first</span> <span class="pre">slag</span> <span class="pre">id</span> <span class="pre">(slagOff=0</span> <span class="pre">-</span> <span class="pre">include</span> <span class="pre">zero</span> <span class="pre">slag</span> <span class="pre">)',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'slagSize':</span> <span class="pre">{'default':</span> <span class="pre">0,</span> <span class="pre">'description':</span> <span class="pre">'number</span> <span class="pre">of</span> <span class="pre">super</span> <span class="pre">lags</span> <span class="pre">(simulation=1)</span> <span class="pre">-</span> <span class="pre">if</span> <span class="pre">slagSize=0</span> <span class="pre">-&gt;</span> <span class="pre">Standard</span> <span class="pre">Segments',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'subacor':</span> <span class="pre">{'default':</span> <span class="pre">0.0,</span> <span class="pre">'description':</span> <span class="pre">'sub</span> <span class="pre">network</span> <span class="pre">threshold</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">skyloop</span> <span class="pre">subNetCuts,</span> <span class="pre">if&lt;=0</span> <span class="pre">then</span> <span class="pre">subacor=Acore</span> <span class="pre">(supercluster)</span> <span class="pre">',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'subcut':</span> <span class="pre">{'default':</span> <span class="pre">0.33,</span> <span class="pre">'description':</span> <span class="pre">'[0,1]</span>&#160;&#160; <span class="pre">sub</span> <span class="pre">network</span> <span class="pre">threshold</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">skyloop</span> <span class="pre">(supercluster)',</span> <span class="pre">'maximum':</span> <span class="pre">1,</span> <span class="pre">'minimum':</span> <span class="pre">-1,</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'subnet':</span> <span class="pre">{'default':</span> <span class="pre">0.7,</span> <span class="pre">'description':</span> <span class="pre">'[0,0.7]</span> <span class="pre">sub</span> <span class="pre">network</span> <span class="pre">threshold</span> <span class="pre">(supercluster)',</span> <span class="pre">'maximum':</span> <span class="pre">0.7,</span> <span class="pre">'minimum':</span> <span class="pre">0,</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'subnorm':</span> <span class="pre">{'default':</span> <span class="pre">0.0,</span> <span class="pre">'description':</span> <span class="pre">'</span> <span class="pre">[0,2*num_resolution_levels]</span> <span class="pre">sub</span> <span class="pre">network</span> <span class="pre">norm</span> <span class="pre">threshold,</span> <span class="pre">enabled</span> <span class="pre">only</span> <span class="pre">if</span> <span class="pre">&gt;0</span> <span class="pre">(supercluster)</span> <span class="pre">',</span> <span class="pre">'minimum':</span> <span class="pre">0,</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'subrho':</span> <span class="pre">{'default':</span> <span class="pre">0.0,</span> <span class="pre">'description':</span> <span class="pre">'sub</span> <span class="pre">network</span> <span class="pre">threshold</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">skyloop</span> <span class="pre">subNetCuts,</span> <span class="pre">if&lt;=0</span> <span class="pre">then</span> <span class="pre">subacor=netRHO</span> <span class="pre">(supercluster)</span> <span class="pre">',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'upTDF':</span> <span class="pre">{'default':</span> <span class="pre">4,</span> <span class="pre">'description':</span> <span class="pre">'upsample</span> <span class="pre">factor</span> <span class="pre">to</span> <span class="pre">obtain</span> <span class="pre">rate</span> <span class="pre">of</span> <span class="pre">TD</span> <span class="pre">filter</span> <span class="pre">:</span> <span class="pre">TDRate</span> <span class="pre">=</span> <span class="pre">(inRate&gt;&gt;levelR)*upTDF',</span> <span class="pre">'type':</span> <span class="pre">'integer'},</span> <span class="pre">'wdmXTalk':</span> <span class="pre">{'default':</span> <span class="pre">'wdmXTalk/OverlapCatalog_Lev_8_16_32_64_128_256_iNu_4_Prec_10.bin',</span> <span class="pre">'description':</span> <span class="pre">'WDM</span> <span class="pre">cross-talk</span> <span class="pre">file',</span> <span class="pre">'type':</span> <span class="pre">'string'},</span> <span class="pre">'whiteStride':</span> <span class="pre">{'default':</span> <span class="pre">20.0,</span> <span class="pre">'description':</span> <span class="pre">'[sec]</span> <span class="pre">noise</span> <span class="pre">sampling</span> <span class="pre">time</span> <span class="pre">stride',</span> <span class="pre">'type':</span> <span class="pre">'number'},</span> <span class="pre">'whiteWindow':</span> <span class="pre">{'default':</span> <span class="pre">60.0,</span> <span class="pre">'description':</span> <span class="pre">'[sec]</span> <span class="pre">time</span> <span class="pre">window</span> <span class="pre">dT.</span> <span class="pre">if</span> <span class="pre">=</span> <span class="pre">0</span> <span class="pre">-</span> <span class="pre">dT=T,</span> <span class="pre">where</span> <span class="pre">T</span> <span class="pre">is</span> <span class="pre">segment</span> <span class="pre">duration',</span> <span class="pre">'type':</span> <span class="pre">'number'}},</span> <span class="pre">'required':</span> <span class="pre">['analysis',</span> <span class="pre">'ifo',</span> <span class="pre">'refIFO'],</span> <span class="pre">'type':</span> <span class="pre">'object'}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/config/config.html#Config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.config.config.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to store user parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em>) – user parameters file path</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.config.config.Config.add_derived_key">
+<span class="sig-name descname"><span class="pre">add_derived_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/config/config.html#Config.add_derived_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.config.config.Config.add_derived_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add derived key to the user parameters</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.config.config.Config.check_MRA_catalog">
+<span class="sig-name descname"><span class="pre">check_MRA_catalog</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/config/config.html#Config.check_MRA_catalog"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.config.config.Config.check_MRA_catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if MRAcatalog exists</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>FileNotFoundError</strong> – if MRAcatalog does not exist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.config.config.Config.check_file">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">check_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/config/config.html#Config.check_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.config.config.Config.check_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if file exists</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em>) – file path</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>FileNotFoundError</strong> – if file does not exist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.config.config.Config.check_lagStep">
+<span class="sig-name descname"><span class="pre">check_lagStep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/config/config.html#Config.check_lagStep"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.config.config.Config.check_lagStep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if lagStep compatible with WDM parity</p>
+<p>this condition is necessary to avoid mixing between odd
+and even pixels when circular buffer is used for lag shift
+The MRAcatalog distinguish odd and even pixels</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pycwb.config.config.Config.get_lag_buffer">
+<span class="sig-name descname"><span class="pre">get_lag_buffer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/config/config.html#Config.get_lag_buffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.config.config.Config.get_lag_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get lag buffer from configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#pycwb.config.config.Config" title="pycwb.config.config.Config"><em>Config</em></a>) – user configuration</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>lag buffer and lag mode</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str, str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pycwb.config">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycwb.config" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pycwb.constants.html" class="btn btn-neutral float-right" title="pycwb.constants package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pycwb.html" class="btn btn-neutral float-left" title="pycwb package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

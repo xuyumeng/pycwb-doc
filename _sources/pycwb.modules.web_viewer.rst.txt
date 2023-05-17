@@ -1,0 +1,21 @@
+pycwb.modules.web\_viewer package
+=================================
+
+Submodules
+----------
+
+pycwb.modules.web\_viewer.create module
+---------------------------------------
+
+.. automodule:: pycwb.modules.web_viewer.create
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.web_viewer
+   :members:
+   :undoc-members:
+   :show-inheritance:

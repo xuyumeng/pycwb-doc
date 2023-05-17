@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.modules.autoencoder.cwb_autoencoder &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycwb.modules.autoencoder.cwb_autoencoder</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycwb.modules.autoencoder.cwb_autoencoder</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright (C) 2021  Sophie Bini, Gabriele Vedovato</span>
+<span class="c1">#</span>
+<span class="c1"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># This program is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+
+<span class="c1"># author: Sophie Bini</span>
+
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;TF_CPP_MIN_LOG_LEVEL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;3&#39;</span>  <span class="c1"># INFO and WARNING and ERROR tensorflow messages are not printed</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;HDF5_USE_FILE_LOCKING&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;FALSE&quot;</span>
+
+<span class="kn">from</span> <span class="nn">tensorflow.python.keras.layers</span> <span class="kn">import</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Reshape</span><span class="p">,</span> <span class="n">AveragePooling1D</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Conv1D</span><span class="p">,</span> <span class="n">MaxPooling1D</span><span class="p">,</span> \
+    <span class="n">UpSampling1D</span>
+<span class="kn">from</span> <span class="nn">tensorflow.python.keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+
+
+<span class="c1"># functions:</span>
+<span class="c1"># 1. timeseries windowing and normalization</span>
+<span class="c1"># 2. autoencoder neural network</span>
+<span class="c1"># 3. Mean square error between autoencoder input and output</span>
+
+<span class="c1"># 1. timeseries windowing and normalization ---------------------------------------------------------------- #</span>
+
+<div class="viewcode-block" id="timeseries_processing"><a class="viewcode-back" href="../../../../pycwb.modules.autoencoder.html#pycwb.modules.autoencoder.cwb_autoencoder.timeseries_processing">[docs]</a><span class="k">def</span> <span class="nf">timeseries_processing</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">window</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    timeseries windowing and normalization</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data: pycbc.timeseries.TimeSeries</span>
+<span class="sd">        timeseries</span>
+<span class="sd">    window: int</span>
+<span class="sd">        window length</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    data_mod: numpy.ndarray</span>
+<span class="sd">        windowed timeseries centered around the absolute maximum, normalized between [0,1], offset = 0.5</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">maxim_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">data_min</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+    <span class="n">data_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data_min</span><span class="p">)</span>
+    <span class="n">data_max</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">data_max</span> <span class="o">&gt;</span> <span class="n">data_min</span><span class="p">:</span>
+
+        <span class="n">half</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">half</span> <span class="o">&lt;</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+                <span class="n">half</span> <span class="o">&gt;</span> <span class="n">maxim_len</span> <span class="o">-</span> <span class="n">window</span><span class="p">)):</span>  <span class="c1"># if the maximum is close to the timeseries edge, padding with the overall mean value</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">window</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,),</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+            <span class="n">half</span> <span class="o">=</span> <span class="n">half</span> <span class="o">+</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">2</span>
+
+        <span class="n">data_c</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">half</span> <span class="o">-</span> <span class="n">window</span><span class="p">):</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">half</span> <span class="o">+</span> <span class="n">window</span><span class="p">))]</span>  <span class="c1"># cropping the timeseries</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="n">data_c</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>  <span class="c1"># normalization</span>
+        <span class="n">data_mod</span> <span class="o">=</span> <span class="n">data_c</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">norm</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># same as before</span>
+        <span class="n">half</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="p">((</span><span class="n">half</span> <span class="o">&lt;</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">half</span> <span class="o">&gt;</span> <span class="n">maxim_len</span> <span class="o">-</span> <span class="n">window</span><span class="p">)):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="n">window</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,),</span> <span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+            <span class="n">half</span> <span class="o">=</span> <span class="n">half</span> <span class="o">+</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">2</span>
+
+        <span class="n">data_c</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">half</span> <span class="o">-</span> <span class="n">window</span><span class="p">):</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">half</span> <span class="o">+</span> <span class="n">window</span><span class="p">))]</span>
+        <span class="n">data_min</span> <span class="o">=</span> <span class="n">data_c</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="n">data_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data_min</span><span class="p">)</span>
+        <span class="n">norm</span> <span class="o">=</span> <span class="n">data_min</span>
+        <span class="n">data_mod</span> <span class="o">=</span> <span class="n">data_c</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">norm</span><span class="p">)</span>
+
+    <span class="n">data_mod</span> <span class="o">=</span> <span class="n">data_mod</span> <span class="o">+</span> <span class="mf">0.5</span>  <span class="c1"># offset</span>
+    <span class="n">data_mod</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data_mod</span><span class="p">,</span> <span class="p">(</span><span class="n">window</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">data_mod</span></div>
+
+
+<span class="c1"># autoencoder neural network ---------------------------------------------------------------------------------------------  #</span>
+
+<div class="viewcode-block" id="autoencoder"><a class="viewcode-back" href="../../../../pycwb.modules.autoencoder.html#pycwb.modules.autoencoder.cwb_autoencoder.autoencoder">[docs]</a><span class="k">def</span> <span class="nf">autoencoder</span><span class="p">(</span><span class="n">dim1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    autoencoder neural network</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dim1: int</span>
+<span class="sd">        timeseries length after preprocessing ( = 2*window )</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    autoencoder: tensorflow.python.keras.engine.training.Model</span>
+<span class="sd">        autoencoder model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">input_sig</span> <span class="o">=</span> <span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">dim1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">Conv1D</span><span class="p">(</span><span class="mi">64</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)(</span><span class="n">input_sig</span><span class="p">)</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">MaxPooling1D</span><span class="p">(</span><span class="mi">2</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">Conv1D</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)(</span><span class="n">x1</span><span class="p">)</span>
+    <span class="n">x3</span> <span class="o">=</span> <span class="n">MaxPooling1D</span><span class="p">(</span><span class="mi">2</span><span class="p">)(</span><span class="n">x2</span><span class="p">)</span>
+    <span class="n">x4</span> <span class="o">=</span> <span class="n">Conv1D</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)(</span><span class="n">x3</span><span class="p">)</span>
+    <span class="n">x5</span> <span class="o">=</span> <span class="n">AveragePooling1D</span><span class="p">()(</span><span class="n">x4</span><span class="p">)</span>
+    <span class="n">flat</span> <span class="o">=</span> <span class="n">Flatten</span><span class="p">()(</span><span class="n">x5</span><span class="p">)</span>
+    <span class="n">encoded</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">200</span><span class="p">)(</span><span class="n">flat</span><span class="p">)</span>
+
+    <span class="n">d1</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="n">x5</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x5</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])(</span><span class="n">encoded</span><span class="p">)</span>
+    <span class="n">d2</span> <span class="o">=</span> <span class="n">Reshape</span><span class="p">((</span><span class="n">x5</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x5</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]))(</span><span class="n">d1</span><span class="p">)</span>
+    <span class="n">d3</span> <span class="o">=</span> <span class="n">Conv1D</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)(</span><span class="n">d2</span><span class="p">)</span>
+    <span class="n">d4</span> <span class="o">=</span> <span class="n">UpSampling1D</span><span class="p">(</span><span class="mi">2</span><span class="p">)(</span><span class="n">d3</span><span class="p">)</span>
+    <span class="n">d5</span> <span class="o">=</span> <span class="n">Conv1D</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)(</span><span class="n">d4</span><span class="p">)</span>
+    <span class="n">d6</span> <span class="o">=</span> <span class="n">UpSampling1D</span><span class="p">(</span><span class="mi">2</span><span class="p">)(</span><span class="n">d5</span><span class="p">)</span>
+    <span class="n">d7</span> <span class="o">=</span> <span class="n">Conv1D</span><span class="p">(</span><span class="mi">64</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)(</span><span class="n">d6</span><span class="p">)</span>
+    <span class="n">d8</span> <span class="o">=</span> <span class="n">UpSampling1D</span><span class="p">(</span><span class="mi">2</span><span class="p">)(</span><span class="n">d7</span><span class="p">)</span>
+    <span class="n">decoded</span> <span class="o">=</span> <span class="n">Conv1D</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">)(</span><span class="n">d8</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">input_sig</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">decoded</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;AE&#39;</span><span class="p">)</span></div>
+
+
+<span class="c1"># mean square error (MSE)  --------------------------------- #</span>
+
+<div class="viewcode-block" id="MSE"><a class="viewcode-back" href="../../../../pycwb.modules.autoencoder.html#pycwb.modules.autoencoder.cwb_autoencoder.MSE">[docs]</a><span class="k">def</span> <span class="nf">MSE</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">reconstructed</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Mean square error between autoencoder input and output</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    original: numpy.ndarray</span>
+<span class="sd">        original timeseries</span>
+<span class="sd">    reconstructed: numpy.ndarray</span>
+<span class="sd">        reconstructed timeseries</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    mse: numpy.ndarray</span>
+<span class="sd">        mean square error between original and reconstructed timeseries</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mse_1</span> <span class="o">=</span> <span class="p">(</span><span class="n">original</span> <span class="o">-</span> <span class="n">reconstructed</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># mean square error</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">mse_1</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">mse</span></div>
+
+
+<span class="c1"># --------------------------------------------------------- #</span>
+<div class="viewcode-block" id="AutoEncoder"><a class="viewcode-back" href="../../../../pycwb.modules.autoencoder.html#pycwb.modules.autoencoder.cwb_autoencoder.AutoEncoder">[docs]</a><span class="k">class</span> <span class="nc">AutoEncoder</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">glness</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="c1"># r&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ae_net</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;init autoencoder&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="AutoEncoder.set_weights"><a class="viewcode-back" href="../../../../pycwb.modules.autoencoder.html#pycwb.modules.autoencoder.cwb_autoencoder.AutoEncoder.set_weights">[docs]</a>    <span class="k">def</span> <span class="nf">set_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">weights</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">error, file &quot;</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="s2">&quot; not exist</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span> <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;load autoencoder weights = &#39;</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">=</span> <span class="mi">208</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ae_net</span> <span class="o">=</span> <span class="n">autoencoder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># load the autoencoder model</span>
+        <span class="c1"># self.ae_net.summary()                                       #print the autoencoder structure</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ae_net</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>  <span class="c1"># load the autoencoder weights for BLIP glitches</span>
+        <span class="c1"># print(self.ae_net.get_weights())</span>
+        <span class="k">return</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="AutoEncoder.get_glness"><a class="viewcode-back" href="../../../../pycwb.modules.autoencoder.html#pycwb.modules.autoencoder.cwb_autoencoder.AutoEncoder.get_glness">[docs]</a>    <span class="k">def</span> <span class="nf">get_glness</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">rate</span><span class="p">):</span>
+        <span class="c1"># TODO: rate is not used?</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ae_net</span> <span class="o">==</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">error, autoencoder weights not loaded</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">);</span>
+            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1">##  glitchiness</span>
+        <span class="n">data_norm</span> <span class="o">=</span> <span class="n">timeseries_processing</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">window</span><span class="p">)</span>  <span class="c1"># timeseries windowing and normalization</span>
+        <span class="n">data_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data_norm</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">data_norm</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span>  <span class="c1"># reshape according to autoencoder needs</span>
+        <span class="n">reconstruction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ae_net</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_norm</span><span class="p">)</span>  <span class="c1"># the autoencoder recosntructed the timeseries</span>
+        <span class="n">glness</span> <span class="o">=</span> <span class="n">MSE</span><span class="p">(</span><span class="n">reconstruction</span><span class="p">,</span> <span class="n">data_norm</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">glness</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+pycwb.modules.coherence package
+===============================
+
+Submodules
+----------
+
+pycwb.modules.coherence.coherence module
+----------------------------------------
+
+.. automodule:: pycwb.modules.coherence.coherence
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+pycwb.modules.coherence.coherence\_lite module
+----------------------------------------------
+
+.. automodule:: pycwb.modules.coherence.coherence_lite
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.coherence
+   :members:
+   :undoc-members:
+   :show-inheritance:

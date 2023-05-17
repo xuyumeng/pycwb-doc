@@ -1,0 +1,21 @@
+pycwb.config package
+====================
+
+Submodules
+----------
+
+pycwb.config.config module
+--------------------------
+
+.. automodule:: pycwb.config.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.config
+   :members:
+   :undoc-members:
+   :show-inheritance:

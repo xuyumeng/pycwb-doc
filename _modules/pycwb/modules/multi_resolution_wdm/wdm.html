@@ -1,0 +1,279 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.modules.multi_resolution_wdm.wdm &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycwb.modules.multi_resolution_wdm.wdm</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycwb.modules.multi_resolution_wdm.wdm</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">pycwb.types.wdm</span> <span class="kn">import</span> <span class="n">WDM</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="create_wdm_set"><a class="viewcode-back" href="../../../../pycwb.modules.multi_resolution_wdm.html#pycwb.modules.multi_resolution_wdm.wdm.create_wdm_set">[docs]</a><span class="k">def</span> <span class="nf">create_wdm_set</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a list of WDM objects for all levels</span>
+<span class="sd">    :param config: user configuration</span>
+<span class="sd">    :type config: Config</span>
+<span class="sd">    :return: list of WDM objects</span>
+<span class="sd">    :rtype: list[WDM]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># explicitly list all parameters used from config</span>
+    <span class="n">rate_ANA</span><span class="p">,</span> <span class="n">seg_edge</span><span class="p">,</span> <span class="n">td_size</span><span class="p">,</span> <span class="n">l_high</span><span class="p">,</span> <span class="n">l_low</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">rateANA</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">segEdge</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">TDSize</span><span class="p">,</span> \
+        <span class="n">config</span><span class="o">.</span><span class="n">l_high</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">l_low</span>
+
+    <span class="c1"># create WDM</span>
+    <span class="n">wdm_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">l_low</span><span class="p">,</span> <span class="n">l_high</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">l_high</span> <span class="o">+</span> <span class="n">l_low</span> <span class="o">-</span> <span class="n">i</span>
+        <span class="n">wdm_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">create_wdm_for_level</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">wdm_list</span></div>
+
+
+<div class="viewcode-block" id="create_wdm_for_level"><a class="viewcode-back" href="../../../../pycwb.modules.multi_resolution_wdm.html#pycwb.modules.multi_resolution_wdm.wdm.create_wdm_for_level">[docs]</a><span class="k">def</span> <span class="nf">create_wdm_for_level</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a WDM object for a given level</span>
+<span class="sd">    :param rate_ANA: analysis rate</span>
+<span class="sd">    :type rate_ANA: int</span>
+<span class="sd">    :param seg_edge: cwb scratch length</span>
+<span class="sd">    :type seg_edge: float</span>
+<span class="sd">    :param td_size: time delay size</span>
+<span class="sd">    :type td_size: int</span>
+<span class="sd">    :param level: level</span>
+<span class="sd">    :type level: int</span>
+<span class="sd">    :param beta_order: beta function order for Meyer</span>
+<span class="sd">    :type beta_order: int</span>
+<span class="sd">    :param precision: wavelet precision</span>
+<span class="sd">    :type precision: int</span>
+<span class="sd">    :return: WDM object</span>
+<span class="sd">    :rtype: WDM</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># explicitly list all parameters used from config</span>
+    <span class="n">rate_ANA</span><span class="p">,</span> <span class="n">seg_edge</span><span class="p">,</span> <span class="n">td_size</span><span class="p">,</span> <span class="n">l_high</span><span class="p">,</span> <span class="n">l_low</span>  <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">rateANA</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">segEdge</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">TDSize</span><span class="p">,</span> \
+        <span class="n">config</span><span class="o">.</span><span class="n">l_high</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">l_low</span>
+
+    <span class="c1"># get beta order and precision</span>
+    <span class="n">beta_order</span><span class="p">,</span> <span class="n">precision</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">WDM_beta_order</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">WDM_precision</span>
+
+    <span class="n">layers</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">level</span> <span class="k">if</span> <span class="n">level</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">wdm</span> <span class="o">=</span> <span class="n">WDM</span><span class="p">(</span><span class="n">layers</span><span class="p">,</span> <span class="n">layers</span><span class="p">,</span> <span class="n">beta_order</span><span class="p">,</span> <span class="n">precision</span><span class="p">)</span>
+    <span class="n">wdmFLen</span> <span class="o">=</span> <span class="n">wdm</span><span class="o">.</span><span class="n">m_H</span> <span class="o">/</span> <span class="n">rate_ANA</span>
+
+    <span class="k">if</span> <span class="n">wdmFLen</span> <span class="o">&gt;</span> <span class="n">seg_edge</span> <span class="o">+</span> <span class="mf">0.001</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Filter length must be &lt;= segEdge !!!&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;filter length : </span><span class="si">%s</span><span class="s2"> sec&quot;</span><span class="p">,</span> <span class="n">wdmFLen</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;cwb   scratch : </span><span class="si">%s</span><span class="s2"> sec&quot;</span><span class="p">,</span> <span class="n">seg_edge</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Filter length must be &lt;= segEdge !!!&quot;</span><span class="p">)</span>
+    <span class="c1"># else:</span>
+    <span class="c1">#     logger.info(&quot;Filter length = %s (sec)&quot;, wdmFLen)</span>
+
+    <span class="c1"># check if the length for time delay amplitudes is less than cwb scratch length</span>
+    <span class="c1"># the factor 1.5 is used to avoid to use pixels on the border which could be distorted</span>
+    <span class="n">rate</span> <span class="o">=</span> <span class="n">rate_ANA</span> <span class="o">&gt;&gt;</span> <span class="n">level</span>
+
+    <span class="k">if</span> <span class="n">seg_edge</span> <span class="o">&lt;</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">td_size</span> <span class="o">/</span> <span class="n">rate</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;segEdge must be &gt; 1.5x the length for time delay amplitudes!!!&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;TD length : </span><span class="si">%s</span><span class="s2"> sec&quot;</span><span class="p">,</span> <span class="n">td_size</span> <span class="o">/</span> <span class="n">rate</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;segEdge   : </span><span class="si">%s</span><span class="s2"> sec&quot;</span><span class="p">,</span> <span class="n">seg_edge</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Select segEdge &gt; </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="mf">1.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">td_size</span> <span class="o">/</span> <span class="n">rate</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;segEdge must be &gt; 1.5x the length for time delay amplitudes!!!&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">wdm</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

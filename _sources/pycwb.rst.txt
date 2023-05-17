@@ -1,0 +1,34 @@
+pycwb package
+=============
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   pycwb.config
+   pycwb.constants
+   pycwb.messenger
+   pycwb.modules
+   pycwb.types
+   pycwb.utils
+
+Submodules
+----------
+
+pycwb.search module
+-------------------
+
+.. automodule:: pycwb.search
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb
+   :members:
+   :undoc-members:
+   :show-inheritance:

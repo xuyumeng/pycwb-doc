@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.modules.plot.spectrogram &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycwb.modules.plot.spectrogram</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycwb.modules.plot.spectrogram</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">gwpy.timeseries</span> <span class="kn">import</span> <span class="n">TimeSeries</span>
+<span class="kn">from</span> <span class="nn">pycbc.types.timeseries</span> <span class="kn">import</span> <span class="n">TimeSeries</span> <span class="k">as</span> <span class="n">pycbcTimeSeries</span>
+
+<span class="kn">from</span> <span class="nn">pycwb.types.time_frequency_series</span> <span class="kn">import</span> <span class="n">TimeFrequencySeries</span>
+<span class="kn">from</span> <span class="nn">pycwb.types.wdm</span> <span class="kn">import</span> <span class="n">WDM</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.cwb_conversions</span> <span class="kn">import</span> <span class="n">WSeries_to_matrix</span><span class="p">,</span> <span class="n">convert_wavearray_to_timeseries</span>
+<span class="kn">from</span> <span class="nn">gwpy.spectrogram</span> <span class="kn">import</span> <span class="n">Spectrogram</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">ROOT</span>
+
+
+<div class="viewcode-block" id="plot_spectrogram"><a class="viewcode-back" href="../../../../pycwb.modules.plot.html#pycwb.modules.plot.spectrogram.plot_spectrogram">[docs]</a><span class="k">def</span> <span class="nf">plot_spectrogram</span><span class="p">(</span><span class="n">wavearray</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">gwpy_plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots a spectrogram of the given waveform array</span>
+
+<span class="sd">    :param wavearray: given waveform array</span>
+<span class="sd">    :type wavearray: ROOT.WSeries or gwpy.timeseries.TimeSeries</span>
+<span class="sd">    :param xmin: x-axis minimum for matplotlib plot</span>
+<span class="sd">    :type xmin: float, optional</span>
+<span class="sd">    :param xmax: x-axis maximum for matplotlib plot</span>
+<span class="sd">    :type xmax: float, optional</span>
+<span class="sd">    :param figsize: figure size for matplotlib plot, default (24, 6)</span>
+<span class="sd">    :type figsize: tuple, optional</span>
+<span class="sd">    :param gwpy_plot: whether to use gwpy or ROOT to transform the waveform array to a spectrogram, default True</span>
+<span class="sd">    :type gwpy_plot: bool, optional</span>
+<span class="sd">    :return: the matplotlib plot object for user to further modify or save</span>
+<span class="sd">    :rtype: matplotlib.pyplot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">gwpy_plot</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wavearray</span><span class="p">,</span> <span class="n">TimeFrequencySeries</span><span class="p">):</span>
+            <span class="n">wavearray</span> <span class="o">=</span> <span class="n">TimeSeries</span><span class="o">.</span><span class="n">from_pycbc</span><span class="p">(</span><span class="n">wavearray</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wavearray</span><span class="p">,</span> <span class="n">pycbcTimeSeries</span><span class="p">):</span>
+            <span class="n">wavearray</span> <span class="o">=</span> <span class="n">TimeSeries</span><span class="o">.</span><span class="n">from_pycbc</span><span class="p">(</span><span class="n">wavearray</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wavearray</span><span class="p">,</span> <span class="n">TimeSeries</span><span class="p">):</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">wavearray</span> <span class="o">=</span> <span class="n">convert_wavearray_to_timeseries</span><span class="p">(</span><span class="n">wavearray</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">wavearray</span><span class="p">,</span> <span class="n">TimeSeries</span><span class="p">):</span>
+        <span class="n">wavearray</span> <span class="o">=</span> <span class="n">wavearray</span><span class="o">.</span><span class="n">crop</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+        <span class="n">specgram</span> <span class="o">=</span> <span class="n">wavearray</span><span class="o">.</span><span class="n">spectrogram</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">fftlength</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mf">0.49</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">)</span>
+        <span class="n">plot</span> <span class="o">=</span> <span class="n">specgram</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">norm</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>  <span class="c1"># vmin=1e-23, vmax=1e-19</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">wdm</span> <span class="o">=</span> <span class="n">WDM</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+        <span class="n">tf_map</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">WSeries</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">double</span><span class="p">)(</span><span class="n">wavearray</span><span class="p">,</span> <span class="n">wdm</span><span class="o">.</span><span class="n">wavelet</span><span class="p">)</span>
+        <span class="n">tf_map</span><span class="o">.</span><span class="n">Forward</span><span class="p">()</span>
+
+        <span class="n">plot</span> <span class="o">=</span> <span class="n">Spectrogram</span><span class="p">(</span><span class="n">WSeries_to_matrix</span><span class="p">(</span><span class="n">tf_map</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+                           <span class="n">t0</span><span class="o">=</span><span class="n">tf_map</span><span class="o">.</span><span class="n">start</span><span class="p">(),</span>
+                           <span class="n">dt</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="n">tf_map</span><span class="o">.</span><span class="n">wRate</span><span class="p">,</span>
+                           <span class="n">f0</span><span class="o">=</span><span class="n">tf_map</span><span class="o">.</span><span class="n">f_low</span><span class="p">,</span>
+                           <span class="n">df</span><span class="o">=</span><span class="n">tf_map</span><span class="o">.</span><span class="n">resolution</span><span class="p">()</span>
+                           <span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">tf_map</span><span class="o">.</span><span class="n">f_low</span> <span class="ow">or</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;GW strain ASD [strain/$\sqrt{\mathrm</span><span class="si">{Hz}</span><span class="s1">}$]&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">xmin</span> <span class="ow">or</span> <span class="n">xmax</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">plot</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

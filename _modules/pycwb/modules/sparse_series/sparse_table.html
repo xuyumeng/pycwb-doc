@@ -1,0 +1,251 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.modules.sparse_series.sparse_table &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycwb.modules.sparse_series.sparse_table</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycwb.modules.sparse_series.sparse_table</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span><span class="o">,</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+
+<span class="kn">from</span> <span class="nn">pycwb.modules.multi_resolution_wdm</span> <span class="kn">import</span> <span class="n">create_wdm_for_level</span>
+<span class="kn">from</span> <span class="nn">pycwb.types.sparse_series</span> <span class="kn">import</span> <span class="n">SparseTimeFrequencySeries</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="sparse_table_from_fragment_clusters"><a class="viewcode-back" href="../../../../pycwb.modules.sparse_series.html#pycwb.modules.sparse_series.sparse_table.sparse_table_from_fragment_clusters">[docs]</a><span class="k">def</span> <span class="nf">sparse_table_from_fragment_clusters</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">,</span> <span class="n">fragment_clusters</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create sparse tables from fragment clusters</span>
+
+<span class="sd">    :param config: config object</span>
+<span class="sd">    :type config: Config</span>
+<span class="sd">    :param tf_maps: time-frequency maps</span>
+<span class="sd">    :type tf_maps: list[TimeFrequencySeries]</span>
+<span class="sd">    :param wdm_list: list of wavelet-domain models</span>
+<span class="sd">    :type wdm_list: list[WDM]</span>
+<span class="sd">    :param fragment_clusters: fragment clusters</span>
+<span class="sd">    :type fragment_clusters: list[FragmentCluster]</span>
+<span class="sd">    :return: sparse tables</span>
+<span class="sd">    :rtype: list[list[SparseTimeFrequencySeries]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">timer_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">parallel</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Start sparse series in parallel&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">nproc</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">nRES</span><span class="p">))</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+            <span class="n">sparse_tables</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_sparse_table_from_fragment_cluster</span><span class="p">,</span>
+                                     <span class="p">[(</span><span class="n">config</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">fragment_cluster</span><span class="p">)</span>
+                                      <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fragment_cluster</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fragment_clusters</span><span class="p">)])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sparse_tables</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">_sparse_table_from_fragment_cluster</span><span class="p">,</span>
+                                 <span class="p">[(</span><span class="n">config</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">fragment_cluster</span><span class="p">)</span>
+                                  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fragment_cluster</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fragment_clusters</span><span class="p">)]))</span>
+
+    <span class="n">timer_stop</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;----------------------------------------&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Sparse series time: </span><span class="si">%.2f</span><span class="s2"> s&quot;</span><span class="p">,</span> <span class="n">timer_stop</span> <span class="o">-</span> <span class="n">timer_start</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;----------------------------------------&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">sparse_tables</span></div>
+
+
+<span class="k">def</span> <span class="nf">_sparse_table_from_fragment_cluster</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">config</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">fragment_cluster</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="n">wdm</span> <span class="o">=</span> <span class="n">create_wdm_for_level</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">WDM_level</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="n">SparseTimeFrequencySeries</span><span class="p">()</span><span class="o">.</span><span class="n">from_fragment_cluster</span><span class="p">(</span><span class="n">wdm</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">fragment_cluster</span><span class="p">,</span>
+                                                          <span class="n">config</span><span class="o">.</span><span class="n">TDSize</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">max_delay</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">nIFO</span><span class="p">)]</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

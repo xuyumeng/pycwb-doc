@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycwb.modules.coherence.coherence &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> PyBurst
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorials.html">Tutorial</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../mod_cwb.html">Notes on modifications of cWB core code</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">PyBurst</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycwb.modules.coherence.coherence</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycwb.modules.coherence.coherence</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
+<span class="kn">import</span> <span class="nn">ROOT</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">pycwb.config</span> <span class="kn">import</span> <span class="n">Config</span>
+<span class="kn">from</span> <span class="nn">pycwb.types.network_cluster</span> <span class="kn">import</span> <span class="n">FragmentCluster</span>
+<span class="kn">from</span> <span class="nn">pycwb.types.network</span> <span class="kn">import</span> <span class="n">Network</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.cwb_conversions</span> <span class="kn">import</span> <span class="n">convert_to_wavearray</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.multi_resolution_wdm</span> <span class="kn">import</span> <span class="n">create_wdm_for_level</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="coherence"><a class="viewcode-back" href="../../../../pycwb.modules.coherence.html#pycwb.modules.coherence.coherence.coherence">[docs]</a><span class="k">def</span> <span class="nf">coherence</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">,</span> <span class="n">nRMS_list</span><span class="p">,</span> <span class="n">net</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Select the significant pixels</span>
+
+<span class="sd">    Loop over resolution levels (nRES)</span>
+
+<span class="sd">    * Loop over detectors (cwb::nIFO)</span>
+
+<span class="sd">      * Compute the maximum energy of TF pixels (WSeries&lt;double&gt;::maxEnergy)</span>
+<span class="sd">      * Set pixel energy selection threshold (network::THRESHOLD)</span>
+<span class="sd">      * Loop over time lags (network::nLag)</span>
+
+<span class="sd">      * Select the significant pixels (network::getNetworkPixels)</span>
+<span class="sd">      * Single resolution clustering (network::cluster)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    config : pycwb.config.Config</span>
+<span class="sd">        Configuration object</span>
+<span class="sd">    tf_maps : list of pycwb.types.time_frequency_series.TimeFrequencySeries</span>
+<span class="sd">        List of time-frequency maps</span>
+<span class="sd">    nRMS_list : list of pycwb.types.time_frequency_series.TimeFrequencySeries</span>
+<span class="sd">        List of noise RMS</span>
+<span class="sd">    net : pycwb.types.network.Network, optional</span>
+<span class="sd">        Network object, by default None</span>
+<span class="sd">    parallel : bool, optional</span>
+<span class="sd">        Whether to use parallel, by default True</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fragment_clusters: list of pycwb.types.network_cluster.FragmentCluster</span>
+<span class="sd">        List of fragment clusters</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># calculate upsample factor</span>
+    <span class="n">timer_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Start coherence&quot;</span> <span class="o">+</span> <span class="s2">&quot; in parallel&quot;</span> <span class="k">if</span> <span class="n">parallel</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">up_n</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">rateANA</span> <span class="o">//</span> <span class="mi">1024</span>
+    <span class="k">if</span> <span class="n">up_n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">up_n</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">fragment_clusters</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">parallel</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">nproc</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">nRES</span><span class="p">))</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+            <span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">nRES</span><span class="p">):</span>
+                <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">i</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">,</span> <span class="n">nRMS_list</span><span class="p">,</span> <span class="n">up_n</span><span class="p">))</span>
+            <span class="k">for</span> <span class="n">fragment_clusters_single_res</span> <span class="ow">in</span> <span class="n">pool</span><span class="o">.</span><span class="n">starmap</span><span class="p">(</span><span class="n">_coherence_single_res</span><span class="p">,</span> <span class="n">tasks</span><span class="p">):</span>
+                <span class="n">fragment_clusters</span> <span class="o">+=</span> <span class="n">fragment_clusters_single_res</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">nRES</span><span class="p">):</span>
+            <span class="n">fragment_clusters_single_res</span> <span class="o">=</span> <span class="n">_coherence_single_res</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">,</span> <span class="n">nRMS_list</span><span class="p">,</span> <span class="n">up_n</span><span class="p">,</span> <span class="n">net</span><span class="p">)</span>
+            <span class="n">fragment_clusters</span> <span class="o">+=</span> <span class="n">fragment_clusters_single_res</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;----------------------------------------&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Coherence time totally: </span><span class="si">%f</span><span class="s2"> s&quot;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">timer_start</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;----------------------------------------&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fragment_clusters</span></div>
+
+
+<span class="k">def</span> <span class="nf">_coherence_single_res</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">,</span> <span class="n">nRMS_list</span><span class="p">,</span> <span class="n">up_n</span><span class="p">,</span> <span class="n">net</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the coherence for a single resolution</span>
+
+<span class="sd">    :param i: index of resolution</span>
+<span class="sd">    :type i: int</span>
+<span class="sd">    :param config: configuration object</span>
+<span class="sd">    :type config: Config</span>
+<span class="sd">    :param net: network</span>
+<span class="sd">    :type net: ROOT.network</span>
+<span class="sd">    :param tf_maps: list of strain</span>
+<span class="sd">    :type tf_maps: list[TimeFrequencySeries]</span>
+<span class="sd">    :param wdm: wdm used for current resolution</span>
+<span class="sd">    :type wdm: WDM</span>
+<span class="sd">    :param up_n: upsample factor</span>
+<span class="sd">    :type up_n: int</span>
+<span class="sd">    :return: (sparse_table, fragment_clusters)</span>
+<span class="sd">    :rtype: (ROOT.SSeries, list[ROOT.netcluster])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># timer</span>
+    <span class="n">timer_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span>
+
+    <span class="n">wdm</span> <span class="o">=</span> <span class="n">create_wdm_for_level</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">WDM_level</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">net</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># for paralleling, create a new network to avoid conflict</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="n">Network</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">,</span> <span class="n">nRMS_list</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># print level infos</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">l_high</span> <span class="o">-</span> <span class="n">i</span>
+    <span class="n">layers</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">level</span> <span class="k">if</span> <span class="n">level</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">rate</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">rateANA</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">level</span>
+
+    <span class="c1"># use string instead of directly logging to avoid messy output in parallel</span>
+    <span class="n">logger_info</span> <span class="o">=</span> <span class="s2">&quot;level : </span><span class="si">%d</span><span class="se">\t</span><span class="s2"> rate(hz) : </span><span class="si">%d</span><span class="se">\t</span><span class="s2"> layers : </span><span class="si">%d</span><span class="se">\t</span><span class="s2"> df(hz) : </span><span class="si">%f</span><span class="se">\t</span><span class="s2"> dt(ms) : </span><span class="si">%f</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span>
+        <span class="n">level</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">layers</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">rateANA</span> <span class="o">/</span> <span class="mf">2.</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">level</span><span class="p">),</span> <span class="mf">1000.</span> <span class="o">/</span> <span class="n">rate</span><span class="p">)</span>
+
+    <span class="n">fragment_clusters</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1">###############################</span>
+    <span class="c1"># cWB2G coherence calculation #</span>
+    <span class="c1">###############################</span>
+
+    <span class="c1"># produce TF maps with max over the sky energy</span>
+    <span class="n">alp</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">ifo</span><span class="p">)):</span>
+        <span class="n">ts</span> <span class="o">=</span> <span class="n">convert_to_wavearray</span><span class="p">(</span><span class="n">tf_maps</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+        <span class="n">alp</span> <span class="o">+=</span> <span class="n">net</span><span class="o">.</span><span class="n">get_ifo</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">getTFmap</span><span class="p">()</span><span class="o">.</span><span class="n">maxEnergy</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">wdm</span><span class="o">.</span><span class="n">wavelet</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">max_delay</span><span class="p">,</span> <span class="n">up_n</span><span class="p">,</span> <span class="n">net</span><span class="o">.</span><span class="n">pattern</span><span class="p">)</span>
+        <span class="n">net</span><span class="o">.</span><span class="n">get_ifo</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">getTFmap</span><span class="p">()</span><span class="o">.</span><span class="n">setlow</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">fLow</span><span class="p">)</span>
+        <span class="n">net</span><span class="o">.</span><span class="n">get_ifo</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">getTFmap</span><span class="p">()</span><span class="o">.</span><span class="n">sethigh</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">fHigh</span><span class="p">)</span>
+
+    <span class="n">logger_info</span> <span class="o">+=</span> <span class="s2">&quot;max energy in units of noise variance: </span><span class="si">%g</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">alp</span>
+
+    <span class="n">alp</span> <span class="o">=</span> <span class="n">alp</span> <span class="o">/</span> <span class="n">config</span><span class="o">.</span><span class="n">nIFO</span>
+
+    <span class="c1"># set threshold</span>
+    <span class="k">if</span> <span class="n">net</span><span class="o">.</span><span class="n">pattern</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">Eo</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">bpp</span><span class="p">,</span> <span class="n">alp</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Eo</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">bpp</span><span class="p">)</span>
+
+    <span class="n">logger_info</span> <span class="o">+=</span> <span class="s2">&quot;thresholds in units of noise variance: Eo=</span><span class="si">%g</span><span class="s2"> Emax=</span><span class="si">%g</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">Eo</span><span class="p">,</span> <span class="n">Eo</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># set veto array</span>
+    <span class="n">TL</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">set_veto</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">iwindow</span><span class="p">)</span>
+    <span class="n">logger_info</span> <span class="o">+=</span> <span class="s2">&quot;live time in zero lag: </span><span class="si">%g</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">TL</span>
+
+    <span class="k">if</span> <span class="n">TL</span> <span class="o">&lt;=</span> <span class="mf">0.</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;live time is zero&quot;</span><span class="p">)</span>
+
+    <span class="n">logger_info</span> <span class="o">+=</span> <span class="s2">&quot;lag | clusters | pixels </span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="c1"># temporary storage for sparse table</span>
+    <span class="n">wc</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">netcluster</span><span class="p">()</span>
+
+    <span class="c1"># loop over time lags</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">nLag</span><span class="p">)):</span>
+        <span class="c1"># select pixels above Eo</span>
+        <span class="n">net</span><span class="o">.</span><span class="n">get_network_pixels</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">Eo</span><span class="p">)</span>
+        <span class="c1"># get pixel list</span>
+        <span class="n">pwc</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">get_cluster</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">net</span><span class="o">.</span><span class="n">pattern</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># cluster pixels</span>
+            <span class="n">net</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="n">wc</span><span class="o">.</span><span class="n">cpf</span><span class="p">(</span><span class="n">pwc</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="c1"># remove pixels below subrho</span>
+            <span class="c1"># TODO: keep in mind, subrho can be more flexible.</span>
+            <span class="c1"># TODO: pythonize this algorithm in network cluster</span>
+            <span class="n">wc</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;subrho&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">select_subrho</span><span class="p">)</span>
+            <span class="c1"># remove pixels below subnet</span>
+            <span class="n">wc</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;subnet&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">select_subnet</span><span class="p">)</span>
+            <span class="c1"># copy selected pixels back to pwc</span>
+            <span class="n">pwc</span><span class="o">.</span><span class="n">cpf</span><span class="p">(</span><span class="n">wc</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">net</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># FIXME: why do we need to deepcopy the cluster?</span>
+        <span class="c1">#  If we don&#39;t, macos will crash with thread-saftey issue</span>
+        <span class="c1">#  Maybe because the pwc.clear() will delete the cluster?</span>
+        <span class="n">fragment_cluster</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">FragmentCluster</span><span class="p">()</span><span class="o">.</span><span class="n">from_netcluster</span><span class="p">(</span><span class="n">pwc</span><span class="p">))</span>
+        <span class="n">fragment_clusters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fragment_cluster</span><span class="p">)</span>
+
+        <span class="n">logger_info</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">%3d</span><span class="s2"> |</span><span class="si">%9d</span><span class="s2"> |</span><span class="si">%7d</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">fragment_cluster</span><span class="o">.</span><span class="n">event_count</span><span class="p">(),</span> <span class="n">fragment_cluster</span><span class="o">.</span><span class="n">pixel_count</span><span class="p">())</span>
+
+        <span class="n">pwc</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+    <span class="c1">###############################</span>
+
+    <span class="n">logger_info</span> <span class="o">+=</span> <span class="s2">&quot;Coherence time for single level: </span><span class="si">%f</span><span class="s2"> s&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">perf_counter</span><span class="p">()</span> <span class="o">-</span> <span class="n">timer_start</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">logger_info</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fragment_clusters</span>
+
+
+<span class="n">coherence_parallel</span> <span class="o">=</span> <span class="n">coherence</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2023, Yumeng Xu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
