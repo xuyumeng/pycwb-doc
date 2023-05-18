@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Step by step injection search &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>Step by step injection search &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Notes on modifications of cWB core code" href="mod_cwb.html" />
-    <link rel="prev" title="Go deeper into PyBurst.search" href="tutorial_search.html" /> 
+    <link rel="next" title="Performing Multi-Injection" href="tutorial_multi_injection.html" />
+    <link rel="prev" title="Go deeper into pycWB.search" href="tutorial_search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +52,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> PyBurst
+            <a href="index.html" class="icon icon-home"> pycWB
           
 
           
@@ -84,15 +84,18 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="tutorial_search.html">Go deeper into PyBurst.search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_search.html">Go deeper into pycWB.search</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Step by step injection search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_multi_injection.html">Performing Multi-Injection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_customized_wf_gen.html">Injections with Customized Waveform Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_batch_inj.html">Batch injection with Python Script</a></li>
 </ul>
 </li>
 </ul>
@@ -113,7 +116,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">PyBurst</a>
+          <a href="index.html">pycWB</a>
         
       </nav>
 
@@ -178,21 +181,25 @@ cp <span class="o">[</span>path_to_source_code<span class="o">]</span>/examples/
 
 <span class="kn">import</span> <span class="nn">pycwb</span>
 <span class="kn">from</span> <span class="nn">pycwb.config</span> <span class="kn">import</span> <span class="n">Config</span>
-<span class="kn">from</span> <span class="nn">pycwb.utils</span> <span class="kn">import</span> <span class="n">logger_init</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.logger</span> <span class="kn">import</span> <span class="n">logger_init</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;HOME_WAT_FILTERS&#39;</span><span class="p">):</span>
-    <span class="n">pycwb_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">pycwb</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME_WAT_FILTERS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">pycwb_path</span><span class="p">)</span><span class="si">}</span><span class="s2">/vendor&quot;</span>
+    <span class="n">pyburst_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">pycwb</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME_WAT_FILTERS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">pyburst_path</span><span class="p">)</span><span class="si">}</span><span class="s2">/vendor&quot;</span>
 
 <span class="n">logger_init</span><span class="p">()</span>
 
 <span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">(</span><span class="s1">&#39;./user_parameters_injection.yaml&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">ifo</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">injection</span>
 </pre></div>
 </div>
-<p>Now, create an injection using the parameters specified in the configuration file:</p>
+<p>Now, create an injection job using the parameters specified in the configuration file:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.read_data</span> <span class="kn">import</span> <span class="n">generate_injection</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.job_segment</span> <span class="kn">import</span> <span class="n">create_job_segment_from_injection</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">generate_injection</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<span class="n">job_segments</span> <span class="o">=</span> <span class="n">create_job_segment_from_injection</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">ifo</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">simulation</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">injection</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">generate_injection</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">job_segments</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>A pyCBC time series is generated for each detector defined in the configuration file.</p>
@@ -204,34 +211,20 @@ and the nRMS is the noise RMS of the data:</p>
 <span class="n">strains</span><span class="p">,</span> <span class="n">nRMS</span> <span class="o">=</span> <span class="n">data_conditioning</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Create a network using the whitened data and the noise RMS, then generate a set of wavelet decomposition modules
-for each resolution:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialize network</span>
-<span class="kn">from</span> <span class="nn">pycwb.modules.wavelet</span> <span class="kn">import</span> <span class="n">create_wdm_set</span>
-<span class="kn">from</span> <span class="nn">pycwb.types</span> <span class="kn">import</span> <span class="n">WDMXTalkCatalog</span><span class="p">,</span> <span class="n">Network</span>
-
-<span class="n">job_id</span> <span class="o">=</span> <span class="mi">0</span>
-
-<span class="n">wdm_MRA</span> <span class="o">=</span> <span class="n">WDMXTalkCatalog</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">MRAcatalog</span><span class="p">)</span>
-<span class="n">wdm_list</span> <span class="o">=</span> <span class="n">create_wdm_set</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">wdm_MRA</span><span class="p">)</span>
-<span class="n">network</span> <span class="o">=</span> <span class="n">Network</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strains</span><span class="p">,</span> <span class="n">nRMS</span><span class="p">,</span> <span class="n">wdm_MRA</span><span class="p">)</span>
-</pre></div>
-</div>
 <p>Find the coherent pixel clusters and generate the sparse table to reduce the computational cost in the following steps:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.coherence</span> <span class="kn">import</span> <span class="n">coherence</span><span class="p">,</span> <span class="n">sparse_table_from_fragment_clusters</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.coherence</span> <span class="kn">import</span> <span class="n">coherence</span>
 
 <span class="c1"># calculate coherence</span>
-<span class="n">fragment_clusters</span> <span class="o">=</span> <span class="n">coherence</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strains</span><span class="p">,</span> <span class="n">wdm_list</span><span class="p">,</span> <span class="n">nRMS</span><span class="p">)</span>
-
-<span class="c1"># generate sparse table</span>
-<span class="n">sparse_table_list</span> <span class="o">=</span> <span class="n">sparse_table_from_fragment_clusters</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">network</span><span class="o">.</span><span class="n">get_max_delay</span><span class="p">(),</span>
-                                                        <span class="n">strains</span><span class="p">,</span> <span class="n">wdm_list</span><span class="p">,</span> <span class="n">fragment_clusters</span><span class="p">)</span>
+<span class="n">fragment_clusters</span> <span class="o">=</span> <span class="n">coherence</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strains</span><span class="p">,</span> <span class="n">nRMS</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then merge the clusters to superclusters</p>
+<p>Create a network using the whitened data and the noise RMS, then merge the clusters to superclusters</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.super_cluster</span> <span class="kn">import</span> <span class="n">supercluster</span>
+<span class="kn">from</span> <span class="nn">pycwb.types.network</span> <span class="kn">import</span> <span class="n">Network</span>
 
-<span class="n">pwc_list</span> <span class="o">=</span> <span class="n">supercluster</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">wdm_list</span><span class="p">,</span> <span class="n">fragment_clusters</span><span class="p">,</span> <span class="n">sparse_table_list</span><span class="p">)</span>
+<span class="n">network</span> <span class="o">=</span> <span class="n">Network</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">strains</span><span class="p">,</span> <span class="n">nRMS</span><span class="p">)</span>
+
+<span class="n">pwc_list</span> <span class="o">=</span> <span class="n">supercluster</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">fragment_clusters</span><span class="p">,</span> <span class="n">strains</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Finally, calculate the likelihood for each supercluster:</p>
@@ -248,6 +241,23 @@ for each resolution:</p>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>the likelihood map and null map reconstructed from the clusters
+will also be plotted with</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gwpy.spectrogram</span> <span class="kn">import</span> <span class="n">Spectrogram</span>
+
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+    <span class="n">merged_map</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">get_sparse_map</span><span class="p">(</span><span class="s2">&quot;likelihood&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span> <span class="o">=</span> <span class="n">Spectrogram</span><span class="p">(</span><span class="n">merged_map</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">f0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
+    <span class="n">merged_map</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">get_sparse_map</span><span class="p">(</span><span class="s2">&quot;null&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span> <span class="o">=</span> <span class="n">Spectrogram</span><span class="p">(</span><span class="n">merged_map</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">f0</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+</pre></div>
+</div>
 </section>
 
 
@@ -258,10 +268,10 @@ for each resolution:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mod_cwb.html" class="btn btn-neutral float-right" title="Notes on modifications of cWB core code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="tutorial_multi_injection.html" class="btn btn-neutral float-right" title="Performing Multi-Injection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="tutorial_search.html" class="btn btn-neutral float-left" title="Go deeper into PyBurst.search" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tutorial_search.html" class="btn btn-neutral float-left" title="Go deeper into pycWB.search" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

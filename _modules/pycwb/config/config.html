@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.config.config &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>pycwb.config.config &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -49,7 +49,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> PyBurst
+            <a href="../../../index.html" class="icon icon-home"> pycWB
           
 
           
@@ -81,8 +81,8 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
@@ -106,7 +106,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">PyBurst</a>
+          <a href="../../../index.html">pycWB</a>
         
       </nav>
 
@@ -156,7 +156,9 @@
             
   <h1>Source code for pycwb.config.config</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Class to store user parameters, load parameters from yaml file and check parameters</span>
+<span class="sd">Class to store all user parameters, load parameters from yaml file and check parameters. The supported parameters and their</span>
+<span class="sd">default values are defined in the provided schema. By default, the schema is the schema defined in</span>
+<span class="sd">pycwb.constants.user_parameters_schema.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os.path</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -174,11 +176,18 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class to store user parameters</span>
 
-<span class="sd">    :param file_name: user parameters file path</span>
-<span class="sd">    :type file_name: str</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_name : str</span>
+<span class="sd">        Path to the yaml file containing the user parameters</span>
+<span class="sd">    schema : dict</span>
+<span class="sd">        Schema to validate the user parameters, default is the schema defined in pycwb.constants.user_parameters_schema</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">user_parameters_schema</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">schema</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">schema</span> <span class="o">=</span> <span class="n">user_parameters_schema</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">outputDir</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logDir</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nproc</span> <span class="o">=</span> <span class="kc">None</span>
@@ -222,7 +231,7 @@
 
 <div class="viewcode-block" id="Config.add_derived_key"><a class="viewcode-back" href="../../../pycwb.config.html#pycwb.config.config.Config.add_derived_key">[docs]</a>    <span class="k">def</span> <span class="nf">add_derived_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add derived key to the user parameters</span>
+<span class="sd">        Add derived key to the user parameters, this method is called after loading the user parameters</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cfg_gamma</span>
@@ -262,12 +271,7 @@
 
 <div class="viewcode-block" id="Config.get_lag_buffer"><a class="viewcode-back" href="../../../pycwb.config.html#pycwb.config.config.Config.get_lag_buffer">[docs]</a>    <span class="k">def</span> <span class="nf">get_lag_buffer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Get lag buffer from configuration</span>
-
-<span class="sd">        :param config: user configuration</span>
-<span class="sd">        :type config: Config</span>
-<span class="sd">        :return: lag buffer and lag mode</span>
-<span class="sd">        :rtype: str, str</span>
+<span class="sd">        Get lag buffer from configuration and update lag mode</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">lagMode</span> <span class="o">==</span> <span class="s2">&quot;r&quot;</span><span class="p">:</span>
             <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lagFile</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -280,12 +284,16 @@
 <div class="viewcode-block" id="Config.check_file"><a class="viewcode-back" href="../../../pycwb.config.html#pycwb.config.config.Config.check_file">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">check_file</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Check if file exists</span>
+<span class="sd">        Helper function to check if file exists</span>
 
-<span class="sd">        :param file_name: file path</span>
-<span class="sd">        :type file_name: str</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        file_name : str</span>
+<span class="sd">            Path to the file</span>
 
-<span class="sd">        :raises FileNotFoundError: if file does not exist</span>
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        FileNotFoundError</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2"> does not exist&quot;</span><span class="p">)</span></div>
@@ -323,7 +331,9 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if MRAcatalog exists</span>
 
-<span class="sd">        :raises FileNotFoundError: if MRAcatalog does not exist</span>
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        FileNotFoundError: if MRAcatalog does not exist</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Checking MRA catalog&quot;</span><span class="p">)</span>
         <span class="n">wdm_MRA</span> <span class="o">=</span> <span class="n">WDMXTalkCatalog</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MRAcatalog</span><span class="p">)</span>

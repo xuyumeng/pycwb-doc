@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.types.network_cluster &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>pycwb.types.network_cluster &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -49,7 +49,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> PyBurst
+            <a href="../../../index.html" class="icon icon-home"> pycWB
           
 
           
@@ -81,8 +81,8 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
@@ -106,7 +106,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">PyBurst</a>
+          <a href="../../../index.html">pycWB</a>
         
       </nav>
 
@@ -168,30 +168,32 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for clusters found in data fragment</span>
 
-<span class="sd">    :param rate: original Time series rate</span>
-<span class="sd">    :type rate: float</span>
-<span class="sd">    :param start: interval start GPS time</span>
-<span class="sd">    :type start: float</span>
-<span class="sd">    :param stop: interval stop  GPS time</span>
-<span class="sd">    :type stop: float</span>
-<span class="sd">    :param bpp: black pixel probability</span>
-<span class="sd">    :type bpp: float</span>
-<span class="sd">    :param shift: time shift</span>
-<span class="sd">    :type shift: float</span>
-<span class="sd">    :param f_low: low frequency boundary</span>
-<span class="sd">    :type f_low: float</span>
-<span class="sd">    :param f_high: high frequency boundary</span>
-<span class="sd">    :type f_high: float</span>
-<span class="sd">    :param n_pix: minimum number of pixels at all resolutions</span>
-<span class="sd">    :type n_pix: int</span>
-<span class="sd">    :param run: run ID</span>
-<span class="sd">    :type run: int</span>
-<span class="sd">    :param pair: true - 2 resolutions, false - 1 resolution</span>
-<span class="sd">    :type pair: bool</span>
-<span class="sd">    :param n_sub: subnetwork threshold for a single network pixel</span>
-<span class="sd">    :type n_sub: int</span>
-<span class="sd">    :param clusters: cluster list</span>
-<span class="sd">    :type clusters: list[Cluster]</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    rate : float</span>
+<span class="sd">        original Time series rate</span>
+<span class="sd">    start : float</span>
+<span class="sd">        interval start GPS time</span>
+<span class="sd">    stop : float</span>
+<span class="sd">        interval stop  GPS time</span>
+<span class="sd">    bpp : float</span>
+<span class="sd">        black pixel probability</span>
+<span class="sd">    shift : float</span>
+<span class="sd">        time shift</span>
+<span class="sd">    f_low : float</span>
+<span class="sd">        low frequency boundary</span>
+<span class="sd">    f_high : float</span>
+<span class="sd">        high frequency boundary</span>
+<span class="sd">    n_pix : int</span>
+<span class="sd">        minimum number of pixels at all resolutions</span>
+<span class="sd">    run : int</span>
+<span class="sd">        run ID</span>
+<span class="sd">    pair : bool</span>
+<span class="sd">        true - 2 resolutions, false - 1 resolution</span>
+<span class="sd">    n_sub : int</span>
+<span class="sd">        subnetwork threshold for a single network pixel</span>
+<span class="sd">    clusters : list of Cluster</span>
+<span class="sd">        cluster list</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rate&#39;</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">,</span> <span class="s1">&#39;bpp&#39;</span><span class="p">,</span> <span class="s1">&#39;shift&#39;</span><span class="p">,</span> <span class="s1">&#39;f_low&#39;</span><span class="p">,</span> <span class="s1">&#39;f_high&#39;</span><span class="p">,</span> <span class="s1">&#39;n_pix&#39;</span><span class="p">,</span> <span class="s1">&#39;run&#39;</span><span class="p">,</span> <span class="s1">&#39;pair&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;subnet_threshold&#39;</span><span class="p">,</span> <span class="s1">&#39;clusters&#39;</span><span class="p">]</span>
@@ -293,10 +295,15 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Select cluster by id</span>
 
-<span class="sd">        :param cluster_id: cluster id</span>
-<span class="sd">        :type cluster_id: int</span>
-<span class="sd">        :return: fragment cluster with one cluster</span>
-<span class="sd">        :rtype: FragmentCluster</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        cluster_id : int</span>
+<span class="sd">            cluster id</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        FragmentCluster</span>
+<span class="sd">            fragment cluster with one cluster</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">temp_cluster</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">temp_cluster</span><span class="o">.</span><span class="n">clusters</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">clusters</span><span class="p">[</span><span class="n">cluster_id</span><span class="p">]]</span>
@@ -314,28 +321,28 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class for one cluster of pixels</span>
 
-<span class="sd">    :param pixels: list of pixels</span>
-<span class="sd">    :type pixels: list[Pixel]</span>
-<span class="sd">    :param cluster_meta: cluster metadata</span>
-<span class="sd">    :type cluster_meta: ClusterMeta</span>
-<span class="sd">    :param cluster_status: cluster selection flags (cuts)  1 - rejected, 0 - not processed / accepted,</span>
-<span class="sd">     -1 - not complete, -2 - ready for processing</span>
-<span class="sd">    :type cluster_status: int</span>
-<span class="sd">    :param cluster_rate: cluster type defined by rate</span>
-<span class="sd">    :type cluster_rate: list[int]</span>
-<span class="sd">    :param cluster_time: supercluster central time</span>
-<span class="sd">    :type cluster_time: float</span>
-<span class="sd">    :param cluster_freq: supercluster central frequency</span>
-<span class="sd">    :type cluster_freq: float</span>
-<span class="sd">    :param sky_area: sky error area</span>
-<span class="sd">    :type sky_area: list[float]</span>
-<span class="sd">    :param sky_pixel_map: sky pixel map</span>
-<span class="sd">    :type sky_pixel_map: list[float]</span>
-<span class="sd">    :param sky_pixel_index: sky pixel index</span>
-<span class="sd">    :type sky_pixel_index: list[int]</span>
-<span class="sd">    :param sky_time_delay: sky time delay</span>
-<span class="sd">    :type sky_time_delay: list[int]</span>
-
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pixels : list of Pixel</span>
+<span class="sd">        list of pixels</span>
+<span class="sd">    cluster_meta : ClusterMeta</span>
+<span class="sd">        cluster metadata</span>
+<span class="sd">    cluster_status : int</span>
+<span class="sd">        cluster selection flags (cuts)  1 - rejected, 0 - not processed / accepted, -1 - not complete, -2 - ready for processing</span>
+<span class="sd">    cluster_rate : list of int</span>
+<span class="sd">        cluster type defined by rate</span>
+<span class="sd">    cluster_time : float</span>
+<span class="sd">        supercluster central time</span>
+<span class="sd">    cluster_freq : float</span>
+<span class="sd">        supercluster central frequency</span>
+<span class="sd">    sky_area : list of float</span>
+<span class="sd">        sky error area</span>
+<span class="sd">    sky_pixel_map : list of float</span>
+<span class="sd">        sky pixel map</span>
+<span class="sd">    sky_pixel_index : list of int</span>
+<span class="sd">        sky pixel index</span>
+<span class="sd">    sky_time_delay : list of float</span>
+<span class="sd">        sky time delay</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pixels&#39;</span><span class="p">,</span> <span class="s1">&#39;cluster_meta&#39;</span><span class="p">,</span> <span class="s1">&#39;cluster_status&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;cluster_rate&#39;</span><span class="p">,</span> <span class="s1">&#39;cluster_time&#39;</span><span class="p">,</span> <span class="s1">&#39;cluster_freq&#39;</span><span class="p">,</span> <span class="s1">&#39;sky_area&#39;</span><span class="p">,</span> <span class="s1">&#39;sky_pixel_map&#39;</span><span class="p">,</span>
@@ -369,9 +376,32 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Cluster.to_dict"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network_cluster.Cluster.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert Cluster to dict</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            dict with Cluster attributes</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__slots__</span><span class="p">}</span></div>
 
 <div class="viewcode-block" id="Cluster.from_netcluster"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network_cluster.Cluster.from_netcluster">[docs]</a>    <span class="k">def</span> <span class="nf">from_netcluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">netcluster</span><span class="p">,</span> <span class="n">c_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert ROOT.netcluster to Cluster</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        netcluster : ROOT.netcluster</span>
+<span class="sd">            ROOT.netcluster object</span>
+<span class="sd">        c_id : int</span>
+<span class="sd">            cluster id to convert</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Cluster</span>
+<span class="sd">            converted Cluster</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span> <span class="o">=</span> <span class="p">[</span><span class="n">Pixel</span><span class="p">()</span><span class="o">.</span><span class="n">from_netpixel</span><span class="p">(</span><span class="n">netcluster</span><span class="o">.</span><span class="n">pList</span><span class="p">[</span><span class="n">pixel_id</span><span class="p">])</span> <span class="k">for</span> <span class="n">pixel_id</span> <span class="ow">in</span> <span class="n">netcluster</span><span class="o">.</span><span class="n">cList</span><span class="p">[</span><span class="n">c_id</span><span class="p">]]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cluster_meta</span> <span class="o">=</span> <span class="n">ClusterMeta</span><span class="p">()</span><span class="o">.</span><span class="n">from_cData</span><span class="p">(</span><span class="n">netcluster</span><span class="o">.</span><span class="n">cData</span><span class="p">[</span><span class="n">c_id</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cluster_status</span> <span class="o">=</span> <span class="n">netcluster</span><span class="o">.</span><span class="n">sCuts</span><span class="p">[</span><span class="n">c_id</span><span class="p">]</span>
@@ -385,12 +415,47 @@
         <span class="k">return</span> <span class="bp">self</span></div>
 
 <div class="viewcode-block" id="Cluster.get_pixel_rates"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network_cluster.Cluster.get_pixel_rates">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixel_rates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all pixel rates</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of int</span>
+<span class="sd">            list of pixel rates</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">rate</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="Cluster.get_pixels_with_rate"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network_cluster.Cluster.get_pixels_with_rate">[docs]</a>    <span class="k">def</span> <span class="nf">get_pixels_with_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rate</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get pixels with rate</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        rate : int</span>
+<span class="sd">            pixel rate to select</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list of Pixel</span>
+<span class="sd">            list of pixels with selected rate</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">rate</span> <span class="o">==</span> <span class="n">rate</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="Cluster.get_sparse_map_by_rate"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network_cluster.Cluster.get_sparse_map_by_rate">[docs]</a>    <span class="k">def</span> <span class="nf">get_sparse_map_by_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;likelihood&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get sparse map for selected key</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        v_maps: scipy.sparse.coo_matrix</span>
+<span class="sd">            sparse map</span>
+<span class="sd">        t_starts: list of int</span>
+<span class="sd">            list of start times</span>
+<span class="sd">        dts: list of float</span>
+<span class="sd">            list of time steps</span>
+<span class="sd">        dfs: list of float</span>
+<span class="sd">            list of frequency steps</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">pixels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pixels</span>
 
         <span class="c1"># get the sort the rates</span>
@@ -428,6 +493,25 @@
         <span class="k">return</span> <span class="n">v_maps</span><span class="p">,</span> <span class="n">t_starts</span><span class="p">,</span> <span class="n">dts</span><span class="p">,</span> <span class="n">dfs</span></div>
 
 <div class="viewcode-block" id="Cluster.get_sparse_map"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network_cluster.Cluster.get_sparse_map">[docs]</a>    <span class="k">def</span> <span class="nf">get_sparse_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;likelihood&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get sparse map for selected key</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        key : str</span>
+<span class="sd">            key to select</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        mergerd_map: np.ndarray</span>
+<span class="sd">            merged sparse map for all resoltions</span>
+<span class="sd">        t_start: int</span>
+<span class="sd">            start time</span>
+<span class="sd">        dt: float</span>
+<span class="sd">            time step</span>
+<span class="sd">        df: float</span>
+<span class="sd">            frequency step</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">v_maps</span><span class="p">,</span> <span class="n">t_starts</span><span class="p">,</span> <span class="n">dts</span><span class="p">,</span> <span class="n">dfs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_sparse_map_by_rate</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
 
         <span class="n">min_dt</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">dts</span><span class="p">)</span>
@@ -487,6 +571,9 @@
 
 
 <div class="viewcode-block" id="ClusterMeta"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network_cluster.ClusterMeta">[docs]</a><span class="k">class</span> <span class="nc">ClusterMeta</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cluster meta data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;energy&#39;</span><span class="p">,</span> <span class="s1">&#39;energy_sky&#39;</span><span class="p">,</span> <span class="s1">&#39;like_net&#39;</span><span class="p">,</span> <span class="s1">&#39;net_ecor&#39;</span><span class="p">,</span> <span class="s1">&#39;norm_cor&#39;</span><span class="p">,</span> <span class="s1">&#39;net_null&#39;</span><span class="p">,</span> <span class="s1">&#39;net_ed&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;g_noise&#39;</span><span class="p">,</span> <span class="s1">&#39;like_sky&#39;</span><span class="p">,</span> <span class="s1">&#39;sky_cc&#39;</span><span class="p">,</span> <span class="s1">&#39;net_cc&#39;</span><span class="p">,</span> <span class="s1">&#39;sky_chi2&#39;</span><span class="p">,</span> <span class="s1">&#39;sub_net&#39;</span><span class="p">,</span> <span class="s1">&#39;sub_net2&#39;</span><span class="p">,</span>
                  <span class="s1">&#39;sky_stat&#39;</span><span class="p">,</span> <span class="s1">&#39;net_rho&#39;</span><span class="p">,</span> <span class="s1">&#39;net_rho2&#39;</span><span class="p">,</span> <span class="s1">&#39;theta&#39;</span><span class="p">,</span> <span class="s1">&#39;phi&#39;</span><span class="p">,</span> <span class="s1">&#39;iota&#39;</span><span class="p">,</span> <span class="s1">&#39;psi&#39;</span><span class="p">,</span> <span class="s1">&#39;ellipticity&#39;</span><span class="p">,</span>

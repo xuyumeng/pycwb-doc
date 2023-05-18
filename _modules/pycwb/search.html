@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.search &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>pycwb.search &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -49,7 +49,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> PyBurst
+            <a href="../../index.html" class="icon icon-home"> pycWB
           
 
           
@@ -81,8 +81,8 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
@@ -106,7 +106,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">PyBurst</a>
+          <a href="../../index.html">pycWB</a>
         
       </nav>
 
@@ -157,12 +157,12 @@
   <h1>Source code for pycwb.search</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">multiprocessing</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
 <span class="kn">import</span> <span class="nn">pycwb</span>
-<span class="kn">from</span> <span class="nn">pycwb.modules.plot.cluster_statistics</span> <span class="kn">import</span> <span class="n">plot_statistics</span>
-<span class="kn">from</span> <span class="nn">pycwb.modules.web_viewer.create</span> <span class="kn">import</span> <span class="n">create_web_viewer</span>
+<span class="kn">from</span> <span class="nn">pycwb.config</span> <span class="kn">import</span> <span class="n">Config</span>
 <span class="kn">from</span> <span class="nn">pycwb.types.network</span> <span class="kn">import</span> <span class="n">Network</span>
 <span class="kn">from</span> <span class="nn">pycwb.modules.logger</span> <span class="kn">import</span> <span class="n">logger_init</span>
-<span class="kn">from</span> <span class="nn">pycwb.config</span> <span class="kn">import</span> <span class="n">Config</span>
 <span class="kn">from</span> <span class="nn">pycwb.modules.plot</span> <span class="kn">import</span> <span class="n">plot_event_on_spectrogram</span>
 <span class="kn">from</span> <span class="nn">pycwb.modules.read_data</span> <span class="kn">import</span> <span class="n">read_from_job_segment</span><span class="p">,</span> <span class="n">generate_injection</span>
 <span class="kn">from</span> <span class="nn">pycwb.modules.data_conditioning</span> <span class="kn">import</span> <span class="n">data_conditioning</span>
@@ -171,8 +171,8 @@
 <span class="kn">from</span> <span class="nn">pycwb.modules.likelihood</span> <span class="kn">import</span> <span class="n">likelihood</span><span class="p">,</span> <span class="n">save_likelihood_data</span>
 <span class="kn">from</span> <span class="nn">pycwb.modules.job_segment</span> <span class="kn">import</span> <span class="n">create_job_segment_from_config</span>
 <span class="kn">from</span> <span class="nn">pycwb.modules.catalog</span> <span class="kn">import</span> <span class="n">create_catalog</span><span class="p">,</span> <span class="n">add_events_to_catalog</span>
-<span class="kn">from</span> <span class="nn">pycwb.types.job</span> <span class="kn">import</span> <span class="n">WaveSegment</span>
-<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.plot.cluster_statistics</span> <span class="kn">import</span> <span class="n">plot_statistics</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.web_viewer.create</span> <span class="kn">import</span> <span class="n">create_web_viewer</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
@@ -205,10 +205,13 @@
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Start time: </span><span class="si">{</span><span class="n">job_seg</span><span class="o">.</span><span class="n">start_time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;End time: </span><span class="si">{</span><span class="n">job_seg</span><span class="o">.</span><span class="n">end_time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duration: </span><span class="si">{</span><span class="n">job_seg</span><span class="o">.</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">job_seg</span><span class="o">.</span><span class="n">start_time</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">simulation</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">generate_injection</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">job_seg</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
+
+    <span class="c1"># read data</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">job_seg</span><span class="o">.</span><span class="n">frames</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">read_from_job_segment</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">job_seg</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">job_seg</span><span class="o">.</span><span class="n">injections</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">generate_injection</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">job_seg</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 
     <span class="c1"># data conditioning</span>
     <span class="n">tf_maps</span><span class="p">,</span> <span class="n">nRMS_list</span> <span class="o">=</span> <span class="n">data_conditioning</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>

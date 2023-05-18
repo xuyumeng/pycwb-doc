@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.messenger package &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
+  <title>Injections with Customized Waveform Generation &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="pycwb.modules package" href="pycwb.modules.html" />
-    <link rel="prev" title="pycwb.constants package" href="pycwb.constants.html" /> 
+    <link rel="next" title="Batch injection with Python Script" href="tutorial_batch_inj.html" />
+    <link rel="prev" title="Performing Multi-Injection" href="tutorial_multi_injection.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,32 +82,22 @@
               
             
             
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credit.html">Use of pycWB in Scientific Publications</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pycWB</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="pycwb.html">pycwb package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="pycwb.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="pycwb.config.html">pycwb.config package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pycwb.constants.html">pycwb.constants package</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">pycwb.messenger package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pycwb.modules.html">pycwb.modules package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pycwb.types.html">pycwb.types package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="pycwb.utils.html">pycwb.utils package</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="pycwb.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb.search">pycwb.search module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycwb.html#module-pycwb">Module contents</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorial</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="tutorial_search.html">Go deeper into pycWB.search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_injection.html">Step by step injection search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_multi_injection.html">Performing Multi-Injection</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Injections with Customized Waveform Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_batch_inj.html">Batch injection with Python Script</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
 <ul>
@@ -157,17 +147,15 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-          <li><a href="modules.html">pycwb</a> &raquo;</li>
+          <li><a href="tutorials.html">Tutorial</a> &raquo;</li>
         
-          <li><a href="pycwb.html">pycwb package</a> &raquo;</li>
-        
-      <li>pycwb.messenger package</li>
+      <li>Injections with Customized Waveform Generation</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/pycwb.messenger.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/tutorial_customized_wf_gen.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -180,22 +168,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="pycwb-messenger-package">
-<h1>pycwb.messenger package<a class="headerlink" href="#pycwb-messenger-package" title="Permalink to this heading">¶</a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
-</section>
-<section id="module-pycwb.messenger.messenger">
-<span id="pycwb-messenger-messenger-module"></span><h2>pycwb.messenger.messenger module<a class="headerlink" href="#module-pycwb.messenger.messenger" title="Permalink to this heading">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="pycwb.messenger.messenger.import_helper">
-<span class="sig-prename descclassname"><span class="pre">pycwb.messenger.messenger.</span></span><span class="sig-name descname"><span class="pre">import_helper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/messenger/messenger.html#import_helper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.messenger.messenger.import_helper" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</section>
-<section id="module-pycwb.messenger">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycwb.messenger" title="Permalink to this heading">¶</a></h2>
-</section>
+  <section id="injections-with-customized-waveform-generation">
+<span id="tutorial-customized-wf-gen"></span><h1>Injections with Customized Waveform Generation<a class="headerlink" href="#injections-with-customized-waveform-generation" title="Permalink to this heading">¶</a></h1>
+<p>working</p>
 </section>
 
 
@@ -206,10 +181,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pycwb.modules.html" class="btn btn-neutral float-right" title="pycwb.modules package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="tutorial_batch_inj.html" class="btn btn-neutral float-right" title="Batch injection with Python Script" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pycwb.constants.html" class="btn btn-neutral float-left" title="pycwb.constants package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tutorial_multi_injection.html" class="btn btn-neutral float-left" title="Performing Multi-Injection" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

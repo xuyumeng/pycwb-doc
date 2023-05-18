@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.modules.read_data.mdc &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>pycwb.modules.read_data.mdc &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -49,7 +49,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home"> PyBurst
+            <a href="../../../../index.html" class="icon icon-home"> pycWB
           
 
           
@@ -81,8 +81,8 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
@@ -106,7 +106,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../../index.html">PyBurst</a>
+          <a href="../../../../index.html">pycWB</a>
         
       </nav>
 
@@ -155,9 +155,11 @@
            <div itemprop="articleBody">
             
   <h1>Source code for pycwb.modules.read_data.mdc</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pycbc.noise</span>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pycbc.noise</span>
 <span class="kn">import</span> <span class="nn">pycbc.psd</span>
 <span class="kn">from</span> <span class="nn">pycbc.detector</span> <span class="kn">import</span> <span class="n">Detector</span>
+<span class="kn">from</span> <span class="nn">pycbc.types</span> <span class="kn">import</span> <span class="n">TimeSeries</span>
 <span class="kn">from</span> <span class="nn">pycbc.waveform</span> <span class="kn">import</span> <span class="n">get_td_waveform</span>
 <span class="kn">import</span> <span class="nn">lalsimulation</span> <span class="k">as</span> <span class="nn">lalsim</span>
 <span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">logging</span>
@@ -174,22 +176,27 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate noise from a given psd file or aLIGOZeroDetHighPower psd</span>
 
-<span class="sd">    :param psd: path to psd file</span>
-<span class="sd">    :type psd: str</span>
-<span class="sd">    :param f_low: low frequency cutoff</span>
-<span class="sd">    :type f_low: float</span>
-<span class="sd">    :param delta_f: frequency resolution</span>
-<span class="sd">    :type delta_f: float</span>
-<span class="sd">    :param duration: duration of the noise</span>
-<span class="sd">    :type duration: int</span>
-<span class="sd">    :param sample_rate: sample rate of the noise</span>
-<span class="sd">    :type sample_rate: float</span>
-<span class="sd">    :param seed: seed for the random number generator</span>
-<span class="sd">    :type seed: int</span>
-<span class="sd">    :param start_time: start time of the noise</span>
-<span class="sd">    :type start_time: int</span>
-<span class="sd">    :return: time series of noise</span>
-<span class="sd">    :rtype pycbc.types.timeseries.TimeSeries</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    psd : str</span>
+<span class="sd">        path to psd file</span>
+<span class="sd">    f_low : float</span>
+<span class="sd">        low frequency cutoff</span>
+<span class="sd">    delta_f : float</span>
+<span class="sd">        frequency resolution</span>
+<span class="sd">    duration : int</span>
+<span class="sd">        duration of the noise</span>
+<span class="sd">    sample_rate : float</span>
+<span class="sd">        sample rate of the noise</span>
+<span class="sd">    seed : int or None</span>
+<span class="sd">        seed for the random number generator</span>
+<span class="sd">    start_time : int</span>
+<span class="sd">        start time of the noise</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pycbc.types.timeseries.TimeSeries</span>
+<span class="sd">        time series of noise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># generate noise</span>
     <span class="n">flen</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sample_rate</span> <span class="o">/</span> <span class="n">delta_f</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
@@ -376,7 +383,7 @@
     <span class="k">return</span> <span class="n">injected</span></div>
 
 
-<div class="viewcode-block" id="generate_injection"><a class="viewcode-back" href="../../../../pycwb.modules.read_data.html#pycwb.modules.read_data.mdc.generate_injection">[docs]</a><span class="k">def</span> <span class="nf">generate_injection</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">job_seg</span><span class="p">):</span>
+<div class="viewcode-block" id="generate_injection"><a class="viewcode-back" href="../../../../pycwb.modules.read_data.html#pycwb.modules.read_data.mdc.generate_injection">[docs]</a><span class="k">def</span> <span class="nf">generate_injection</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">job_seg</span><span class="p">,</span> <span class="n">strain</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A sample function to generate injection from pycbc and save it to gwf files</span>
 <span class="sd">    with the detectors specified in the config</span>
@@ -386,21 +393,37 @@
 <span class="sd">    :return: list of strains for each detector</span>
 <span class="sd">    :rtype: list[pycbc.types.timeseries.TimeSeries]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">ifo</span><span class="p">,</span> <span class="n">injection</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">ifo</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">injection</span>
+    <span class="n">ifos</span> <span class="o">=</span> <span class="n">job_seg</span><span class="o">.</span><span class="n">ifos</span>
 
     <span class="c1"># load noise</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Generating noise for </span><span class="si">{</span><span class="n">ifo</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Generating noise for </span><span class="si">{</span><span class="n">ifos</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="c1"># load seeds from config, if not specified, use random seeds</span>
-    <span class="n">seeds</span> <span class="o">=</span> <span class="n">injection</span><span class="p">[</span><span class="s1">&#39;segment&#39;</span><span class="p">][</span><span class="s1">&#39;seeds&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;seeds&#39;</span> <span class="ow">in</span> <span class="n">injection</span><span class="p">[</span><span class="s1">&#39;segment&#39;</span><span class="p">]</span> <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">injected</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="c1"># generate noise</span>
-    <span class="n">noise</span> <span class="o">=</span> <span class="p">[</span><span class="n">generate_noise</span><span class="p">(</span><span class="n">f_low</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">inRate</span><span class="p">,</span>
-                            <span class="n">duration</span><span class="o">=</span><span class="n">injection</span><span class="p">[</span><span class="s1">&#39;segment&#39;</span><span class="p">][</span><span class="s1">&#39;end&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">injection</span><span class="p">[</span><span class="s1">&#39;segment&#39;</span><span class="p">][</span><span class="s1">&#39;start&#39;</span><span class="p">],</span>
-                            <span class="n">start_time</span><span class="o">=</span><span class="n">injection</span><span class="p">[</span><span class="s1">&#39;segment&#39;</span><span class="p">][</span><span class="s1">&#39;start&#39;</span><span class="p">],</span> <span class="n">seed</span><span class="o">=</span><span class="n">seeds</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ifo</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ifo</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="n">strain</span><span class="p">:</span>
+        <span class="n">injected</span> <span class="o">=</span> <span class="n">strain</span>
 
-    <span class="n">injected</span> <span class="o">=</span> <span class="n">noise</span>
+    <span class="k">if</span> <span class="n">job_seg</span><span class="o">.</span><span class="n">noise</span><span class="p">:</span>
+        <span class="c1"># load seeds from config, if not specified, use random seeds</span>
+        <span class="n">seeds</span> <span class="o">=</span> <span class="n">job_seg</span><span class="o">.</span><span class="n">noise</span><span class="p">[</span><span class="s1">&#39;seeds&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;seeds&#39;</span> <span class="ow">in</span> <span class="n">job_seg</span><span class="o">.</span><span class="n">noise</span> <span class="k">else</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
+
+        <span class="c1"># generate noise</span>
+        <span class="n">noises</span> <span class="o">=</span> <span class="p">[</span><span class="n">generate_noise</span><span class="p">(</span><span class="n">f_low</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">sample_rate</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">inRate</span><span class="p">,</span>
+                                <span class="n">duration</span><span class="o">=</span><span class="n">job_seg</span><span class="o">.</span><span class="n">duration</span><span class="p">,</span>
+                                <span class="n">start_time</span><span class="o">=</span><span class="n">job_seg</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seeds</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ifo</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ifos</span><span class="p">)]</span>
+
+        <span class="k">if</span> <span class="n">injected</span><span class="p">:</span>
+            <span class="c1"># inject signal into noise</span>
+            <span class="n">injected</span> <span class="o">=</span> <span class="p">[</span><span class="n">noises</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">add_into</span><span class="p">(</span><span class="n">injected</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ifos</span><span class="p">))]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">injected</span> <span class="o">=</span> <span class="n">noises</span>
+
+    <span class="c1"># generate zero noise if injected is None</span>
+    <span class="k">if</span> <span class="n">injected</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">injected</span> <span class="o">=</span> <span class="p">[</span><span class="n">TimeSeries</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">job_seg</span><span class="o">.</span><span class="n">duration</span> <span class="o">*</span> <span class="n">config</span><span class="o">.</span><span class="n">inRate</span><span class="p">)),</span> <span class="n">delta_t</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">config</span><span class="o">.</span><span class="n">inRate</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">ifo</span> <span class="ow">in</span> <span class="n">ifos</span><span class="p">]</span>
+
     <span class="k">for</span> <span class="n">injection</span> <span class="ow">in</span> <span class="n">job_seg</span><span class="o">.</span><span class="n">injections</span><span class="p">:</span>
         <span class="c1">##############################</span>
         <span class="c1"># setting default values</span>
@@ -413,7 +436,7 @@
             <span class="n">approximant</span> <span class="o">=</span> <span class="s1">&#39;IMRPhenomXPHM&#39;</span>
 
         <span class="n">injection</span><span class="p">[</span><span class="s1">&#39;approximant&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">approximant</span>
-        <span class="n">injection</span><span class="p">[</span><span class="s1">&#39;delta_t&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">noise</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sample_rate</span>
+        <span class="n">injection</span><span class="p">[</span><span class="s1">&#39;delta_t&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">noises</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sample_rate</span>
         <span class="n">injection</span><span class="p">[</span><span class="s1">&#39;f_lower&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">fLow</span> <span class="k">if</span> <span class="s1">&#39;f_lower&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">injection</span> <span class="k">else</span> <span class="n">injection</span><span class="p">[</span><span class="s1">&#39;f_lower&#39;</span><span class="p">]</span>
 
         <span class="n">declination</span> <span class="o">=</span> <span class="n">injection</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;dec&#39;</span> <span class="ow">in</span> <span class="n">injection</span> <span class="k">else</span> <span class="mf">0.0</span>
@@ -421,7 +444,7 @@
         <span class="n">polarization</span> <span class="o">=</span> <span class="n">injection</span><span class="p">[</span><span class="s1">&#39;pol&#39;</span><span class="p">]</span> <span class="k">if</span> <span class="s1">&#39;pol&#39;</span> <span class="ow">in</span> <span class="n">injection</span> <span class="k">else</span> <span class="mf">0.0</span>
         <span class="n">gps_end_time</span> <span class="o">=</span> <span class="n">injection</span><span class="p">[</span><span class="s1">&#39;gps_time&#39;</span><span class="p">]</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Generating injection for </span><span class="si">{</span><span class="n">ifo</span><span class="si">}</span><span class="s1"> with parameters: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">injection</span><span class="si">}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Generating injection for </span><span class="si">{</span><span class="n">ifos</span><span class="si">}</span><span class="s1"> with parameters: </span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">injection</span><span class="si">}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
         <span class="c1">##############################</span>
         <span class="c1"># generating injection</span>
@@ -448,12 +471,12 @@
             <span class="n">hp</span><span class="p">,</span> <span class="n">hc</span> <span class="o">=</span> <span class="n">get_td_waveform</span><span class="p">(</span><span class="o">**</span><span class="n">injection</span><span class="p">)</span>
 
         <span class="kn">from</span> <span class="nn">pycwb.modules.read_data</span> <span class="kn">import</span> <span class="n">project_to_detector</span>
-        <span class="n">strain</span> <span class="o">=</span> <span class="n">project_to_detector</span><span class="p">(</span><span class="n">hp</span><span class="p">,</span> <span class="n">hc</span><span class="p">,</span> <span class="n">right_ascension</span><span class="p">,</span> <span class="n">declination</span><span class="p">,</span> <span class="n">polarization</span><span class="p">,</span> <span class="n">ifo</span><span class="p">,</span> <span class="n">gps_end_time</span><span class="p">)</span>
+        <span class="n">strain</span> <span class="o">=</span> <span class="n">project_to_detector</span><span class="p">(</span><span class="n">hp</span><span class="p">,</span> <span class="n">hc</span><span class="p">,</span> <span class="n">right_ascension</span><span class="p">,</span> <span class="n">declination</span><span class="p">,</span> <span class="n">polarization</span><span class="p">,</span> <span class="n">ifos</span><span class="p">,</span> <span class="n">gps_end_time</span><span class="p">)</span>
 
         <span class="c1"># inject signal into noise and convert to wavearray</span>
-        <span class="n">injected</span> <span class="o">=</span> <span class="p">[</span><span class="n">injected</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">add_into</span><span class="p">(</span><span class="n">strain</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ifo</span><span class="p">))]</span>
+        <span class="n">injected</span> <span class="o">=</span> <span class="p">[</span><span class="n">injected</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">add_into</span><span class="p">(</span><span class="n">strain</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ifos</span><span class="p">))]</span>
 
-    <span class="k">return</span> <span class="p">[</span><span class="n">check_and_resample</span><span class="p">(</span><span class="n">injected</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">config</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ifo</span><span class="p">))]</span></div>
+    <span class="k">return</span> <span class="p">[</span><span class="n">check_and_resample</span><span class="p">(</span><span class="n">injected</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">config</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ifos</span><span class="p">))]</span></div>
 </pre></div>
 
            </div>

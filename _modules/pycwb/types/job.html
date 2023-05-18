@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.types.job &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>pycwb.types.job &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -49,7 +49,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> PyBurst
+            <a href="../../../index.html" class="icon icon-home"> pycWB
           
 
           
@@ -81,8 +81,8 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
@@ -106,7 +106,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">PyBurst</a>
+          <a href="../../../index.html">pycWB</a>
         
       </nav>
 
@@ -160,26 +160,38 @@
 <span class="sd">    Class to store the metadata of a wave segment for analysis, which contains the index of the segment,</span>
 <span class="sd">    the start and end time of the segment, and the list of frame files that are within the segment.</span>
 
-<span class="sd">    :param index: index of the segment</span>
-<span class="sd">    :type index: int</span>
-<span class="sd">    :param start_time: start time of the segment</span>
-<span class="sd">    :type start_time: float</span>
-<span class="sd">    :param end_time: end time of the segment</span>
-<span class="sd">    :type end_time: float</span>
-<span class="sd">    :param frames: list of frame files that are within the segment, defaults to None</span>
-<span class="sd">    :type frames: list[FrameFile], optional</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    index: int</span>
+<span class="sd">        index of the segment</span>
+<span class="sd">    ifos: list of str</span>
+<span class="sd">        list of interferometers</span>
+<span class="sd">    start_time: float</span>
+<span class="sd">        start time of the segment</span>
+<span class="sd">    end_time: float</span>
+<span class="sd">        end time of the segment</span>
+<span class="sd">    frames: list, optional</span>
+<span class="sd">        list of frame files that are within the segment</span>
+<span class="sd">    noise: list, optional</span>
+<span class="sd">        list of noise configuration that are within the segment</span>
+<span class="sd">    injections: list, optional</span>
+<span class="sd">        list of injections that are within the segment</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="s1">&#39;frames&#39;</span><span class="p">,</span> <span class="s1">&#39;injections&#39;</span><span class="p">)</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;ifos&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="s1">&#39;frames&#39;</span><span class="p">,</span>  <span class="s1">&#39;noise&#39;</span><span class="p">,</span> <span class="s1">&#39;injections&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">injections</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">ifos</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">injections</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1">#: index of the segment</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="c1">#: list of interferometers</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ifos</span> <span class="o">=</span> <span class="n">ifos</span>
         <span class="c1">#: start time of the segment</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span>
         <span class="c1">#: end time of the segment</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">end_time</span><span class="p">)</span>
         <span class="c1">#: list of frame files that are within the segment</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">frames</span> <span class="o">=</span> <span class="n">frames</span> <span class="ow">or</span> <span class="p">[]</span>
+        <span class="c1">#: list of noise configuration that are within the segment</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">noise</span> <span class="o">=</span> <span class="n">noise</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="c1">#: list of injections that are within the segment</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">injections</span> <span class="o">=</span> <span class="n">injections</span> <span class="ow">or</span> <span class="p">[]</span>
 
@@ -204,7 +216,19 @@
                 <span class="s1">&#39;start_time&#39;</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span>
                 <span class="s1">&#39;duration&#39;</span><span class="p">:</span> <span class="n">frame</span><span class="o">.</span><span class="n">duration</span>
             <span class="p">}</span> <span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">frames</span><span class="p">]</span>
-        <span class="p">}</span></div></div>
+        <span class="p">}</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">duration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Duration of the segment.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        duration: float</span>
+<span class="sd">            duration of the segment</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span></div>
 
 
 <div class="viewcode-block" id="SLag"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.job.SLag">[docs]</a><span class="k">class</span> <span class="nc">SLag</span><span class="p">:</span>
@@ -236,14 +260,16 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class to store the metadata of a frame file, which contains the ifo, the path, the start time, and the duration.</span>
 
-<span class="sd">    :param ifo: name of the interferometer</span>
-<span class="sd">    :type ifo: str</span>
-<span class="sd">    :param path: path of the frame file</span>
-<span class="sd">    :type path: str</span>
-<span class="sd">    :param start_time: start time of the frame file</span>
-<span class="sd">    :type start_time: float</span>
-<span class="sd">    :param duration: duration of the frame file</span>
-<span class="sd">    :type duration: float</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ifo: str</span>
+<span class="sd">        name of the interferometer</span>
+<span class="sd">    path: str</span>
+<span class="sd">        path of the frame file</span>
+<span class="sd">    start_time: float</span>
+<span class="sd">        start time of the frame file</span>
+<span class="sd">    duration: float</span>
+<span class="sd">        duration of the frame file</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ifo&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">,</span> <span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="s1">&#39;duration&#39;</span><span class="p">)</span>
 
@@ -265,8 +291,11 @@
     <span class="k">def</span> <span class="nf">end_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get the end time of the frame file.</span>
-<span class="sd">        :return: end time of the frame file</span>
-<span class="sd">        :rtype: float</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        end_time: float</span>
+<span class="sd">            end time of the frame file</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">duration</span></div>
 </pre></div>

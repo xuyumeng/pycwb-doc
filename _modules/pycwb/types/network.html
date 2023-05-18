@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.types.network &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>pycwb.types.network &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -49,7 +49,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> PyBurst
+            <a href="../../../index.html" class="icon icon-home"> pycWB
           
 
           
@@ -81,8 +81,8 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
@@ -106,7 +106,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">PyBurst</a>
+          <a href="../../../index.html">pycWB</a>
         
       </nav>
 
@@ -168,10 +168,16 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class to hold information about a network of detectors.</span>
 
-<span class="sd">    :param detectors: list of detectors</span>
-<span class="sd">    :type detectors: list[Detector]</span>
-<span class="sd">    :param ref_ifo: reference detector</span>
-<span class="sd">    :type ref_ifo: str</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    config : Config</span>
+<span class="sd">        Configuration object.</span>
+<span class="sd">    tf_list : list of TimeFrequencySeries</span>
+<span class="sd">        List of time-frequency series for each detector.</span>
+<span class="sd">    nRMS_list : list of TimeFrequencySeries</span>
+<span class="sd">        List of noise RMS time-frequency series for each detector.</span>
+<span class="sd">    silent : bool, optional</span>
+<span class="sd">        If True, disable logging when network is created for temporary use.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">tf_list</span><span class="p">,</span> <span class="n">nRMS_list</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -215,6 +221,16 @@
                             <span class="n">config</span><span class="o">.</span><span class="n">lagBuffer</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">lagMode</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">lagSite</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Network.load_strains"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.load_strains">[docs]</a>    <span class="k">def</span> <span class="nf">load_strains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">,</span> <span class="n">nRMS_list</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load time-frequency maps and noise RMS time-frequency maps into cwb network.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        tf_maps : list of TimeFrequencySeries</span>
+<span class="sd">            List of time-frequency series for each detector.</span>
+<span class="sd">        nRMS_list : list of TimeFrequencySeries</span>
+<span class="sd">            List of noise RMS time-frequency series for each detector.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ifo_size</span><span class="p">):</span>
             <span class="n">ifo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">getifo</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
             <span class="n">tf_map</span> <span class="o">=</span> <span class="n">convert_to_wseries</span><span class="p">(</span><span class="n">tf_maps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
@@ -224,6 +240,26 @@
             <span class="n">ifo</span><span class="o">.</span><span class="n">nRMS</span> <span class="o">=</span> <span class="n">nRMS</span></div>
 
 <div class="viewcode-block" id="Network.set_time_shift"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.set_time_shift">[docs]</a>    <span class="k">def</span> <span class="nf">set_time_shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lag_size</span><span class="p">,</span> <span class="n">lag_step</span><span class="p">,</span> <span class="n">lag_off</span><span class="p">,</span> <span class="n">lag_max</span><span class="p">,</span> <span class="n">lag_buffer</span><span class="p">,</span> <span class="n">lag_mode</span><span class="p">,</span> <span class="n">lag_site</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set time shift parameters for cwb network</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        lag_size : int</span>
+<span class="sd">            Size of time shift.</span>
+<span class="sd">        lag_step : int</span>
+<span class="sd">            Step size of time shift.</span>
+<span class="sd">        lag_off : int</span>
+<span class="sd">            Offset of time shift.</span>
+<span class="sd">        lag_max : int</span>
+<span class="sd">            Maximum time shift.</span>
+<span class="sd">        lag_buffer : int</span>
+<span class="sd">            Buffer size of time shift.</span>
+<span class="sd">        lag_mode : int</span>
+<span class="sd">            Mode of time shift.</span>
+<span class="sd">        lag_site : int</span>
+<span class="sd">            Site of time shift.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">lag_buffer</span><span class="p">:</span>
             <span class="n">lags</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">setTimeShifts</span><span class="p">(</span><span class="n">lag_size</span><span class="p">,</span> <span class="n">lag_step</span><span class="p">,</span> <span class="n">lag_off</span><span class="p">,</span> <span class="n">lag_max</span><span class="p">,</span> <span class="n">lag_buffer</span><span class="p">,</span> <span class="n">lag_mode</span><span class="p">,</span> <span class="n">lag_site</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -232,25 +268,77 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;number of time lags: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">lags</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Network.add_detector"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.add_detector">[docs]</a>    <span class="k">def</span> <span class="nf">add_detector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">detector</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add cwb detector to cwb network.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        detector : str</span>
+<span class="sd">            Name of detector.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">ifo</span> <span class="o">=</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">detector</span><span class="p">(</span><span class="n">detector</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ifo</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Network.add_wavelet"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.add_wavelet">[docs]</a>    <span class="k">def</span> <span class="nf">add_wavelet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wavelet</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add wavelet to cwb network.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        wavelet : WDM</span>
+<span class="sd">            Wavelet object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">wavelet</span><span class="o">.</span><span class="n">wavelet</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Network.get_ifo"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.get_ifo">[docs]</a>    <span class="k">def</span> <span class="nf">get_ifo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ifo</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get cwb detector from network.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ifo : int</span>
+<span class="sd">            Index of detector.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">getifo</span><span class="p">(</span><span class="n">ifo</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Network.set_veto"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.set_veto">[docs]</a>    <span class="k">def</span> <span class="nf">set_veto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">veto</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set veto for cwb network.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        veto : float</span>
+<span class="sd">            Time window for veto.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">setVeto</span><span class="p">(</span><span class="n">veto</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Network.threshold"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.threshold">[docs]</a>    <span class="k">def</span> <span class="nf">threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bpp</span><span class="p">,</span> <span class="n">alp</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set threshold for cwb network.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        bpp : float</span>
+<span class="sd">            selected fraction of LTF pixels assuming Gaussian noise</span>
+<span class="sd">        alp : float, optional</span>
+<span class="sd">            Gamma distribution shape parameter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">alp</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">THRESHOLD</span><span class="p">(</span><span class="n">bpp</span><span class="p">,</span> <span class="n">alp</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">THRESHOLD</span><span class="p">(</span><span class="n">bpp</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Network.get_network_pixels"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.get_network_pixels">[docs]</a>    <span class="k">def</span> <span class="nf">get_network_pixels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lag</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get network pixels from cwb network.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        lag : int</span>
+<span class="sd">            lag index</span>
+<span class="sd">        threshold : float</span>
+<span class="sd">            threshold value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">getNetworkPixels</span><span class="p">(</span><span class="n">lag</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span></div>
 
         <span class="c1"># TODO: return python class?</span>
@@ -269,18 +357,40 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_cluster</span><span class="p">(</span><span class="n">lag</span><span class="p">)</span><span class="o">.</span><span class="n">cluster</span><span class="p">(</span><span class="n">kt</span><span class="p">,</span> <span class="n">kf</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Network.sub_net_cut"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.sub_net_cut">[docs]</a>    <span class="k">def</span> <span class="nf">sub_net_cut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lag</span><span class="p">,</span> <span class="n">sub_net</span><span class="p">,</span> <span class="n">sub_cut</span><span class="p">,</span> <span class="n">sub_norm</span><span class="p">):</span>
+<div class="viewcode-block" id="Network.sub_net_cut"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.sub_net_cut">[docs]</a>    <span class="k">def</span> <span class="nf">sub_net_cut</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lag</span><span class="p">,</span> <span class="n">sub_net</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">sub_cut</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">sub_norm</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        apply subnetwork cut</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        lag : int</span>
+<span class="sd">            lag index</span>
+<span class="sd">        sub_net : float</span>
+<span class="sd">            sub network threshold, default 0.6</span>
+<span class="sd">        sub_cut : float</span>
+<span class="sd">            sub network threshold in the skyloop, default 0.33</span>
+<span class="sd">        sub_norm : float</span>
+<span class="sd">            norm (Lo/Lt) sub network threshold, default 0.0</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+<span class="sd">            number of processed pixels</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">subNetCut</span><span class="p">(</span><span class="n">lag</span><span class="p">,</span> <span class="n">sub_net</span><span class="p">,</span> <span class="n">sub_cut</span><span class="p">,</span> <span class="n">sub_norm</span><span class="p">,</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">nullptr</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Network.likelihoodWP"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.likelihoodWP">[docs]</a>    <span class="k">def</span> <span class="nf">likelihoodWP</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">lag</span><span class="p">,</span> <span class="n">search</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Likelihood analysis with packets</span>
 
-<span class="sd">        :param mode: analysis mode</span>
-<span class="sd">        :type mode: str</span>
-<span class="sd">        :param lag: lag index</span>
-<span class="sd">        :param search: if Search = &quot;&quot;/cbc/bbh/imbhb then mchirp is reconstructed</span>
-<span class="sd">        :return:</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mode : str</span>
+<span class="sd">            analysis mode</span>
+<span class="sd">        lag : int</span>
+<span class="sd">            lag index</span>
+<span class="sd">        search : str</span>
+<span class="sd">            if Search = &quot;&quot;/cbc/bbh/imbhb then mchirp is reconstructed</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">likelihoodWP</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">lag</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">nullptr</span><span class="p">,</span> <span class="n">search</span><span class="p">)</span></div>
 
@@ -288,11 +398,12 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        2G likelihood analysis</span>
 
-<span class="sd">        :param mode: analysis mode</span>
-<span class="sd">        :type mode: str</span>
-<span class="sd">        :param lag: lag index</span>
-<span class="sd">        :param search: if Search = &quot;&quot;/cbc/bbh/imbhb then mchirp is reconstructed</span>
-<span class="sd">        :return:</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mode : str</span>
+<span class="sd">            analysis mode</span>
+<span class="sd">        lag : int</span>
+<span class="sd">            lag index</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">likelihood2G</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">lag</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ROOT</span><span class="o">.</span><span class="n">nullptr</span><span class="p">)</span></div>
 
@@ -300,8 +411,10 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        get the maximum delay between the two detectors</span>
 
-<span class="sd">        :return: maximum delay</span>
-<span class="sd">        :rtype: float</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            maximum delay</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">getDelay</span><span class="p">(</span><span class="s1">&#39;MAX&#39;</span><span class="p">)</span></div>
 
@@ -309,32 +422,64 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">setDelayIndex</span><span class="p">(</span><span class="n">rate</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Network.get_cluster"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.get_cluster">[docs]</a>    <span class="k">def</span> <span class="nf">get_cluster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lag</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get cwb netcluster from network</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        lag : int</span>
+<span class="sd">            lag index</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        `ROOT.netcluster`</span>
+<span class="sd">            cwb netcluster</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">getwc</span><span class="p">(</span><span class="n">lag</span><span class="p">)</span></div>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">ifo_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get number of detectors in network</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+<span class="sd">            number of detectors</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">ifoListSize</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">pattern</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get pattern of network</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">pattern</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">nLag</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get number of lags in network</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">nLag</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">n_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        get number of events in network</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">events</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Network.update_sky_map"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.network.Network.update_sky_map">[docs]</a>    <span class="k">def</span> <span class="nf">update_sky_map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">skyres</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Update skymap from configuration, if sky resolution is not specified, use the one in configuration</span>
 
-<span class="sd">        :param config: user configuration</span>
-<span class="sd">        :type config: Config</span>
-<span class="sd">        :param skyres: sky resolution</span>
-<span class="sd">        :type skyres: int, optional</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        config : Config</span>
+<span class="sd">            user configuration</span>
+<span class="sd">        skyres : int, optional</span>
+<span class="sd">            sky resolution</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">skyres</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">net</span><span class="o">.</span><span class="n">setSkyMaps</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">skyres</span><span class="p">))</span>
@@ -351,11 +496,12 @@
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Restore skymap from configuration, if sky resolution is not specified, use the one in configuration</span>
 
-<span class="sd">        :param config: user configuration</span>
-<span class="sd">        :type config: Config</span>
-<span class="sd">        :param skyres: sky resolution</span>
-<span class="sd">        :type skyres: int, optional</span>
-<span class="sd">        :return: None</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        config : Config</span>
+<span class="sd">            user configuration</span>
+<span class="sd">        skyres : int, optional</span>
+<span class="sd">            sky resolution</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">skyres</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">healpix</span><span class="p">:</span>
@@ -411,12 +557,16 @@
 <span class="sd">          sky_index : is the sky grid index \n</span>
 <span class="sd">          value     : if !=0 the index sky location is used for the analysis \n</span>
 
-<span class="sd">        :param config: Config object</span>
-<span class="sd">        :param net: network object</span>
-<span class="sd">        :param options: used to define the earth/celestial SkyMap \n</span>
-<span class="sd">        :param skycoord: sky coordinates : &#39;e&#39;=earth, &#39;c&#39;=celestial</span>
-<span class="sd">        :param skyres: sky resolution : def=-1 -&gt; use the value defined in parameters (angle,healpix)</span>
-<span class="sd">        :return:</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        config : Config</span>
+<span class="sd">            user configuration</span>
+<span class="sd">        options : str</span>
+<span class="sd">            used to define the earth/celestial SkyMap</span>
+<span class="sd">        skycoord : str</span>
+<span class="sd">            sky coordinates : &#39;e&#39;=earth, &#39;c&#39;=celestial</span>
+<span class="sd">        skyres : float, optional</span>
+<span class="sd">            sky resolution, default is the one in configuration</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">skycoord</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;cwb::SetSkyMask - Error : wrong input sky coordinates &quot;</span>

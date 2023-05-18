@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation Guide &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>Installation Guide &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Use of PyBurst in Scientific Publications" href="credit.html" />
-    <link rel="prev" title="Welcome to PyBurst’s documentation!" href="index.html" /> 
+    <link rel="next" title="Use of pycWB in Scientific Publications" href="credit.html" />
+    <link rel="prev" title="Welcome to pycWB’s documentation!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +52,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> PyBurst
+            <a href="index.html" class="icon icon-home"> pycWB
           
 
           
@@ -85,15 +85,15 @@
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Guide</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation-with-conda-pip">Installation with Conda/Pip</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-from-source-with-conda">Installing from Source with Conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-from-source-with-conda-and-pip">Installing from Source with Conda and Pip</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-scenarios">Other scenarios</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#building-the-documentation">Building the Documentation</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
@@ -117,7 +117,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">PyBurst</a>
+          <a href="index.html">pycWB</a>
         
       </nav>
 
@@ -171,10 +171,16 @@
 <span id="installing-pycwb"></span><h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Permalink to this heading">¶</a></h1>
 <section id="installation-with-conda-pip">
 <h2>Installation with Conda/Pip<a class="headerlink" href="#installation-with-conda-pip" title="Permalink to this heading">¶</a></h2>
-<p>The installation with conda/pip is not done yet.</p>
+<p>The project is not yet available on PyPI or conda-forge, but you can install it
+from source with pip.</p>
 </section>
-<section id="installing-from-source-with-conda">
-<h2>Installing from Source with Conda<a class="headerlink" href="#installing-from-source-with-conda" title="Permalink to this heading">¶</a></h2>
+<section id="installing-from-source-with-conda-and-pip">
+<h2>Installing from Source with Conda and Pip<a class="headerlink" href="#installing-from-source-with-conda-and-pip" title="Permalink to this heading">¶</a></h2>
+<p>We recommend installing pycwb from source with conda environment,
+because all the dependencies can be installed with conda and some of them are not available in pip.
+pycWB can be installed with pip from source.</p>
+<p>The command <cite>make install</cite> will help you pack the source code and install
+it with pip.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n pycwb python
 conda activate pycwb
 conda install -c conda-forge <span class="nv">root</span><span class="o">=</span><span class="m">6</span>.26.10 <span class="nv">healpix_cxx</span><span class="o">=</span><span class="m">3</span>.81 nds2-client python-nds2-client lalsuite setuptools_scm
@@ -212,10 +218,10 @@ make doc
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="credit.html" class="btn btn-neutral float-right" title="Use of PyBurst in Scientific Publications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="credit.html" class="btn btn-neutral float-right" title="Use of pycWB in Scientific Publications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to PyBurst’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to pycWB’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

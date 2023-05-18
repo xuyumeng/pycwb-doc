@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Go deeper into PyBurst.search &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>Go deeper into pycWB.search &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -52,7 +52,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> PyBurst
+            <a href="index.html" class="icon icon-home"> pycWB
           
 
           
@@ -84,15 +84,22 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorial</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Go deeper into PyBurst.search</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Go deeper into pycWB.search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#job-control">Job Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-analysis">Data Analysis</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="tutorial_injection.html">Step by step injection search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_multi_injection.html">Performing Multi-Injection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_customized_wf_gen.html">Injections with Customized Waveform Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial_batch_inj.html">Batch injection with Python Script</a></li>
 </ul>
 </li>
 </ul>
@@ -113,7 +120,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">PyBurst</a>
+          <a href="index.html">pycWB</a>
         
       </nav>
 
@@ -146,7 +153,7 @@
         
           <li><a href="tutorials.html">Tutorial</a> &raquo;</li>
         
-      <li>Go deeper into PyBurst.search</li>
+      <li>Go deeper into pycWB.search</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -165,14 +172,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="go-deeper-into-pyburst-search">
-<span id="tutorial-search"></span><h1>Go deeper into PyBurst.search<a class="headerlink" href="#go-deeper-into-pyburst-search" title="Permalink to this heading">¶</a></h1>
-<p>Initialize logger with log_file and log_level, if log_file is None, log to stdout.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.utils</span> <span class="kn">import</span> <span class="n">logger_init</span>
+  <section id="go-deeper-into-pycwb-search">
+<span id="tutorial-search"></span><h1>Go deeper into pycWB.search<a class="headerlink" href="#go-deeper-into-pycwb-search" title="Permalink to this heading">¶</a></h1>
+<p>Although you can use each module in pycWB freely, the module <a class="reference internal" href="pycwb.html#module-pycwb.search" title="pycwb.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">pycwb.search()</span></code></a> provides
+a easier way to manage the job and run the search with the input from a yaml file if you just want to
+run the search with default modules.</p>
+<p>We can go deeper into the search function to see how it works. The search function is composed of
+three parts: job generation and data analysis</p>
+<section id="job-control">
+<h2>Job Control<a class="headerlink" href="#job-control" title="Permalink to this heading">¶</a></h2>
+<p>The job control part is done by <a class="reference internal" href="pycwb.html#pycwb.search.search" title="pycwb.search.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">pycwb.search.search()</span></code></a>.</p>
+<p>Initialize logger with log_file and log_level, if log_file is None, log will be printed to stdout.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.logger</span> <span class="kn">import</span> <span class="n">logger_init</span>
 <span class="n">logger_init</span><span class="p">(</span><span class="n">log_file</span><span class="p">,</span> <span class="n">log_level</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>set env HOME_WAT_FILTERS to the path of xdmXTalk. PyBurst contains a sample xdmXTalk file in vendor folder.</p>
+<p>set env HOME_WAT_FILTERS to the path of xdmXTalk. pycWB contains a sample xdmXTalk file in vendor folder.
+You can also use your own xdmXTalk file.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">pycwb</span>
 
 <span class="n">pycwb_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">pycwb</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
@@ -184,23 +200,35 @@
 <span class="n">user_parameters</span> <span class="o">=</span> <span class="n">Config</span><span class="p">(</span><span class="s1">&#39;./user_parameters.yaml&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>then, create directories for output files.</p>
+<p>then, it will create directories for output files.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">outputDir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">outputDir</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">logDir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">logDir</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>find the job segments from the config settings and create a <a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment" title="pycwb.types.job.WaveSegment"><code class="xref py py-class docutils literal notranslate"><span class="pre">WaveSegment</span></code></a> object for each segment.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.read_data</span> <span class="kn">import</span> <span class="n">read_from_job_segment</span>
+<p>generate the job segments from the config settings and create a <a class="reference internal" href="pycwb.types.html#pycwb.types.job.WaveSegment" title="pycwb.types.job.WaveSegment"><code class="xref py py-class docutils literal notranslate"><span class="pre">WaveSegment</span></code></a> object for each segment.
+If the injections are set in the config, the injections will be added to the job segments according to your injection type.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.job_segment</span> <span class="kn">import</span> <span class="n">create_job_segment_from_config</span>
 
-<span class="n">job_segments</span> <span class="o">=</span> <span class="n">select_job_segment</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">dq_files</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">ifo</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">frFiles</span><span class="p">,</span>
-                                  <span class="n">config</span><span class="o">.</span><span class="n">segLen</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">segMLS</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">segEdge</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">segOverlap</span><span class="p">,</span>
-                                  <span class="n">config</span><span class="o">.</span><span class="n">rateANA</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">l_high</span><span class="p">)</span>
+<span class="n">job_segments</span> <span class="o">=</span> <span class="n">create_job_segment_from_config</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>analyze the job segments with <a class="reference internal" href="pycwb.html#pycwb.search.analyze_job_segment" title="pycwb.search.analyze_job_segment"><code class="xref py py-func docutils literal notranslate"><span class="pre">pycwb.search.analyze_job_segment()</span></code></a>.
-To avoid memory leak, the function is called in a subprocess.</p>
+<p>A catalog file will be created in the output folder. The catalog file is a json file containing all the events found
+in the search. The catalog file will be updated after each job segment is analyzed. A web viewer will also be created in the output folder. It is a web app that can be used to view the events in the
+output folder. The web viewer is created by copying the web_viewer folder in pycWB to the output folder.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.catalog</span> <span class="kn">import</span> <span class="n">create_catalog</span><span class="p">,</span> <span class="n">add_events_to_catalog</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.web_viewer.create</span> <span class="kn">import</span> <span class="n">create_web_viewer</span>
+
+<span class="c1"># create catalog</span>
+<span class="n">create_catalog</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">outputDir</span><span class="si">}</span><span class="s2">/catalog.json&quot;</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">job_segments</span><span class="p">)</span>
+
+<span class="c1"># copy all files in web_viewer to output folder</span>
+<span class="n">create_web_viewer</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">outputDir</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>each job segment will be analyzed with <a class="reference internal" href="pycwb.html#pycwb.search.analyze_job_segment" title="pycwb.search.analyze_job_segment"><code class="xref py py-func docutils literal notranslate"><span class="pre">pycwb.search.analyze_job_segment()</span></code></a>.
+To avoid memory leak in c code, the function is called in a subprocess.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.search</span> <span class="kn">import</span> <span class="n">analyze_job_segment</span>
 
 <span class="k">for</span> <span class="n">job_segment</span> <span class="ow">in</span> <span class="n">job_segments</span><span class="p">:</span>
@@ -217,6 +245,75 @@ To aviod this, you should not use subprocess to run the code. Instead, you can r
     <span class="n">analyze_job_segment</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">job_segment</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+<section id="data-analysis">
+<h2>Data Analysis<a class="headerlink" href="#data-analysis" title="Permalink to this heading">¶</a></h2>
+<p>The data analysis part is done by <a class="reference internal" href="pycwb.html#pycwb.search.analyze_job_segment" title="pycwb.search.analyze_job_segment"><code class="xref py py-func docutils literal notranslate"><span class="pre">pycwb.search.analyze_job_segment()</span></code></a>.
+It analyzes the input job segment with config settings.</p>
+<p>First, it will read the data from the job segment with <code class="xref py py-func docutils literal notranslate"><span class="pre">pycwb.modules.read_data.read_from_job_segment()</span></code>
+and/or <code class="xref py py-func docutils literal notranslate"><span class="pre">pycwb.modules.read_data.generate_injection()</span></code> if the job segment contains injections. The data will be
+stored in a pycbc TimeSeries object.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.read_data</span> <span class="kn">import</span> <span class="n">read_from_job_segment</span><span class="p">,</span> <span class="n">generate_injection</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">if</span> <span class="n">job_seg</span><span class="o">.</span><span class="n">frames</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">read_from_job_segment</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">job_seg</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">job_seg</span><span class="o">.</span><span class="n">injections</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">generate_injection</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">job_seg</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, it will do data conditioning with <a class="reference internal" href="pycwb.modules.data_conditioning.html#module-pycwb.modules.data_conditioning.data_conditioning" title="pycwb.modules.data_conditioning.data_conditioning"><code class="xref py py-func docutils literal notranslate"><span class="pre">pycwb.modules.data_conditioning.data_conditioning()</span></code></a>.
+A list of conditioned <a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries" title="pycwb.types.time_frequency_series.TimeFrequencySeries"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeFrequencySeries</span></code></a> objects and a list of nRMS <a class="reference internal" href="pycwb.types.html#pycwb.types.time_frequency_series.TimeFrequencySeries" title="pycwb.types.time_frequency_series.TimeFrequencySeries"><code class="xref py py-class docutils literal notranslate"><span class="pre">TimeFrequencySeries</span></code></a>
+will be returned.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.data_conditioning</span> <span class="kn">import</span> <span class="n">data_conditioning</span>
+
+<span class="c1"># data conditioning</span>
+<span class="n">tf_maps</span><span class="p">,</span> <span class="n">nRMS_list</span> <span class="o">=</span> <span class="n">data_conditioning</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, it will select the pixels and do the clustering with <a class="reference internal" href="pycwb.modules.coherence.html#module-pycwb.modules.coherence.coherence" title="pycwb.modules.coherence.coherence"><code class="xref py py-func docutils literal notranslate"><span class="pre">pycwb.modules.coherence.coherence()</span></code></a>
+and <a class="reference internal" href="pycwb.modules.super_cluster.html#module-pycwb.modules.super_cluster.supercluster" title="pycwb.modules.super_cluster.supercluster"><code class="xref py py-func docutils literal notranslate"><span class="pre">pycwb.modules.super_cluster.supercluster()</span></code></a>. The output is a list of <a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster" title="pycwb.types.network_cluster.Cluster"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cluster</span></code></a> objects.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.coherence</span> <span class="kn">import</span> <span class="n">coherence</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.super_cluster</span> <span class="kn">import</span> <span class="n">supercluster</span>
+
+<span class="n">fragment_clusters</span> <span class="o">=</span> <span class="n">coherence</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">,</span> <span class="n">nRMS_list</span><span class="p">)</span>
+
+<span class="n">pwc_list</span> <span class="o">=</span> <span class="n">supercluster</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">fragment_clusters</span><span class="p">,</span> <span class="n">tf_maps</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, it will do the likelihood analysis with <a class="reference internal" href="pycwb.modules.likelihood.html#module-pycwb.modules.likelihood.likelihood" title="pycwb.modules.likelihood.likelihood"><code class="xref py py-func docutils literal notranslate"><span class="pre">pycwb.modules.likelihood.likelihood()</span></code></a>.
+The output is a list of <a class="reference internal" href="pycwb.types.html#pycwb.types.network_event.Event" title="pycwb.types.network_event.Event"><code class="xref py py-class docutils literal notranslate"><span class="pre">Event</span></code></a> objects containing the statistics of each event from the likelihood analysis.
+and a list of <a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.Cluster" title="pycwb.types.network_cluster.Cluster"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cluster</span></code></a> objects which contains the more detailed statistics of each pixels.
+The clusters and events will be saved in the output folder. The catalog file will be updated with the new events.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.likelihood</span> <span class="kn">import</span> <span class="n">likelihood</span><span class="p">,</span> <span class="n">save_likelihood_data</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.catalog</span> <span class="kn">import</span> <span class="n">add_events_to_catalog</span>
+
+<span class="n">events</span><span class="p">,</span> <span class="n">clusters</span> <span class="o">=</span> <span class="n">likelihood</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">pwc_list</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">event</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">events</span><span class="p">):</span>
+    <span class="n">save_likelihood_data</span><span class="p">(</span><span class="n">job_id</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">outputDir</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">clusters</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="c1"># save event to catalog</span>
+    <span class="n">add_events_to_catalog</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">outputDir</span><span class="si">}</span><span class="s2">/catalog.json&quot;</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">job_id</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The events will be marked on the spectrogram and the likelihood map and null map reconstructed from the clusters
+will also be plotted.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.plot.cluster_statistics</span> <span class="kn">import</span> <span class="n">plot_statistics</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.plot</span> <span class="kn">import</span> <span class="n">plot_event_on_spectrogram</span>
+
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tf_map</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tf_maps</span><span class="p">):</span>
+    <span class="n">plot_event_on_spectrogram</span><span class="p">(</span><span class="n">tf_map</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">outputDir</span><span class="si">}</span><span class="s1">/events_</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">_all_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">.png&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot the likelihood map</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clusters</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">cluster</span><span class="o">.</span><span class="n">cluster_status</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="n">plot_statistics</span><span class="p">(</span><span class="n">cluster</span><span class="p">,</span> <span class="s1">&#39;likelihood&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">outputDir</span><span class="si">}</span><span class="s1">/likelihood_map_</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">.png&#39;</span><span class="p">)</span>
+    <span class="n">plot_statistics</span><span class="p">(</span><span class="n">cluster</span><span class="p">,</span> <span class="s1">&#39;null&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">outputDir</span><span class="si">}</span><span class="s1">/null_map_</span><span class="si">{</span><span class="n">job_id</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 

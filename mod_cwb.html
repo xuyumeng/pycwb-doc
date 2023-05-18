@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Notes on modifications of cWB core code &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>Notes on modifications of cWB core code &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -37,7 +37,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Step by step injection search" href="tutorial_injection.html" /> 
+    <link rel="prev" title="Batch injection with Python Script" href="tutorial_batch_inj.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -51,7 +51,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> PyBurst
+            <a href="index.html" class="icon icon-home"> pycWB
           
 
           
@@ -83,8 +83,8 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
@@ -93,7 +93,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Guides</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Notes on modifications of cWB core code</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Notes on modifications of cWB core code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modifications-on-cmakelists-txt">Modifications on CMakeLists.txt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fixed-warning">Fixed Warning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#removed-some-printing">Removed Some Printing</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -108,7 +113,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">PyBurst</a>
+          <a href="index.html">pycWB</a>
         
       </nav>
 
@@ -163,6 +168,47 @@
 <p>This file contains notes on modifications of the cWB core code.  It is
 not intended to be a complete list of all modifications, but rather a
 list of the most important ones.</p>
+<section id="modifications-on-cmakelists-txt">
+<h2>Modifications on CMakeLists.txt<a class="headerlink" href="#modifications-on-cmakelists-txt" title="Permalink to this heading">¶</a></h2>
+<p>Added support for macOS</p>
+<ul class="simple">
+<li><p>support <cite>dylib</cite> extension for macOS</p></li>
+<li><p>added ASM flag and .S source file so that the code compiles on macOS</p></li>
+<li><p>removed unnecessary source file</p></li>
+</ul>
+</section>
+<section id="fixed-warning">
+<h2>Fixed Warning<a class="headerlink" href="#fixed-warning" title="Permalink to this heading">¶</a></h2>
+<p>Commented out the following line in <cite>WDM.cc</cite></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">DataType_t</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">WDM</span><span class="o">&lt;</span><span class="n">DataType_t</span><span class="o">&gt;::</span><span class="n">Cos</span><span class="p">[</span><span class="n">MAXBETA</span><span class="p">];</span><span class="w"></span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">DataType_t</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">WDM</span><span class="o">&lt;</span><span class="n">DataType_t</span><span class="o">&gt;::</span><span class="n">Cos2</span><span class="p">[</span><span class="n">MAXBETA</span><span class="p">];</span><span class="w"></span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">DataType_t</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">WDM</span><span class="o">&lt;</span><span class="n">DataType_t</span><span class="o">&gt;::</span><span class="n">SinCos</span><span class="p">[</span><span class="n">MAXBETA</span><span class="p">];</span><span class="w"></span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">DataType_t</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w">  </span><span class="n">WDM</span><span class="o">&lt;</span><span class="n">DataType_t</span><span class="o">&gt;::</span><span class="n">CosSize</span><span class="p">[</span><span class="n">MAXBETA</span><span class="p">];</span><span class="w"></span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">DataType_t</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w">  </span><span class="n">WDM</span><span class="o">&lt;</span><span class="n">DataType_t</span><span class="o">&gt;::</span><span class="n">Cos2Size</span><span class="p">[</span><span class="n">MAXBETA</span><span class="p">];</span><span class="w"></span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">DataType_t</span><span class="o">&gt;</span><span class="w"> </span><span class="kt">double</span><span class="w">  </span><span class="n">WDM</span><span class="o">&lt;</span><span class="n">DataType_t</span><span class="o">&gt;::</span><span class="n">SinCosSize</span><span class="p">[</span><span class="n">MAXBETA</span><span class="p">];</span><span class="w"></span>
+<span class="n">template</span><span class="o">&lt;</span><span class="n">class</span><span class="w"> </span><span class="n">DataType_t</span><span class="o">&gt;</span><span class="w">    </span><span class="kt">int</span><span class="w">  </span><span class="n">WDM</span><span class="o">&lt;</span><span class="n">DataType_t</span><span class="o">&gt;::</span><span class="n">objCounter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>and add inline keyword to the following lines in <cite>WDM.hh</cite></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">Cos</span><span class="p">[</span><span class="n">MAXBETA</span><span class="p">],</span><span class="w"> </span><span class="o">*</span><span class="n">Cos2</span><span class="p">[</span><span class="n">MAXBETA</span><span class="p">],</span><span class="w"> </span><span class="o">*</span><span class="n">SinCos</span><span class="p">[</span><span class="n">MAXBETA</span><span class="p">];</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">CosSize</span><span class="p">[</span><span class="n">MAXBETA</span><span class="p">],</span><span class="w"> </span><span class="n">Cos2Size</span><span class="p">[</span><span class="n">MAXBETA</span><span class="p">],</span><span class="w"> </span><span class="n">SinCosSize</span><span class="p">[</span><span class="n">MAXBETA</span><span class="p">];</span><span class="w"></span>
+<span class="k">static</span><span class="w"> </span><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">objCounter</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>to avoid some warnings.</p>
+</section>
+<section id="removed-some-printing">
+<h2>Removed Some Printing<a class="headerlink" href="#removed-some-printing" title="Permalink to this heading">¶</a></h2>
+<p>Removed printing of the following lines in <cite>WDM.cc</cite></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Filter length = %d,  norm = %.16f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="mf">1.</span><span class="o">-</span><span class="n">residual</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>and <cite>monster.cc</cite></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;layers[%d] = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">layers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">tmp</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>to let the output managed by the python code.</p>
+</section>
 </section>
 
 
@@ -174,7 +220,7 @@ list of the most important ones.</p>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="tutorial_injection.html" class="btn btn-neutral float-left" title="Step by step injection search" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tutorial_batch_inj.html" class="btn btn-neutral float-left" title="Batch injection with Python Script" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

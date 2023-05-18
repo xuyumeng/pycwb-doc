@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.modules.job_segment package &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>pycwb.modules.job_segment package &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -52,7 +52,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> PyBurst
+            <a href="index.html" class="icon icon-home"> pycWB
           
 
           
@@ -84,8 +84,8 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Modules</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pycWB</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="pycwb.html">pycwb package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="pycwb.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="pycwb.config.html">pycwb.config package</a></li>
@@ -126,7 +126,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">PyBurst</a>
+          <a href="index.html">pycWB</a>
         
       </nav>
 
@@ -191,7 +191,7 @@
 <span id="pycwb-modules-job-segment-dq-segment-module"></span><h2>pycwb.modules.job_segment.dq_segment module<a class="headerlink" href="#module-pycwb.modules.job_segment.dq_segment" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="pycwb.modules.job_segment.dq_segment.get_job_list">
-<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.dq_segment.</span></span><span class="sig-name descname"><span class="pre">get_job_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dq_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_mls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_edge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/dq_segment.html#get_job_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.dq_segment.get_job_list" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.dq_segment.</span></span><span class="sig-name descname"><span class="pre">get_job_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ifos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dq_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_mls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_edge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/dq_segment.html#get_job_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.dq_segment.get_job_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build the job segment list.</p>
 <p>The job segments are builded starting from the input ilist, each segment must have a minimum length
 of segMLS+2segEdge and a maximum length of segLen+2*segEdge in order to maximize the input live time
@@ -222,7 +222,7 @@ each segment with lenght&lt;2*(segLen+segEdge) is divided in 2 segments with len
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pycwb.modules.job_segment.dq_segment.get_seg_list">
-<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.dq_segment.</span></span><span class="sig-name descname"><span class="pre">get_seg_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dq_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_mls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_edge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/dq_segment.html#get_seg_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.dq_segment.get_seg_list" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.dq_segment.</span></span><span class="sig-name descname"><span class="pre">get_seg_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ifo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dq_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_mls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seg_edge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/dq_segment.html#get_seg_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.dq_segment.get_seg_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Not implemented yet.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -337,7 +337,7 @@ The metadata will be extracted from the filename and stored in a FrameFile objec
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pycwb.modules.job_segment.job_segment.create_job_segment_from_injection">
-<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.job_segment.</span></span><span class="sig-name descname"><span class="pre">create_job_segment_from_injection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">simulation_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">injection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/job_segment.html#create_job_segment_from_injection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.job_segment.create_job_segment_from_injection" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.job_segment.job_segment.</span></span><span class="sig-name descname"><span class="pre">create_job_segment_from_injection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ifo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulation_mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">injection</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/job_segment/job_segment.html#create_job_segment_from_injection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.job_segment.job_segment.create_job_segment_from_injection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">

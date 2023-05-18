@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to PyBurst’s documentation! &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>Welcome to pycWB’s documentation! &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -51,7 +51,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> PyBurst
+            <a href="#" class="icon icon-home"> pycWB
           
 
           
@@ -83,8 +83,8 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
@@ -108,7 +108,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">PyBurst</a>
+          <a href="#">pycWB</a>
         
       </nav>
 
@@ -139,7 +139,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Welcome to PyBurst’s documentation!</li>
+      <li>Welcome to pycWB’s documentation!</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -158,9 +158,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="welcome-to-pyburst-s-documentation">
-<h1>Welcome to PyBurst’s documentation!<a class="headerlink" href="#welcome-to-pyburst-s-documentation" title="Permalink to this heading">¶</a></h1>
-<p>PyBurst is a Python package for gravitational wave burst search based on the core function of cWB.</p>
+  <section id="welcome-to-pycwb-s-documentation">
+<h1>Welcome to pycWB’s documentation!<a class="headerlink" href="#welcome-to-pycwb-s-documentation" title="Permalink to this heading">¶</a></h1>
+<p>pycWB is a modularized Python package for gravitational wave burst search based on the core function of cWB.</p>
 <p>…</p>
 <div class="toctree-wrapper compound">
 </div>
@@ -173,7 +173,7 @@
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n pycwb python
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n pycwb <span class="s2">&quot;python&lt;3.11&quot;</span>
 conda activate pycwb
 conda install -c conda-forge <span class="nv">root</span><span class="o">=</span><span class="m">6</span>.26.10 <span class="nv">healpix_cxx</span><span class="o">=</span><span class="m">3</span>.81 nds2-client python-nds2-client lalsuite setuptools_scm
 git clone git@git.ligo.org:yumeng.xu/pycwb.git
@@ -184,30 +184,30 @@ make install
 </section>
 <section id="run-your-first-burst-search">
 <h2>Run your first burst search<a class="headerlink" href="#run-your-first-burst-search" title="Permalink to this heading">¶</a></h2>
-<section id="copy-the-example-configuration-file">
-<h3>Copy the example configuration file<a class="headerlink" href="#copy-the-example-configuration-file" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir my_search
-cp <span class="o">[</span>path_to_source_code<span class="o">]</span>/examples/injection/user_parameters_injection.yaml user_parameters.yaml
+<section id="copy-the-example-configuration-folder">
+<h3>Copy the example configuration folder<a class="headerlink" href="#copy-the-example-configuration-folder" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp -r <span class="o">[</span>path_to_source_code<span class="o">]</span>/examples/injection my_search
 </pre></div>
 </div>
 </section>
 <section id="start-searching">
 <h3>Start searching!<a class="headerlink" href="#start-searching" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.search</span> <span class="kn">import</span> <span class="n">search</span>
-
-<span class="n">search</span><span class="p">(</span><span class="s1">&#39;./user_parameters.yaml&#39;</span><span class="p">)</span>
+<p>You can directly run the example search script in the example folder</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> my_search
+python pycwb_injection.py
 </pre></div>
 </div>
+<p>Or you can open the juptyer notebook <cite>pycwb_injection.ipynb</cite> and run the search step by step</p>
 </section>
-<section id="go-deeper-into-pyburst-search">
-<h3>Go deeper into PyBurst.search<a class="headerlink" href="#go-deeper-into-pyburst-search" title="Permalink to this heading">¶</a></h3>
+<section id="go-deeper-into-pycwb-search">
+<h3>Go deeper into pycWB.search<a class="headerlink" href="#go-deeper-into-pycwb-search" title="Permalink to this heading">¶</a></h3>
 <p>If you want to know more about the search process, please refer to
-<a class="reference internal" href="tutorial_search.html#tutorial-search"><span class="std std-ref">Go deeper into PyBurst.search</span></a></p>
+<a class="reference internal" href="tutorial_search.html#tutorial-search"><span class="std std-ref">Go deeper into pycWB.search</span></a></p>
 </section>
 <section id="step-by-step-injection">
 <h3>Step by step injection!<a class="headerlink" href="#step-by-step-injection" title="Permalink to this heading">¶</a></h3>
 <p>If you want to know more about the injection process step by step, please refer to
-<a class="reference internal" href="tutorial_injection.html#tutorial-injection"><span class="std std-ref">Step by step injection search</span></a></p>
+<a class="reference internal" href="tutorial_injection.html#tutorial-injection"><span class="std std-ref">Step by step injection search</span></a> or the juptyer notebook <cite>pycwb_injection.ipynb</cite></p>
 </section>
 </section>
 </section>

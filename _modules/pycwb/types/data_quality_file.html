@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.types.data_quality_file &mdash; PyBurst 0.15.2.dev3+g411a353.d20230516 documentation</title>
+  <title>pycwb.types.data_quality_file &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
   
 
   
@@ -49,7 +49,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> PyBurst
+            <a href="../../../index.html" class="icon icon-home"> pycWB
           
 
           
@@ -81,8 +81,8 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../install.html">Installation Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of PyBurst in Scientific Publications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../credit.html">Use of pycWB in Scientific Publications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pycWB</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">User Guides</span></p>
@@ -106,7 +106,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../../index.html">PyBurst</a>
+          <a href="../../../index.html">pycWB</a>
         
       </nav>
 
@@ -163,30 +163,39 @@
 
 
 <div class="viewcode-block" id="DQFile"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.data_quality_file.DQFile">[docs]</a><span class="k">class</span> <span class="nc">DQFile</span><span class="p">:</span>
-    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ifo&#39;</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="s1">&#39;dq_cat&#39;</span><span class="p">,</span> <span class="s1">&#39;shift&#39;</span><span class="p">,</span> <span class="s1">&#39;invert&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">]</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Class to store data quality file information</span>
 
-<span class="sd">    :param ifo: ifo name</span>
-<span class="sd">    :type ifo: str</span>
-<span class="sd">    :param file: data quality file path</span>
-<span class="sd">    :type file: str</span>
-<span class="sd">    :param dq_cat: data quality category</span>
-<span class="sd">    :type dq_cat: str</span>
-<span class="sd">    :param shift: shift in seconds</span>
-<span class="sd">    :type shift: float</span>
-<span class="sd">    :param invert: flag for inversion</span>
-<span class="sd">    :type invert: bool</span>
-<span class="sd">    :param c4: flag for 4 column data</span>
-<span class="sd">    :type c4: bool</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ifo : str</span>
+<span class="sd">        ifo name</span>
+<span class="sd">    file : str</span>
+<span class="sd">        data quality file path</span>
+<span class="sd">    dq_cat : str</span>
+<span class="sd">        data quality category</span>
+<span class="sd">    shift : float</span>
+<span class="sd">        shift in seconds</span>
+<span class="sd">    invert : bool</span>
+<span class="sd">        flag for inversion</span>
+<span class="sd">    c4 : bool</span>
+<span class="sd">        flag for 4 column data</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ifo</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">dq_cat</span><span class="p">,</span> <span class="n">shift</span><span class="p">,</span> <span class="n">invert</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">c4</span><span class="p">):</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ifo&#39;</span><span class="p">,</span> <span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="s1">&#39;dq_cat&#39;</span><span class="p">,</span> <span class="s1">&#39;shift&#39;</span><span class="p">,</span> <span class="s1">&#39;invert&#39;</span><span class="p">,</span> <span class="s1">&#39;c4&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ifo</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">dq_cat</span><span class="p">,</span> <span class="n">shift</span><span class="p">,</span> <span class="n">invert</span><span class="p">,</span> <span class="n">c4</span><span class="p">):</span>
+        <span class="c1">#: str: ifo name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ifo</span> <span class="o">=</span> <span class="n">ifo</span>
+        <span class="c1">#: str: data quality file path</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span>
+        <span class="c1">#: str: data quality category</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dq_cat</span> <span class="o">=</span> <span class="n">dq_cat</span>
+        <span class="c1">#: float: shift in seconds</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shift</span> <span class="o">=</span> <span class="n">shift</span>
+        <span class="c1">#: bool: flag for inversion</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">invert</span> <span class="o">=</span> <span class="n">invert</span>
+        <span class="c1">#: bool: flag for 4 column data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">c4</span> <span class="o">=</span> <span class="n">c4</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -206,12 +215,14 @@
 
 <div class="viewcode-block" id="DQFile.get_periods"><a class="viewcode-back" href="../../../pycwb.types.html#pycwb.types.data_quality_file.DQFile.get_periods">[docs]</a>    <span class="k">def</span> <span class="nf">get_periods</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Load and process the data quality file.</span>
+<span class="sd">        Get the periods from the data quality file.</span>
 
-<span class="sd">        :param self: The data quality file.</span>
-<span class="sd">        :type self: DQFile</span>
-<span class="sd">        :return: a list of start and end times (start, end)</span>
-<span class="sd">        :rtype: tuple[np.ndarray, np.ndarray]</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        start : np.ndarray</span>
+<span class="sd">            start times</span>
+<span class="sd">        stop : np.ndarray</span>
+<span class="sd">            stop times</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">start</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">stop</span> <span class="o">=</span> <span class="p">[]</span>
