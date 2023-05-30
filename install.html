@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation Guide &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
+  <title>Installation Guide &mdash; pycWB 0.15.8 documentation</title>
   
 
   
@@ -172,8 +172,13 @@
 <span id="installing-pycwb"></span><h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Permalink to this heading">¶</a></h1>
 <section id="installation-with-conda-pip">
 <h2>Installation with Conda/Pip<a class="headerlink" href="#installation-with-conda-pip" title="Permalink to this heading">¶</a></h2>
-<p>The project is not yet available on PyPI or conda-forge, but you can install it
-from source with pip.</p>
+<p>The project is available on PyPI</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n pycwb <span class="s2">&quot;python&gt;=3.9,&lt;3.11&quot;</span>
+conda activate pycwb
+conda install -c conda-forge <span class="nv">root</span><span class="o">=</span><span class="m">6</span>.26.10 <span class="nv">healpix_cxx</span><span class="o">=</span><span class="m">3</span>.81 nds2-client python-nds2-client lalsuite setuptools_scm cmake pkg-config
+python3 -m pip install pycwb
+</pre></div>
+</div>
 </section>
 <section id="installing-from-source-with-conda-and-pip">
 <h2>Installing from Source with Conda and Pip<a class="headerlink" href="#installing-from-source-with-conda-and-pip" title="Permalink to this heading">¶</a></h2>

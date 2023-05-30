@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to pycWB’s documentation! &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
+  <title>Welcome to pycWB’s documentation! &mdash; pycWB 0.15.8 documentation</title>
   
 
   
@@ -174,12 +174,10 @@
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">¶</a></h1>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n pycwb <span class="s2">&quot;python&lt;3.11&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create -n pycwb <span class="s2">&quot;python&gt;=3.9,&lt;3.11&quot;</span>
 conda activate pycwb
-conda install -c conda-forge <span class="nv">root</span><span class="o">=</span><span class="m">6</span>.26.10 <span class="nv">healpix_cxx</span><span class="o">=</span><span class="m">3</span>.81 nds2-client python-nds2-client lalsuite setuptools_scm
-git clone git@git.ligo.org:yumeng.xu/pycwb.git
-<span class="nb">cd</span> pycwb
-make install
+conda install -c conda-forge <span class="nv">root</span><span class="o">=</span><span class="m">6</span>.26.10 <span class="nv">healpix_cxx</span><span class="o">=</span><span class="m">3</span>.81 nds2-client python-nds2-client lalsuite setuptools_scm cmake pkg-config
+python3 -m pip install pycwb
 </pre></div>
 </div>
 </section>

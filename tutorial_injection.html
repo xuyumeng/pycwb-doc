@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Step by step injection search &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
+  <title>Step by step injection search &mdash; pycWB 0.15.8 documentation</title>
   
 
   
@@ -231,11 +231,12 @@ and the nRMS is the noise RMS of the data:</p>
 <p>Finally, calculate the likelihood for each supercluster:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.likelihood</span> <span class="kn">import</span> <span class="n">likelihood</span>
 
-<span class="n">events</span><span class="p">,</span> <span class="n">clusters</span> <span class="o">=</span> <span class="n">likelihood</span><span class="p">(</span><span class="n">job_id</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">pwc_list</span><span class="p">)</span>
+<span class="n">events</span><span class="p">,</span> <span class="n">clusters</span> <span class="o">=</span> <span class="n">likelihood</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">pwc_list</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You can use the following code to plot the events on the spectrogram:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pycwb.modules.plot</span> <span class="kn">import</span> <span class="n">plot_event_on_spectrogram</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">from</span> <span class="nn">pycwb.modules.plot</span> <span class="kn">import</span> <span class="n">plot_event_on_spectrogram</span>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tf_map</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">strains</span><span class="p">):</span>
     <span class="n">plt</span> <span class="o">=</span> <span class="n">plot_event_on_spectrogram</span><span class="p">(</span><span class="n">tf_map</span><span class="p">,</span> <span class="n">events</span><span class="p">)</span>
@@ -244,7 +245,8 @@ and the nRMS is the noise RMS of the data:</p>
 </div>
 <p>the likelihood map and null map reconstructed from the clusters
 will also be plotted with</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gwpy.spectrogram</span> <span class="kn">import</span> <span class="n">Spectrogram</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">from</span> <span class="nn">gwpy.spectrogram</span> <span class="kn">import</span> <span class="n">Spectrogram</span>
 
 <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
     <span class="n">merged_map</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">cluster</span><span class="o">.</span><span class="n">get_sparse_map</span><span class="p">(</span><span class="s2">&quot;likelihood&quot;</span><span class="p">)</span>

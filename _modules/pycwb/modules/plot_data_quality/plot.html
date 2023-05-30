@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.modules.job_segment.plots &mdash; pycWB 0.15.8 documentation</title>
+  <title>pycwb.modules.plot_data_quality.plot &mdash; pycWB 0.15.8 documentation</title>
   
 
   
@@ -140,7 +140,7 @@
         
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
         
-      <li>pycwb.modules.job_segment.plots</li>
+      <li>pycwb.modules.plot_data_quality.plot</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -155,12 +155,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for pycwb.modules.job_segment.plots</h1><div class="highlight"><pre>
+  <h1>Source code for pycwb.modules.plot_data_quality.plot</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
-<div class="viewcode-block" id="plot_seg_list"><a class="viewcode-back" href="../../../../pycwb.modules.job_segment.html#pycwb.modules.job_segment.plots.plot_seg_list">[docs]</a><span class="k">def</span> <span class="nf">plot_seg_list</span><span class="p">(</span><span class="n">seg_list</span><span class="p">,</span> <span class="n">merged_seg_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">6</span><span class="p">)):</span>
+<div class="viewcode-block" id="plot_data_quality"><a class="viewcode-back" href="../../../../pycwb.modules.plot_data_quality.html#pycwb.modules.plot_data_quality.plot.plot_data_quality">[docs]</a><span class="k">def</span> <span class="nf">plot_data_quality</span><span class="p">(</span><span class="n">dq_files</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">6</span><span class="p">)):</span>
     <span class="sd">&quot;&quot;&quot;Plot the segment list.</span>
 
 <span class="sd">    :param seg_list: list of segments</span>
@@ -170,6 +170,11 @@
 <span class="sd">    :param figsize: figure size, defaults to (24, 6)</span>
 <span class="sd">    :type figsize: tuple[int, int], optional</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">seg_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">dq_file</span> <span class="ow">in</span> <span class="n">dq_files</span><span class="p">:</span>
+        <span class="n">seg_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dq_file</span><span class="o">.</span><span class="n">get_periods</span><span class="p">())</span>
+        <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dq_file</span><span class="o">.</span><span class="n">ifo</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">dq_file</span><span class="o">.</span><span class="n">dq_cat</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
 
@@ -181,10 +186,7 @@
         <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">merged_seg_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">merged_seg_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">merged_seg_list</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seg_list</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">min_start</span><span class="p">,</span> <span class="n">max_stop</span><span class="p">)</span>
 

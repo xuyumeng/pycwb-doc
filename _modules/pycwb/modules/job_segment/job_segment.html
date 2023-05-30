@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.modules.job_segment.job_segment &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
+  <title>pycwb.modules.job_segment.job_segment &mdash; pycWB 0.15.8 documentation</title>
   
 
   
@@ -167,7 +167,7 @@
 
 
 <div class="viewcode-block" id="create_job_segment_from_config"><a class="viewcode-back" href="../../../../pycwb.modules.job_segment.html#pycwb.modules.job_segment.job_segment.create_job_segment_from_config">[docs]</a><span class="k">def</span> <span class="nf">create_job_segment_from_config</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">simulation</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">config</span><span class="o">.</span><span class="n">simulation</span><span class="p">:</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initializing job segments&quot;</span><span class="p">)</span>
         <span class="n">job_segments</span> <span class="o">=</span> <span class="n">select_job_segment</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">dq_files</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">ifo</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">frFiles</span><span class="p">,</span>

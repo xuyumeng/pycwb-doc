@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.modules.super_cluster package &mdash; pycWB 0.15.8 documentation</title>
+  <title>pycwb.modules.plot_data_quality package &mdash; pycWB 0.15.8 documentation</title>
   
 
   
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="pycwb.modules.web_viewer package" href="pycwb.modules.web_viewer.html" />
-    <link rel="prev" title="pycwb.modules.sparse_series package" href="pycwb.modules.sparse_series.html" /> 
+    <link rel="next" title="pycwb.modules.read_data package" href="pycwb.modules.read_data.html" />
+    <link rel="prev" title="pycwb.modules.plot package" href="pycwb.modules.plot.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -164,13 +164,13 @@
         
           <li><a href="pycwb.modules.html">pycwb.modules package</a> &raquo;</li>
         
-      <li>pycwb.modules.super_cluster package</li>
+      <li>pycwb.modules.plot_data_quality package</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/pycwb.modules.super_cluster.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/pycwb.modules.plot_data_quality.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -183,47 +183,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="pycwb-modules-super-cluster-package">
-<h1>pycwb.modules.super_cluster package<a class="headerlink" href="#pycwb-modules-super-cluster-package" title="Permalink to this heading">¶</a></h1>
+  <section id="pycwb-modules-plot-data-quality-package">
+<h1>pycwb.modules.plot_data_quality package<a class="headerlink" href="#pycwb-modules-plot-data-quality-package" title="Permalink to this heading">¶</a></h1>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
 </section>
-<section id="module-pycwb.modules.super_cluster.supercluster">
-<span id="pycwb-modules-super-cluster-supercluster-module"></span><h2>pycwb.modules.super_cluster.supercluster module<a class="headerlink" href="#module-pycwb.modules.super_cluster.supercluster" title="Permalink to this heading">¶</a></h2>
+<section id="module-pycwb.modules.plot_data_quality.plot">
+<span id="pycwb-modules-plot-data-quality-plot-module"></span><h2>pycwb.modules.plot_data_quality.plot module<a class="headerlink" href="#module-pycwb.modules.plot_data_quality.plot" title="Permalink to this heading">¶</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="pycwb.modules.super_cluster.supercluster.supercluster">
-<span class="sig-prename descclassname"><span class="pre">pycwb.modules.super_cluster.supercluster.</span></span><span class="sig-name descname"><span class="pre">supercluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">network</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fragment_clusters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf_maps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/super_cluster/supercluster.html#supercluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.super_cluster.supercluster.supercluster" title="Permalink to this definition">¶</a></dt>
-<dd><p>Multi resolution clustering &amp; Rejection of the sub-threshold clusters</p>
-<p>Loop over time lags</p>
-<ul class="simple">
-<li><p>Read clusters from job file (netcluster::read)</p></li>
-<li><p>Multi resolution clustering (netcluster::supercluster)</p></li>
-<li><p>Compute for each pixel the time delay amplitudes (netcluster::loadTDampSSE)</p></li>
-<li><p>Rejection of the sub-threshold clusters (network::subNetCut)</p></li>
-<li><p>Defragment clusters (netcluster::defragment)</p></li>
-</ul>
+<dt class="sig sig-object py" id="pycwb.modules.plot_data_quality.plot.plot_data_quality">
+<span class="sig-prename descclassname"><span class="pre">pycwb.modules.plot_data_quality.plot.</span></span><span class="sig-name descname"><span class="pre">plot_data_quality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dq_files</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(24,</span> <span class="pre">6)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycwb/modules/plot_data_quality/plot.html#plot_data_quality"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycwb.modules.plot_data_quality.plot.plot_data_quality" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot the segment list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>config</strong> (<a class="reference internal" href="pycwb.config.html#pycwb.config.config.Config" title="pycwb.config.config.Config"><em>Config</em></a>) – user configuration</p></li>
-<li><p><strong>network</strong> (<a class="reference internal" href="pycwb.types.html#pycwb.types.network.Network" title="pycwb.types.network.Network"><em>Network</em></a>) – network</p></li>
-<li><p><strong>wdm_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="pycwb.types.html#pycwb.types.wdm.WDM" title="pycwb.types.wdm.WDM"><em>WDM</em></a><em>]</em>) – list of wavelets</p></li>
-<li><p><strong>fragment_clusters</strong> (<em>list</em><em>[</em><a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster" title="pycwb.types.network_cluster.FragmentCluster"><em>FragmentCluster</em></a><em>]</em>) – fragment clusters</p></li>
-<li><p><strong>sparse_table_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="pycwb.types.html#pycwb.types.sparse_series.SparseTimeFrequencySeries" title="pycwb.types.sparse_series.SparseTimeFrequencySeries"><em>SparseTimeFrequencySeries</em></a><em>]</em>) – list of sparse tables</p></li>
+<li><p><strong>seg_list</strong> (<em>tuple</em><em>[</em><em>np.ndarray</em><em> | </em><em>list</em><em>, </em><em>np.ndarray</em><em> | </em><em>list</em><em>]</em>) – list of segments</p></li>
+<li><p><strong>merged_seg_list</strong> (<em>tuple</em><em>[</em><em>np.ndarray</em><em> | </em><em>list</em><em>, </em><em>np.ndarray</em><em> | </em><em>list</em><em>]</em><em>, </em><em>optional</em>) – list of merged segments which will be analyzed</p></li>
+<li><p><strong>figsize</strong> (<em>tuple</em><em>[</em><em>int</em><em>, </em><em>int</em><em>]</em><em>, </em><em>optional</em>) – figure size, defaults to (24, 6)</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the list of clusters</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list[<a class="reference internal" href="pycwb.types.html#pycwb.types.network_cluster.FragmentCluster" title="pycwb.types.network_cluster.FragmentCluster">FragmentCluster</a>]</p>
 </dd>
 </dl>
 </dd></dl>
 
 </section>
-<section id="module-pycwb.modules.super_cluster">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycwb.modules.super_cluster" title="Permalink to this heading">¶</a></h2>
+<section id="module-pycwb.modules.plot_data_quality">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pycwb.modules.plot_data_quality" title="Permalink to this heading">¶</a></h2>
 </section>
 </section>
 
@@ -235,10 +219,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pycwb.modules.web_viewer.html" class="btn btn-neutral float-right" title="pycwb.modules.web_viewer package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="pycwb.modules.read_data.html" class="btn btn-neutral float-right" title="pycwb.modules.read_data package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pycwb.modules.sparse_series.html" class="btn btn-neutral float-left" title="pycwb.modules.sparse_series package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="pycwb.modules.plot.html" class="btn btn-neutral float-left" title="pycwb.modules.plot package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.modules.read_data.read_data &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
+  <title>pycwb.modules.read_data.read_data &mdash; pycWB 0.15.8 documentation</title>
   
 
   
@@ -342,6 +342,9 @@
 
     <span class="n">i</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">ifo</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">ifo</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">read_from_gwf</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">channelNamesRaw</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">sample_rate</span><span class="o">.</span><span class="n">value</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">int</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">inRate</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">inRate</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Resample data from </span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">sample_rate</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">inRate</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">check_and_resample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
 </pre></div>
 

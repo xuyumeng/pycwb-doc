@@ -1,0 +1,21 @@
+pycwb.modules.plot\_data\_quality package
+=========================================
+
+Submodules
+----------
+
+pycwb.modules.plot\_data\_quality.plot module
+---------------------------------------------
+
+.. automodule:: pycwb.modules.plot_data_quality.plot
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: pycwb.modules.plot_data_quality
+   :members:
+   :undoc-members:
+   :show-inheritance:

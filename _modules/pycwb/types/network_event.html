@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycwb.types.network_event &mdash; pycWB 0.15.2.dev10+g02558f4.d20230518 documentation</title>
+  <title>pycwb.types.network_event &mdash; pycWB 0.15.8 documentation</title>
   
 
   
@@ -168,9 +168,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">nevent</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># number of events</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ndim</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># number of dimensions</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">run</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># run ID</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># effective correlated SNR</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">netcc</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># network correlation coefficients: 0-net,1-pc,2-cc,3-net2</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">neted</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># network energy disbalance: 0 - total, 1 - 00-phase, 2 - 90-phase</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># effective correlated SNR</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">netcc</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># network correlation coefficients: 0-net,1-pc,2-cc,3-net2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">neted</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># network energy disbalance: 0 - total, 1 - 00-phase, 2 - 90-phase</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gnet</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># network sensitivity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">anet</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># network alignment factor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">inet</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># network index</span>
@@ -185,16 +185,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">eBBH</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># eBBH array</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">usize</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># size of the universe</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ifo_list</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># list of ifos</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">eventID</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># event ID</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># event type</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># event name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">eventID</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># event ID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># event type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># event name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rate</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gap</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lag</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">slag</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slag</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">strain</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">phi</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="p">[]</span>

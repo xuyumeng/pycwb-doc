@@ -17,6 +17,7 @@ Subpackages
    pycwb.modules.logger
    pycwb.modules.multi_resolution_wdm
    pycwb.modules.plot
+   pycwb.modules.plot_data_quality
    pycwb.modules.read_data
    pycwb.modules.reconstruction
    pycwb.modules.sparse_series
